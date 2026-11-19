@@ -114,6 +114,13 @@ export const generateBatch = (originId, rentEur, prevIds = []) => {
     return { allGap: true, cards: chosen.map((c) => buildCard(c, rentEur, TIER_OF[c.id])) };
   }
 
+  if (covered.length < 3) {
+    const closest = [...others].filter((c) => !covered.includes(c)).sort((a, b) => a.housing["1_bed_outside"] - b.housing["1_bed_outside"]).slice(0, 6);
+    const chosen = [...covered];
+    while (chosen.length < 4) chosen.push(pick(closest, chosen, prevIds));
+    return { allGap: false, fewCovered: true, cards: chosen.map((c) => buildCard(c, rentEur, TIER_OF[c.id])) };
+  }
+
   const chosen = [];
   const slots = [];
   const add = (city, slot) => { if (city) { chosen.push(city); slots.push(slot); } };

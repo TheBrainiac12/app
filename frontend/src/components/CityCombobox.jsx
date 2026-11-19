@@ -11,7 +11,8 @@ export const CityCombobox = ({ value, onSelect }) => {
   const matches = useMemo(() => {
     const q = query.trim().toLowerCase();
     const list = q ? CITIES.filter((c) => c.label.toLowerCase().includes(q)) : CITIES;
-    return list.slice(0, 8);
+    const starts = (c) => (c.city.toLowerCase().startsWith(q) ? 0 : 1);
+    return [...list].sort((a, b) => starts(a) - starts(b)).slice(0, 8);
   }, [query]);
 
   const choose = (city) => {

@@ -52,7 +52,7 @@ const Perks = ({ card, code, color, id }) => (
 const RealityBody = ({ card, code, color, id }) => (
   <div className="space-y-3">
     <p data-testid={`${id}-gap`} className="font-display text-2xl font-extrabold" style={{ color }}>
-      You'd need +{formatEur(card.gap, code)}/mo
+      You'd need <span className="whitespace-nowrap">+{formatEur(card.gap, code)}/mo</span>
     </p>
     <p className="text-xs font-mono text-white/45">≈ +{formatUsd(card.gap)}/mo for a 1-bed outside the centre</p>
     <p className="text-sm text-white/75">{card.tradeOff}</p>

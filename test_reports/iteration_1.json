@@ -1,0 +1,30 @@
+{
+  "summary": "Frontend-only test of 'What Your Rent Buys Elsewhere'. All 8 requested features work at 1920/768/390 with no page errors. I also ran a Node simulation of engine.generateBatch: 160 origin cities x 6 rent levels x 5 runs = 4800 batches. Results: origin city never in results, no duplicate cards, never more than 1 reality check card when allGap is false. One edge case found: when only 1-2 other cities are covered by the rent, the batch has fewer than 4 cards and Shuffle has to repeat cities.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "engine.generateBatch / ResultsView", "issue": "Low rents that cover only 1-2 cities (e.g. Alexandria at 4,850 EGP, where only Kolkata is covered) give 2 cards instead of 4: Affordable plus a far-off Dream reality check (Milan, needs +E£36,856). The rest of the desktop grid is empty and there is no allGap note. 50 of 4800 simulated batches had fewer than 4 cards. Shuffle can't avoid repeats in these cases (178 of 4800 shuffles repeated a city).", "selector": "[data-testid='comparison-cards-grid']", "priority": "MEDIUM"},
+      {"component": "CityCombobox", "issue": "Matching is plain substring with no prefix ranking. Typing 'lon' lists Barcelona first, then London, so pressing Enter picks Barcelona. Cities whose names start with the query should be listed first.", "selector": "[data-testid='city-autocomplete-input']", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Results (Reality Check cards)", "issues": ["On 4-column desktop, 'You'd need +₹7,802/mo' wraps awkwardly after the '+'. Minor."]}
+    ]
+  },
+  "test_report_links": ["/app/tests/engine_sim.js"],
+  "action_items": [
+    "generateBatch: when covered.length < 3 (and not allGap), fill the empty slots with the closest uncovered cities. This means either allowing more than 1 reality card here or showing the allGap-style note, so the grid always has 4 cards (3 on mobile). For the dream slot in this case, prefer the nearest gap over a random dream-tier city.",
+    "CityCombobox: list cities whose names start with the query before other substring matches."
+  ],
+  "critical_code_review_comments": [
+    "engine.js add(): when pick() returns null the slot is silently dropped, so there's no guaranteed card count.",
+    "Dream slot always picks from all dream-tier cities, even when the rent is far below every one of them. For very low rents the gap shown can be very large (e.g. 8x the rent).",
+    "CityCombobox query state is set only on mount from value.label. This works now because the component remounts on Edit, but it would break if the component stays mounted while value changes from outside."
+  ],
+  "updated_files": ["/app/tests/engine_sim.js"],
+  "success_rate": {"backend": "N/A", "frontend": "95%"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "No backend. Verified: autocomplete with click, Enter and ArrowDown, plus the empty state; picking a city sets the default rent (Mumbai 51,000 INR ≈ $595); rent input and slider stay in sync and the USD equivalent updates; Compare is disabled with no city or empty rent; loader shows; 4 cards visible at 1920 and 768, 4th hidden at 390, no horizontal scroll; Shuffle at Berlin €1500 gave no overlapping cities; Mumbai 2000 INR shows the allGap note and 4 gap cards; Share dialog square/story canvas is 1080x1080 / 1080x1920, both PNG downloads work (~100KB) and the success toast appears; Edit inputs keeps city and rent. node /app/tests/engine_sim.js needs /tmp/engine.js, a sed-transformed CommonJS copy of engine.js (see the iteration_1 commands)."
+}

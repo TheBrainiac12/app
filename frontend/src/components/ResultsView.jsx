@@ -39,9 +39,11 @@ export const ResultsView = ({ origin, rent, batch, onShuffle, onEdit }) => {
           </button>
         </div>
       </div>
-      {batch.allGap && (
+      {(batch.allGap || batch.fewCovered) && (
         <p data-testid={RENT.allGapNote} className="mb-6 rounded-2xl border border-[#FF5A7A]/30 bg-[#FF5A7A]/10 px-5 py-4 text-sm text-white/80">
-          That rent is a real bargain already. No other city in our list beats it, so here are the closest ones.
+          {batch.allGap
+            ? "That rent is a real bargain already. No other city in our list beats it, so here are the closest ones."
+            : "That rent already goes far. Only a few cities beat it, so we added the closest ones you'd almost afford."}
         </p>
       )}
       <div data-testid={RENT.resultsGrid} className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
