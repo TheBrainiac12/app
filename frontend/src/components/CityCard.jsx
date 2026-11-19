@@ -2,7 +2,29 @@ import { motion } from "framer-motion";
 import { BedDouble, Check, PiggyBank, Share2, Sparkles, TrendingUp, Wifi } from "lucide-react";
 import { formatEur, formatUsd } from "@/lib/currency";
 import { salaryLine, styleFor } from "@/lib/theme";
+import { flagOf } from "@/lib/flags";
 import { RENT } from "@/constants/testIds/rent";
+
+const VIBE = [
+  { key: "dinner_for_two", icon: "🍽️", label: "Dinner for 2" },
+  { key: "cappuccino", icon: "☕", label: "Cappuccino" },
+  { key: "gym_membership", icon: "🏋️", label: "Gym / mo" },
+  { key: "monthly_pass", icon: "🚇", label: "Transit pass" },
+];
+
+const VibeGrid = ({ card, code, id }) => (
+  <div data-testid={`${id}-vibe`} className="space-y-2">
+    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/40">Local vibe snapshot</p>
+    <div className="grid grid-cols-2 gap-2">
+      {VIBE.map((v) => (
+        <div key={v.key} className="rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 py-2">
+          <p className="text-[11px] text-white/50"><span className="mr-1">{v.icon}</span>{v.label}</p>
+          <p className="font-display text-sm font-bold text-white">{formatEur(card.city.lifestyle[v.key], code)}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 const RentBar = ({ card, code, color }) => {
   const local = card.reality ? card.needed : card.housingCost;
@@ -81,19 +103,26 @@ export const CityCard = ({ card, code, index, onShare }) => {
           </span>
           {card.reality ? <TrendingUp className="h-5 w-5" /> : <Sparkles className="h-5 w-5" />}
         </div>
-        <h3 className="relative mt-8 font-display text-3xl font-extrabold leading-none tracking-tight">{card.city.city}</h3>
+        <h3 className="relative mt-8 break-words font-display text-3xl font-extrabold leading-none tracking-tight">
+          {card.city.city} <span className="align-middle text-2xl">{flagOf(card.city.country)}</span>
+        </h3>
         <p className="relative mt-1 text-sm font-medium opacity-75">{card.city.country}</p>
       </div>
       <div className="flex flex-1 flex-col gap-5 p-5">
         <div className="flex items-center gap-2.5">
-          <BedDouble className="h-5 w-5 text-white/50" />
-          <p data-testid={`${id}-apartment`} className="font-display text-lg font-bold text-white">
+          <BedDouble className="h-6 w-6 shrink-0" style={{ color: s.hex }} />
+          <p data-testid={`${id}-apartment`} className="font-display text-xl font-extrabold tracking-tight text-white sm:text-2xl">
             {card.reality ? "Not even a 1-bed… yet" : card.apartment}
           </p>
         </div>
         <RentBar card={card} code={code} color={s.hex} />
         {card.reality ? <RealityBody card={card} code={code} color={s.hex} id={id} /> : <Perks card={card} code={code} color={s.hex} id={id} />}
-        <p data-testid={`${id}-salary`} className="mt-auto border-t border-white/10 pt-4 font-mono text-xs text-white/55">{salaryLine(card.salaryRatio)}</p>
+        <div className="mt-auto space-y-4">
+          <VibeGrid card={card} code={code} id={id} />
+          <p data-testid={`${id}-salary`} className="rounded-full px-3.5 py-2 text-center text-xs font-semibold" style={{ background: `${s.hex}1A`, color: s.hex, border: `1px solid ${s.hex}40` }}>
+            {salaryLine(card.salaryRatio)}
+          </p>
+        </div>
         <button
           data-testid={`${RENT.shareButton}-${card.city.id}`}
           onClick={() => onShare(card)}

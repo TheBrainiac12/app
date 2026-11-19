@@ -9,7 +9,7 @@ const HOUSING_ORDER = [
   { key: "1_bed_outside", label: "1-Bed · Outside Centre" },
 ];
 
-const CAPS = { dates: 12, meals: 30, movies: 12, cappuccino: 30 };
+const CAPS = { dates: 12, meals: 30, movies: 12, beers: 20, cappuccino: 30 };
 
 const TIER_OF = (() => {
   const sorted = [...data].sort((a, b) => a.housing["1_bed_center"] - b.housing["1_bed_center"]);
@@ -29,6 +29,7 @@ const TEMPLATES = {
   dates: [(n) => pl(n, "three-course date night", "three-course date nights"), (n) => pl(n, "dinner for two on the town", "dinners for two on the town"), (n) => pl(n, "fancy date night out", "fancy date nights out")],
   meals: [(n) => pl(n, "casual meal out", "casual meals out"), (n) => pl(n, "lunch you don't have to pack", "lunches you don't have to pack"), (n) => pl(n, "easy bite at a local spot", "easy bites at local spots")],
   movies: [(n) => pl(n, "movie night", "movie nights"), (n) => pl(n, "trip to the cinema", "trips to the cinema"), (n) => pl(n, "big-screen evening", "big-screen evenings")],
+  beers: [(n) => pl(n, "craft beer", "craft beers"), (n) => pl(n, "cold pint at the local", "cold pints at the local"), (n) => pl(n, "round of beer", "rounds of beer")],
   gym: [() => "a monthly gym membership", () => "a gym pass, sorted", () => "unlimited gym sessions"],
   transit: [() => "an unlimited monthly transit pass", () => "a monthly metro pass", () => "free transit rides all month"],
   cappuccino: [(n) => (n >= 30 ? "a cappuccino every single day" : pl(n, "café cappuccino", "café cappuccinos")), (n) => (n >= 30 ? "your daily cappuccino, every day" : pl(n, "cappuccino a month", "cappuccinos a month"))],
@@ -58,12 +59,12 @@ const calcPerks = (city, leftover) => {
   const cups = Math.min(CAPS.cappuccino, Math.floor(left / l.cappuccino));
   if (cups > 0) { left -= cups * l.cappuccino; perks.push({ type: "cappuccino", n: cups, value: cups * l.cappuccino }); }
 
-  const counts = { dates: 0, meals: 0, movies: 0 };
-  const price = { dates: l.dinner_for_two, meals: l.inexpensive_meal, movies: l.cinema_ticket };
+  const counts = { dates: 0, meals: 0, movies: 0, beers: 0 };
+  const price = { dates: l.dinner_for_two, meals: l.inexpensive_meal, movies: l.cinema_ticket, beers: l.beer };
   let progress = true;
   while (progress) {
     progress = false;
-    for (const k of ["dates", "meals", "movies"]) {
+    for (const k of ["dates", "meals", "movies", "beers"]) {
       if (counts[k] < CAPS[k] && left >= price[k]) { counts[k] += 1; left -= price[k]; progress = true; }
     }
   }
@@ -71,7 +72,6 @@ const calcPerks = (city, leftover) => {
 
   const top = perks
     .sort((a, b) => b.value - a.value)
-    .slice(0, 3)
     .map((p) => ({ ...p, text: phrase(p.type, p.n, city.id) }));
   return { perks: top, billsCovered, savings: Math.max(0, left) };
 };
@@ -102,7 +102,7 @@ const pick = (pool, chosen, prevIds) => {
   return list ? list[Math.floor(Math.random() * list.length)] : null;
 };
 
-export const generateBatch = (originId, rentEur, prevIds = []) => {
+const rawBatch = (originId, rentEur, prevIds = []) => {
   const others = data.filter((c) => c.id !== originId);
   const covered = others.filter((c) => c.housing["1_bed_outside"] <= rentEur);
   const inTier = (list, t) => list.filter((c) => TIER_OF[c.id] === t);
@@ -133,4 +133,21 @@ export const generateBatch = (originId, rentEur, prevIds = []) => {
   add(pick(covered, chosen, prevIds), "wildcard");
 
   return { allGap: false, cards: chosen.map((c, i) => buildCard(c, rentEur, slots[i])) };
+};
+
+const diversify = (cards) => {
+  const used = new Set();
+  return cards.map((card) => {
+    if (card.reality) return card;
+    const perks = [...card.perks];
+    const idx = perks.findIndex((p) => !used.has(p.type));
+    if (idx > 0) perks.unshift(...perks.splice(idx, 1));
+    if (perks[0]) used.add(perks[0].type);
+    return { ...card, perks: perks.slice(0, 3) };
+  });
+};
+
+export const generateBatch = (...args) => {
+  const batch = rawBatch(...args);
+  return { ...batch, cards: diversify(batch.cards) };
 };

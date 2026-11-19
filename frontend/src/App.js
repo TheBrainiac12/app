@@ -13,10 +13,10 @@ function App() {
   const [rent, setRent] = useState(0);
   const [batch, setBatch] = useState(null);
 
-  const rentEur = () => toEur(rent, currencyOf(city.country));
+  const rentEur = (c = city, r = rent) => toEur(r, currencyOf(c.country));
 
-  const compare = () => {
-    setBatch({ id: Date.now(), ...generateBatch(city.id, rentEur()) });
+  const compare = (c, r) => {
+    setBatch({ id: Date.now(), ...generateBatch(c.id, rentEur(c, r)) });
     setPhase("loading");
     setTimeout(() => setPhase("results"), 800);
   };

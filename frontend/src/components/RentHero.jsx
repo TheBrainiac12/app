@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { CityCombobox } from "@/components/CityCombobox";
+import { CITIES } from "@/lib/engine";
 import { currencyOf, formatMoney, formatUsd, fromEur, niceRound, sliderStep, toEur } from "@/lib/currency";
 import { RENT } from "@/constants/testIds/rent";
 
@@ -47,6 +48,30 @@ const RentField = ({ city, rent, setRent }) => {
   );
 };
 
+const PRESETS = [
+  { id: "bangalore-india", label: "Bangalore · ₹45,000", rent: 45000 },
+  { id: "mumbai-india", label: "Mumbai · ₹65,000", rent: 65000 },
+  { id: "london-united-kingdom", label: "London · £2,200", rent: 2200 },
+  { id: "new-york-ny-united-states", label: "New York · $3,500", rent: 3500 },
+];
+
+const Presets = ({ onPick }) => (
+  <motion.div {...rise(0.32)} className="flex flex-wrap items-center gap-2 pt-1">
+    <span className="mr-1 font-mono text-[11px] uppercase tracking-[0.18em] text-white/40">Quick try</span>
+    {PRESETS.map((p) => (
+      <button
+        key={p.id}
+        type="button"
+        data-testid={`hero-preset-${p.id}`}
+        onClick={() => onPick(CITIES.find((c) => c.id === p.id), p.rent)}
+        className="rounded-full border border-white/12 bg-white/[0.04] px-3.5 py-1.5 text-xs font-semibold text-white/80 transition-[background-color,border-color,color] hover:border-[#10E39A]/60 hover:bg-[#10E39A]/10 hover:text-white"
+      >
+        {p.label}
+      </button>
+    ))}
+  </motion.div>
+);
+
 export const RentHero = ({ city, setCity, rent, setRent, onCompare }) => {
   const pickCity = (c) => {
     setCity(c);
@@ -66,10 +91,11 @@ export const RentHero = ({ city, setCity, rent, setRent, onCompare }) => {
           Same money, different map. See the apartment, the date nights and the savings your monthly rent unlocks around the world.
         </motion.p>
       </div>
+      <div className="space-y-4">
       <motion.form
         {...rise(0.24)}
         data-testid={RENT.heroForm}
-        onSubmit={(e) => { e.preventDefault(); if (ready) onCompare(); }}
+        onSubmit={(e) => { e.preventDefault(); if (ready) onCompare(city, rent); }}
         className="glass-panel space-y-6 rounded-[28px] p-6 sm:p-8"
       >
         <div className="space-y-2">
@@ -86,11 +112,13 @@ export const RentHero = ({ city, setCity, rent, setRent, onCompare }) => {
           type="submit"
           data-testid={RENT.compareButton}
           disabled={!ready}
-          className="group flex h-14 w-full items-center justify-center gap-2 rounded-full bg-[#10E39A] font-display text-lg font-bold text-[#03261A] transition-[transform,opacity,background-color] hover:bg-[#3ff0b1] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
+          className="group flex h-14 w-full items-center justify-center gap-2 rounded-full border border-transparent bg-[#0B9E6C] font-display text-lg font-bold text-white shadow-[0_0_40px_-8px_rgba(16,227,154,0.6)] transition-[transform,background-color,box-shadow] hover:bg-[#0DB57C] active:scale-[0.98] disabled:cursor-not-allowed disabled:border-white/12 disabled:bg-transparent disabled:text-white/35 disabled:shadow-none"
         >
           Compare <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
         </button>
       </motion.form>
+      <Presets onPick={(c, r) => { setCity(c); setRent(r); onCompare(c, r); }} />
+      </div>
     </section>
   );
 };
