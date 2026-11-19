@@ -6,7 +6,7 @@ export const CityDrawer = ({ card, code, onClose, onShare, onMakeOrigin, cycle }
   <AnimatePresence>
     {card && (
       <motion.aside
-        key={card.city.id}
+        key="city-drawer"
         data-testid="city-drawer"
         initial={{ x: "105%" }}
         animate={{ x: 0 }}
@@ -29,7 +29,7 @@ export const CityDrawer = ({ card, code, onClose, onShare, onMakeOrigin, cycle }
             <X className="h-4 w-4" />
           </button>
         </div>
-        <CityCard card={card} code={code} index={0} onShare={onShare} />
+        <CityCard key={card.city.id} card={card} code={code} index={0} onShare={onShare} />
         <button
           data-testid="drawer-make-origin-button"
           onClick={() => onMakeOrigin(card.city)}

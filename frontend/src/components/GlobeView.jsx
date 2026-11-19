@@ -60,6 +60,7 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick, sele
   const pickRef = useRef(onPick);
   pickRef.current = onPick;
   const stateRef = useRef({});
+  const resumeRef = useRef(null);
   stateRef.current = { selectMode, origin, onSelectOrigin };
 
   const onReady = useCallback(() => {
@@ -185,8 +186,15 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick, sele
     setHovered(d ? d.city : null);
     if (!g) return;
     const { selectMode: sel, origin: o } = stateRef.current;
-    if (d) g.controls().autoRotate = false;
-    else if (sel && !o) g.controls().autoRotate = true;
+    const controls = g.controls();
+    clearTimeout(resumeRef.current);
+    if (d) {
+      controls.autoRotate = false;
+      controls.enableDamping = false;
+    } else {
+      controls.enableDamping = true;
+      if (sel && !o) resumeRef.current = setTimeout(() => { controls.autoRotate = true; }, 700);
+    }
   }, []);
 
   const onPointClick = useCallback((d) => {
@@ -198,7 +206,7 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick, sele
   const htmlElement = useCallback((d) => makeLabel(d, (x) => pickRef.current(x.city, x.card, 1.1)), []);
   const hid = hovered ? hovered.id : null;
   const pointColor = useCallback((d) => (d.city.id === hid ? "#FFFFFF" : d.ok === null ? SUBTLE : d.ok ? EMERALD : CORAL), [hid]);
-  const pointRadius = useCallback((d) => (d.city.id === hid ? 0.5 : 0.24), [hid]);
+  const pointRadius = useCallback((d) => (d.city.id === hid ? 0.55 : 0.3), [hid]);
   const ringColor = useCallback((d) => (t) => rgba(d.color, Math.max(0, 1 - t)), []);
   const pointLabel = useCallback(
     (d) => {

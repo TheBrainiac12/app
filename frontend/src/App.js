@@ -110,7 +110,7 @@ function App() {
       const t = e.target;
       const typing = t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.getAttribute("role") === "slider" || t.isContentEditable);
       if (e.key === "Escape") {
-        if (k.shareCard) return;
+        if (e.defaultPrevented || k.shareCard) return;
         if (k.selected) k.closeDrawer();
         return;
       }
