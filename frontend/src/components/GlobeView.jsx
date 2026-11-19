@@ -192,19 +192,21 @@ const GlobeViewInner = ({ origin, cards, explore, rentEur, focus, onPick, select
 
   pointsRef.current = points;
 
-  const nearest = useCallback((m, radius) => {
+  const nearest = useCallback((m, radius, keepId) => {
     const g = ref.current;
     if (!g || !m) return null;
     const cam = g.camera().position;
     const r2 = g.getGlobeRadius() ** 2;
     let best = null;
-    let bd = radius * radius;
+    let bd = Infinity;
     for (const d of pointsRef.current) {
+      const kept = d.city.id === keepId;
       const c = g.getCoords(d.lat, d.lng, 0);
-      if (c.x * cam.x + c.y * cam.y + c.z * cam.z <= r2 * 1.01) continue;
+      if (c.x * cam.x + c.y * cam.y + c.z * cam.z <= r2 * (kept ? 0.995 : 1.01)) continue;
       const sc = g.getScreenCoords(d.lat, d.lng, 0.001);
       const dist = (sc.x - m.x) ** 2 + (sc.y - m.y) ** 2;
-      if (dist < bd) { bd = dist; best = { d, x: sc.x, y: sc.y }; }
+      const limit = (kept ? radius * 1.4 : radius) ** 2;
+      if (dist < limit && dist < bd) { bd = dist; best = { d, x: sc.x, y: sc.y }; }
     }
     return best;
   }, []);
@@ -247,7 +249,7 @@ const GlobeViewInner = ({ origin, cards, explore, rentEur, focus, onPick, select
   useEffect(() => {
     let raf;
     const loop = () => {
-      if (mouseRef.current) applyHover(nearest(mouseRef.current, HIT_PX));
+      if (mouseRef.current) applyHover(nearest(mouseRef.current, HIT_PX, hoverRef.current && hoverRef.current.d.city.id));
       else if (hoverRef.current) applyHover(null);
       raf = requestAnimationFrame(loop);
     };
