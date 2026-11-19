@@ -193,7 +193,7 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick, sele
       controls.enableDamping = false;
     } else {
       controls.enableDamping = true;
-      if (sel && !o) resumeRef.current = setTimeout(() => { controls.autoRotate = true; }, 700);
+      if (sel && !o) resumeRef.current = setTimeout(() => { if (stateRef.current.selectMode && !stateRef.current.origin) controls.autoRotate = true; }, 700);
     }
   }, []);
 

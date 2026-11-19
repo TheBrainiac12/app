@@ -34,3 +34,9 @@ A viral single-page app for a hackathon. A renter picks their city and monthly r
 ## Realism upgrade (Jun 2026)
 - Blue-marble texture, topology bump map, water specular map (MeshPhongMaterial), atmosphere #60a5fa, ambient light plus a directional light that follows the camera, and a drifting cloud sphere (1.004x).
 - Cylinder points replaced with flush dots (alt 0.001, r 0.22). The origin and the 5 destinations use SVG teardrop pins (htmlElementsData) with pills above them; the layout loop prefers pushing pills upward and draws leader lines.
+
+## Globe selection, keyboard and housing sizes (Jun 2026)
+- All 160 cities shown as subtle dots in select mode. Hovering pauses rotation (damping off), switches to a pointer cursor, enlarges the dot with a white ring and shows a tooltip. Clicking a dot sets the origin, flies the camera there and focuses the rent input (press Enter to compare).
+- Drawer: "Make this my origin city" button. The drawer is always mounted, animates its x position and unmounts once fully closed (fixes the drawer staying stuck in the page).
+- Keyboard: ←/→ cycle through the 5 matches (ignored while an input or slider is focused); Escape closes the share dialog first (defaultPrevented check), then the drawer. Hint badges in the dock and the drawer.
+- Housing: buildCard(city, rentEur, slot, size) and cardWithSize(); the card has a 1-Bed/3-Bed toggle (defaults to the best affordable size), an All Housing Tiers 2×2 grid, and the share export uses the selected size.

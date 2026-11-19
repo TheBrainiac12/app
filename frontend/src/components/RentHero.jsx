@@ -32,7 +32,7 @@ export const RentField = ({ city, rent, setRent, focusKey }) => {
           value={rent ? Math.round(rent).toLocaleString(code === "INR" ? "en-IN" : "en-US") : ""}
           placeholder="Monthly rent"
           onChange={(e) => setRent(Number(e.target.value.replace(/[^0-9]/g, "")) || 0)}
-          className="h-14 flex-1 bg-transparent font-display text-2xl font-bold text-white outline-none placeholder:text-white/30 placeholder:text-base placeholder:font-normal"
+          className="h-14 min-w-0 flex-1 bg-transparent font-display text-2xl font-bold text-white outline-none placeholder:text-white/30 placeholder:text-base placeholder:font-normal"
         />
         <span data-testid={RENT.usdEquivalent} className="whitespace-nowrap rounded-full bg-white/10 px-3 py-1 font-mono text-xs text-white/70">
           ≈ {formatUsd(toEur(rent || 0, code))}
