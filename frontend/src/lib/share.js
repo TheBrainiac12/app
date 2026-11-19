@@ -71,3 +71,17 @@ export const buildCaption = (template, { card, origin, code, rentLocal }) => {
   const text = template.replace(/\{(\w+)\}/g, (_, k) => vars[k]);
   return `${text} See what your rent buys elsewhere: ${window.location.href}`;
 };
+
+const HEADER_ROASTS = {
+  big: ["Your {origin} landlord is funding a yacht.", "Same rent. Actual sunlight and a living room.", "Trading a {origin} shoebox for a {target} upgrade."],
+  modest: ["Not rich—just living in the wrong postcode.", "Same money, noticeably better view.", "Your {origin} rent goes further than you think."],
+  reality: ["Pack a roommate—or a very nice tent.", "Your rent covers the commute, not the keys.", "Humbled in 0.8 seconds. Maybe stick to visiting."],
+};
+
+const seed = (str) => [...str].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 11);
+
+export const headerRoast = (card, originName) => {
+  const family = card.reality ? "reality" : card.size === "3" ? "big" : "modest";
+  const list = HEADER_ROASTS[family];
+  return list[seed(card.city.id) % list.length].replace("{origin}", originName).replace("{target}", card.city.city);
+};

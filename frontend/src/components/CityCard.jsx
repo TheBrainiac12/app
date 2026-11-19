@@ -5,6 +5,7 @@ import { BedDouble, Check, PiggyBank, Share2, Sparkles, TrendingUp, Wifi } from 
 import { formatEur, formatUsd } from "@/lib/currency";
 import { salaryLine, styleFor } from "@/lib/theme";
 import { Flag } from "@/components/Flag";
+import { headerRoast } from "@/lib/share";
 import { RENT } from "@/constants/testIds/rent";
 
 const VIBE = [
@@ -126,9 +127,10 @@ const RealityBody = ({ card, code, color, id }) => (
   </div>
 );
 
-export const CityCard = ({ card: baseCard, code, index, onShare }) => {
+export const CityCard = ({ card: baseCard, code, index, onShare, originName }) => {
   const [size, setSize] = useState(baseCard.size);
-  const card = cardWithSize(baseCard, size);
+  const sized = cardWithSize(baseCard, size);
+  const card = originName ? { ...sized, roast: headerRoast(sized, originName) } : sized;
   const s = styleFor(baseCard);
   const bar = card.reality ? "#FF5A7A" : s.hex;
   const id = `${RENT.card}-${card.city.id}`;
@@ -155,6 +157,11 @@ export const CityCard = ({ card: baseCard, code, index, onShare }) => {
           {card.city.city} <Flag country={card.city.country} height={22} className="ml-1 -mt-1" />
         </h3>
         <p className="relative mt-1 text-sm font-medium opacity-75">{card.city.country}</p>
+        {card.roast && (
+          <p data-testid={`${id}-roast`} className="relative mt-3 line-clamp-2 max-w-full text-sm font-semibold italic" style={{ color: s.ink, opacity: 0.8 }}>
+            {card.roast}
+          </p>
+        )}
       </div>
       <div className="flex flex-1 flex-col gap-5 p-5">
         <div className="flex items-center gap-2.5">

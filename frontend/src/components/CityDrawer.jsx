@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Home, X } from "lucide-react";
 import { CityCard } from "@/components/CityCard";
 
-export const CityDrawer = ({ card, code, onClose, onShare, onMakeOrigin, cycle }) => {
+export const CityDrawer = ({ card, code, onClose, onShare, onMakeOrigin, cycle, originName }) => {
   const [shown, setShown] = useState(card);
   useEffect(() => {
     if (card) setShown(card);
@@ -35,7 +35,7 @@ export const CityDrawer = ({ card, code, onClose, onShare, onMakeOrigin, cycle }
         </button>
       </div>
       <div className="shrink-0">
-        <CityCard key={shown.city.id} card={shown} code={code} index={0} onShare={onShare} />
+        <CityCard key={shown.city.id} card={shown} code={code} index={0} onShare={onShare} originName={originName} />
       </div>
       <button
         data-testid="drawer-make-origin-button"

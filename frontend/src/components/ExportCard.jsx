@@ -81,6 +81,11 @@ export const ExportCard = forwardRef(({ card, origin, code, rentLocal, format },
           {card.city.city}
         </div>
         <div style={{ fontSize: 36, fontWeight: 600, marginTop: 16, opacity: 0.8 }}><Flag country={card.city.country} height={34} style={{ marginRight: 14, marginTop: -6 }} />{card.city.country}</div>
+        {card.roast && (
+          <div data-testid="export-roast" style={{ fontSize: story ? 38 : 32, fontWeight: 600, fontStyle: "italic", marginTop: 18, opacity: 0.8, lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+            {card.roast}
+          </div>
+        )}
         <div style={{ display: "inline-block", marginTop: story ? 44 : 28, background: s.ink, color: s.hex, borderRadius: 999, padding: "16px 32px", fontSize: 40, fontWeight: 800 }}>
           {card.reality ? "Reality check" : card.apartment}
         </div>

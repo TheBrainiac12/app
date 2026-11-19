@@ -146,7 +146,7 @@ function App() {
       </div>
       <AnimatePresence>{loading && <PlayfulLoader />}</AnimatePresence>
       {batch && !editing && !loading && !selected && <BottomDock onShuffle={shuffle} explore={explore} setExplore={setExplore} />}
-      <CityDrawer card={selected} code={code} onClose={closeDrawer} onShare={setShareCard} onMakeOrigin={selectOrigin} cycle={!!(selected && batch && batch.cards.some((x) => x.city.id === selected.city.id))} />
+      <CityDrawer card={selected} code={code} originName={origin ? origin.city : ""} onClose={closeDrawer} onShare={setShareCard} onMakeOrigin={selectOrigin} cycle={!!(selected && batch && batch.cards.some((x) => x.city.id === selected.city.id))} />
       {origin && <ShareDialog card={shareCard} onClose={() => setShareCard(null)} origin={origin} code={code} rentLocal={formatMoney(batch.rent, code)} />}
       <Toaster position="bottom-center" theme="dark" />
     </div>
