@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Globe from "react-globe.gl";
 import { styleFor } from "@/lib/theme";
-import { isCovered } from "@/lib/engine";
-import { CITIES } from "@/lib/engine";
+import { CITIES, isCovered } from "@/lib/engine";
 
 const EMERALD = "#10E39A";
 const CORAL = "#FF5A7A";
@@ -27,7 +26,7 @@ const makeLabel = (d, onClick) => {
   wrap.style.pointerEvents = "none";
   const btn = document.createElement("button");
   btn.setAttribute("data-testid", d.origin ? "globe-origin-label" : `globe-label-${d.city.id}`);
-  btn.className = `globe-pill globe-pill-slot-${Math.min(d.slot || 0, 2)}`;
+  btn.className = `globe-pill globe-pill-slot-${Math.min(d.slot || 0, 5)}`;
   btn.style.setProperty("--pill", d.color);
   btn.innerHTML = d.origin
     ? `<span class="globe-pill-dot"></span><span><b>You</b> · ${d.city.city}</span>`
@@ -62,13 +61,14 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
 
   const dests = useMemo(() => {
     const out = [];
+    const taken = origin ? [{ lat: origin.coords.lat, lng: origin.coords.lng }] : [];
     cards.forEach((c) => {
       const { lat, lng } = c.city.coords;
-      const near = out.filter((o) => Math.hypot(o.lat - lat, o.lng - lng) < 9).length;
+      const near = [...taken, ...out].filter((o) => Math.hypot(o.lat - lat, o.lng - lng) < (window.innerWidth < 640 ? 24 : 16)).length;
       out.push({ city: c.city, card: c, color: styleFor(c).hex, sub: c.reality ? "Reality check" : c.apartment, lat, lng, slot: near });
     });
     return out;
-  }, [cards]);
+  }, [cards, origin]);
 
   const labels = useMemo(() => {
     if (!origin) return [];
@@ -126,7 +126,7 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
         pointsData={points}
         pointColor={(d) => (d.ok ? EMERALD : CORAL)}
         pointAltitude={0.012}
-        pointRadius={0.32}
+        pointRadius={0.42}
         pointsMerge={false}
         pointsTransitionDuration={500}
         pointLabel={(d) => `<div class="globe-tip"><b>${d.city.city}</b>, ${d.city.country}<br/><span style="color:${d.ok ? EMERALD : CORAL}">${d.ok ? "Your rent upgrades you here" : "Reality check: costs more"}</span></div>`}

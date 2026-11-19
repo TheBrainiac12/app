@@ -32,6 +32,18 @@ function App() {
   const code = origin ? currencyOf(origin.country) : "USD";
   const rentEur = origin ? toEur(batch.rent, code) : 0;
 
+  const overview = (c, list) => {
+    const narrow = window.innerWidth < 640;
+    const rad = Math.PI / 180;
+    const v = [c, ...list.map((x) => x.city)].reduce((a, p) => {
+      const la = p.coords.lat * rad, ln = p.coords.lng * rad;
+      return [a[0] + Math.cos(la) * Math.cos(ln), a[1] + Math.cos(la) * Math.sin(ln), a[2] + Math.sin(la)];
+    }, [0, 0, 0]);
+    const lat = Math.atan2(v[2], Math.hypot(v[0], v[1])) / rad;
+    const lng = Math.atan2(v[1], v[0]) / rad;
+    setFocus({ lat: lat + (narrow ? 12 : 0), lng, altitude: narrow ? 3.4 : 2.6, t: Date.now() });
+  };
+
   const flyTo = (c, altitude) => setFocus({ lat: c.coords.lat, lng: c.coords.lng, altitude, t: Date.now() });
 
   const setCity = (c) => {
@@ -43,20 +55,23 @@ function App() {
 
   const compare = (c, r) => {
     setSelected(null);
+    setExplore(false);
     setLoading(true);
     setEditing(false);
     flyTo(c, 1.6);
     setTimeout(() => {
-      setBatch(makeBatch(c, r));
+      const b = makeBatch(c, r);
+      setBatch(b);
       setLoading(false);
-      flyTo(c, 2.6);
+      overview(c, b.cards);
     }, 800);
   };
 
   const shuffle = () => {
     setSelected(null);
-    setBatch(makeBatch(origin, batch.rent, batch.cards.map((x) => x.city.id)));
-    flyTo(origin, 2.6);
+    const b = makeBatch(origin, batch.rent, batch.cards.map((x) => x.city.id));
+    setBatch(b);
+    overview(origin, b.cards);
   };
 
   const pick = (c, card, altitude) => {

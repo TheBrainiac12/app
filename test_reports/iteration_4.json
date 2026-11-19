@@ -1,0 +1,34 @@
+{
+  "summary": "Frontend-only test of the new 3D globe UI at 1920x1080 and 390x844, plus a node engine simulation. PASS: (1) Engine sim (/app/tests/engine_sim_iter4.js, 4480 batches): every batch has exactly 5 cards, the origin never appears, no duplicate ids, no null cards, 0 normal-path batches with more than 1 Reality Check, and 0 shuffles that return the same 5. (2) The globe canvas renders inside globe-container, the panel sits top-left, and there are no page or console errors. (3) Autocomplete ('Lisb' -> Lisbon) works. Picking a city sets the default rent and the camera flies to the city with a 'You' pill. Typing a rent and moving the slider with the keyboard both work. Compare is disabled until a city is picked, then enabled. The loader pill appears. (4) All 4 presets: the headlines are correct (₹45,000 / ₹65,000 / £2,200 / $3,500), the origin label is present and the origin city is never among the labels. The DOM held 3-5 globe-label-* pills, because labels on the far side are only added to the DOM once they first render (three CSS2DRenderer behaviour). The engine sim confirms 5 cards in the data. (5) Clicking a visible label opens city-drawer (420px on the right) with the matching city-comparison-card-{id}, and the bottom dock hides. Share Card opens share-card-dialog, and both square and story PNGs download. Escape closes the dialog and the close button closes the drawer. (6) Shuffle replaced the labels with no overlap. (7) explore-all-toggle switches aria-pressed false->true->false and shows emerald/coral points. Hover tooltips appear. Clicking a canvas point zoomed in and opened the drawer (the second attempt worked; the first click on a hovered point did nothing, which may be a headless hover/raycast timing issue). (8) Edit inputs brings back the form with the city and rent kept, hides the dock and labels, and re-compare with a new rent works. (9) Mobile 390: no horizontal scroll, the dock is centred (offset 0), the drawer is full width (390x844), and the share dialog fits at 374px wide with no overflowing elements (the iteration-3 issue is fixed). A mobile PNG download works.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "GlobeView labels (mobile 390)", "issue": "At altitude 2.6 the globe is wider than the 390px viewport. Destination pills are clipped off-screen (London preset: Santo Domingo left=-144, Beijing right=463, Tel Aviv right=436) or sit under the top panel, which covers about the top 240px. Only 2 of 5 pills were fully visible and tappable.", "selector": "[data-testid^='globe-label-']", "priority": "MEDIUM"},
+      {"component": "GlobeView label overlap", "issue": "The slot offset only counts nearby destinations, not the origin pill. Nearby cities overlap the 'You' origin pill (Eindhoven/Utrecht over 'You · London'). Close destination pairs also still overlap (Eindhoven over Banja Luka, which hides its subtitle).", "selector": "[data-testid='globe-origin-label']", "priority": "LOW"}
+    ],
+    "integration_issues": [
+      {"flow": "Explore point click", "issue": "Intermittent: the first click on a hovered point (Tallinn) did not open the drawer, and the second one did. The hover tooltip sometimes disappeared without the mouse moving, and the tooltip text (Prague) once differed from the opened city (Vienna, a nearby batch city). Possibly a headless timing issue. The 0.32 point radius is small and close points are hard to target.", "affected_selectors": ["[data-testid='globe-container'] canvas", "[data-testid='city-drawer']"]}
+    ],
+    "design_issues": [
+      {"screen": "Mobile results", "issues": ["Use a higher compare altitude on narrow screens (about 3.2-3.6), or offset the camera lat so the origin sits below the summary panel", "The explore toggle stays ON after Edit -> re-compare (minor; may be intended)"]}
+    ]
+  },
+  "test_report_links": ["/app/tests/engine_sim_iter4.js"],
+  "action_items": [
+    "Mobile: zoom out further (for example altitude = w < 640 ? 3.4 : 2.6) so the 5 pills stay inside the viewport and below the panel",
+    "Count the origin in the label slot/offset logic so destination pills don't cover the 'You' pill",
+    "Optional: raise pointRadius or add pointResolution/hover highlighting for easier point clicks"
+  ],
+  "critical_code_review_comments": [
+    "App.pick uses the in-batch card when a clicked point is in the batch (good), otherwise cardFor(). onPointClick -> pick(d.city, null, 0.6) is correctly wired through pickRef.",
+    "GlobeView imports from '@/lib/engine' twice (isCovered and CITIES); merge into one import.",
+    "htmlElement creates a new DOM node per datum and onclick goes through pickRef, so there are no stale closures. OK.",
+    "The engine normal path: only the dream slot can be a Reality Check, so there is at most 1. fewCovered/allGap can have more, as intended."
+  ],
+  "updated_files": ["/app/tests/engine_sim_iter4.js"],
+  "success_rate": {"backend": "N/A", "frontend": "92%"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Build /tmp/engine.js: sed the data import to a require, strip 'export ', and append module.exports={generateBatch,buildCard,CITIES,isCovered,cardFor}. Then run node /app/tests/engine_sim_iter4.js. Far-side globe labels are not in the DOM until rendered, so filter by boundingClientRect. Find explore points by hovering a coarse grid (step 20, cap about 120 moves) and checking for a visible .globe-tip, then call mouse.click. Don't scan large grids: the script hits the 480s cap."
+}

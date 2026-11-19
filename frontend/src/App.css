@@ -150,3 +150,31 @@
   bottom: auto;
   top: 62px;
 }
+
+.globe-pill-slot-3 {
+  bottom: 62px;
+}
+
+.globe-pill-slot-4 {
+  bottom: auto;
+  top: 114px;
+}
+
+.globe-pill-slot-5 {
+  bottom: 114px;
+}
+
+@media (max-width: 640px) {
+  .globe-pill {
+    padding: 8px 12px 8px 10px;
+    min-height: 38px;
+    gap: 7px;
+    font-size: 12px;
+  }
+  .globe-pill b { font-size: 13px; }
+  .globe-pill small { display: none; }
+  .globe-pill-slot-2 { top: 54px; }
+  .globe-pill-slot-3 { bottom: 54px; }
+  .globe-pill-slot-4 { top: 98px; }
+  .globe-pill-slot-5 { bottom: 98px; }
+}
