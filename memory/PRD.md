@@ -30,3 +30,7 @@ A viral single-page app for a hackathon. A renter picks their city and monthly r
 - Clicking a pill or point flies to the city and opens a right slide-over drawer with the full CityCard and Share PNG. Closing the drawer returns the camera to the overview.
 - Bottom dock: Shuffle 5 Cities, plus a toggle that shows all 160 cities as points (emerald = covered, coral = reality check) with a tooltip; clicking a point zooms to altitude 0.6.
 - The camera overview centres on the middle of the origin and the destinations, with an altitude based on how far apart they are.
+
+## Realism upgrade (Jun 2026)
+- Blue-marble texture, topology bump map, water specular map (MeshPhongMaterial), atmosphere #60a5fa, ambient light plus a directional light that follows the camera, and a drifting cloud sphere (1.004x).
+- Cylinder points replaced with flush dots (alt 0.001, r 0.22). The origin and the 5 destinations use SVG teardrop pins (htmlElementsData) with pills above them; the layout loop prefers pushing pills upward and draws leader lines.

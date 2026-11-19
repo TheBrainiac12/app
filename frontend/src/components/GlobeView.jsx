@@ -118,7 +118,7 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
         const hitAt = (t) => placed.find((p) => left < p.left + p.w + 4 && left + it.w + 4 > p.left && t < p.top + p.h + 4 && t + it.h + 4 > p.top);
         const search = (up) => {
           let t = it.top;
-          for (let i = 0; i < 12; i++) {
+          for (let i = 0; i < 24; i++) {
             const hit = hitAt(t);
             if (!hit) return t;
             t = up ? hit.top - it.h - 4 : hit.top + hit.h + 4;

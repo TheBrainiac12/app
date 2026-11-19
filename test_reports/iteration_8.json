@@ -1,0 +1,22 @@
+{
+  "summary": "Iteration 8 short retest (frontend only), run with Playwright. PILL PLACEMENT (upward preference): 12 states (3 presets + shuffle on 1920x1080 and 390x844), 67 visible pills. DESKTOP: 6/6 states perfect, with 0 pill-pill overlaps, 0 pill-pin overlaps, 0 pills below their pin and 0 off the top. MOBILE: 0 pill-pin overlaps. 6/34 pills sat below their pin, which is the expected fallback under the top glass panel (Phoenix; Utrecht and Tbilisi; Bursa and Podgorica; Noida). That is down from up to 6/6 per state in iteration 7. There was 1 pill-pill overlap (gdansk x yerevan, 24px², on the mobile Bangalore preset). It was seen once and may be a transient frame while the globe auto-rotates. REGRESSION: Edit inputs keeps city 'London, United Kingdom' and rent '2,200' on both viewports, and clears the destination pins (1 pin left). Re-compare restores the pins (5-6 visible) and the Edit button. Drawer from a pin click (JS dispatch) and Share Card (open-share-modal-button-{id}) open share-card-dialog. Square and story downloads both worked on both viewports (rent-london-vs-gdansk-square/story.png, rent-bangalore-vs-timisoara-square/story.png), with the success toast shown. MOBILE: the drawer is full width (0,0,390x844). The dock is centred (x=38.5, w=313, centre=195 = 390/2) and hidden while the drawer is open, which looks intentional. The share dialog fits (8px margins). 0 page errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "GlobeView layout loop (mobile)", "issue": "Seen once: a 24px² pill-pill overlap (globe-label-gdansk-poland x globe-label-yerevan-armenia) on the 390 Bangalore preset. Possible cause: `search(false) ?? it.top` falls back to the original top when both searches fail, or a transient rotation frame.", "selector": ".globe-pill", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Mobile globe", "issues": ["About 18% of mobile pills sit below their pins because the upward spot would sit under the top glass panel. This is the expected fallback and the leader lines are drawn."]}
+    ]
+  },
+  "test_report_links": ["/app/tests/globe_pills_iter8.py"],
+  "action_items": ["Optional: when both the upward and downward searches fail, pick the candidate with the least overlap instead of it.top, to remove the rare mobile pill-pill overlap."],
+  "critical_code_review_comments": ["GlobeView layout runs querySelectorAll and getBoundingClientRect on every requestAnimationFrame indefinitely. Acceptable for about 7 pills, but consider throttling or pausing it when idle."],
+  "updated_files": ["/app/tests/globe_pills_iter8.py"],
+  "success_rate": {"backend": "N/A", "frontend": "97%"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Preset testids: hero-preset-{bangalore-india|london-united-kingdom|new-york-ny-united-states}. Use JS dispatch clicks on .globe-pin. The dock is hidden while the drawer is open on mobile (by design). The browser tool rewrites screenshot paths, so use plain filenames."
+}
