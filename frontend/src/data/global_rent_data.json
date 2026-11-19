@@ -1,0 +1,4162 @@
+[
+  {
+    "id": "abu-dhabi-united-arab-emirates",
+    "label": "Abu Dhabi, United Arab Emirates",
+    "city": "Abu Dhabi",
+    "country": "United Arab Emirates",
+    "housing": {
+      "1_bed_center": 1167.16,
+      "1_bed_outside": 888.13,
+      "3_bed_center": 2308.39,
+      "3_bed_outside": 1770.69,
+      "utilities": 116.51,
+      "internet": 93.29
+    },
+    "lifestyle": {
+      "dinner_for_two": 48.92,
+      "inexpensive_meal": 6.12,
+      "cappuccino": 4.59,
+      "beer": 9.78,
+      "monthly_pass": 19.57,
+      "gym_membership": 73.81,
+      "cinema_ticket": 9.78
+    },
+    "economy": {
+      "avg_monthly_salary": 2369.85
+    }
+  },
+  {
+    "id": "adelaide-australia",
+    "label": "Adelaide, Australia",
+    "city": "Adelaide",
+    "country": "Australia",
+    "housing": {
+      "1_bed_center": 817.81,
+      "1_bed_outside": 601.79,
+      "3_bed_center": 1369.39,
+      "3_bed_outside": 971.7,
+      "utilities": 119.44,
+      "internet": 41.95
+    },
+    "lifestyle": {
+      "dinner_for_two": 40.39,
+      "inexpensive_meal": 11.19,
+      "cappuccino": 2.63,
+      "beer": 4.97,
+      "monthly_pass": 61.52,
+      "gym_membership": 34.05,
+      "cinema_ticket": 9.32
+    },
+    "economy": {
+      "avg_monthly_salary": 2653.26
+    }
+  },
+  {
+    "id": "ahmedabad-india",
+    "label": "Ahmedabad, India",
+    "city": "Ahmedabad",
+    "country": "India",
+    "housing": {
+      "1_bed_center": 199.17,
+      "1_bed_outside": 149.35,
+      "3_bed_center": 366.69,
+      "3_bed_outside": 267.89,
+      "utilities": 47.94,
+      "internet": 7.34
+    },
+    "lifestyle": {
+      "dinner_for_two": 8.86,
+      "inexpensive_meal": 1.9,
+      "cappuccino": 1.4,
+      "beer": 1.9,
+      "monthly_pass": 5.06,
+      "gym_membership": 18.18,
+      "cinema_ticket": 3.16
+    },
+    "economy": {
+      "avg_monthly_salary": 303.54
+    }
+  },
+  {
+    "id": "alexandria-egypt",
+    "label": "Alexandria, Egypt",
+    "city": "Alexandria",
+    "country": "Egypt",
+    "housing": {
+      "1_bed_center": 142.04,
+      "1_bed_outside": 84.65,
+      "3_bed_center": 285.82,
+      "3_bed_outside": 169.03,
+      "utilities": 18.56,
+      "internet": 16.57
+    },
+    "lifestyle": {
+      "dinner_for_two": 14.06,
+      "inexpensive_meal": 2.81,
+      "cappuccino": 1.45,
+      "beer": 1.69,
+      "monthly_pass": 8.44,
+      "gym_membership": 19.58,
+      "cinema_ticket": 3.66
+    },
+    "economy": {
+      "avg_monthly_salary": 163.94
+    }
+  },
+  {
+    "id": "almaty-kazakhstan",
+    "label": "Almaty, Kazakhstan",
+    "city": "Almaty",
+    "country": "Kazakhstan",
+    "housing": {
+      "1_bed_center": 288.22,
+      "1_bed_outside": 178.04,
+      "3_bed_center": 565.15,
+      "3_bed_outside": 357.57,
+      "utilities": 58.48,
+      "internet": 10.47
+    },
+    "lifestyle": {
+      "dinner_for_two": 23.84,
+      "inexpensive_meal": 4.77,
+      "cappuccino": 1.78,
+      "beer": 1.07,
+      "monthly_pass": 17.16,
+      "gym_membership": 39.41,
+      "cinema_ticket": 3.58
+    },
+    "economy": {
+      "avg_monthly_salary": 374.42
+    }
+  },
+  {
+    "id": "amman-jordan",
+    "label": "Amman, Jordan",
+    "city": "Amman",
+    "country": "Jordan",
+    "housing": {
+      "1_bed_center": 373.84,
+      "1_bed_outside": 261.02,
+      "3_bed_center": 619.69,
+      "3_bed_outside": 446.92,
+      "utilities": 80.62,
+      "internet": 38.86
+    },
+    "lifestyle": {
+      "dinner_for_two": 38.02,
+      "inexpensive_meal": 6.34,
+      "cappuccino": 3.74,
+      "beer": 6.34,
+      "monthly_pass": 38.02,
+      "gym_membership": 56.38,
+      "cinema_ticket": 10.14
+    },
+    "economy": {
+      "avg_monthly_salary": 545.55
+    }
+  },
+  {
+    "id": "amsterdam-netherlands",
+    "label": "Amsterdam, Netherlands",
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "housing": {
+      "1_bed_center": 1584.45,
+      "1_bed_outside": 1195.63,
+      "3_bed_center": 2683.74,
+      "3_bed_outside": 1884.0,
+      "utilities": 169.18,
+      "internet": 40.47
+    },
+    "lifestyle": {
+      "dinner_for_two": 65.0,
+      "inexpensive_meal": 15.0,
+      "cappuccino": 3.13,
+      "beer": 5.0,
+      "monthly_pass": 97.0,
+      "gym_membership": 36.67,
+      "cinema_ticket": 12.0
+    },
+    "economy": {
+      "avg_monthly_salary": 2646.66
+    }
+  },
+  {
+    "id": "ankara-turkey",
+    "label": "Ankara, Turkey",
+    "city": "Ankara",
+    "country": "Turkey",
+    "housing": {
+      "1_bed_center": 198.86,
+      "1_bed_outside": 125.32,
+      "3_bed_center": 322.86,
+      "3_bed_outside": 200.2,
+      "utilities": 54.61,
+      "internet": 14.11
+    },
+    "lifestyle": {
+      "dinner_for_two": 15.28,
+      "inexpensive_meal": 3.82,
+      "cappuccino": 1.7,
+      "beer": 2.75,
+      "monthly_pass": 22.92,
+      "gym_membership": 20.81,
+      "cinema_ticket": 3.06
+    },
+    "economy": {
+      "avg_monthly_salary": 440.17
+    }
+  },
+  {
+    "id": "athens-greece",
+    "label": "Athens, Greece",
+    "city": "Athens",
+    "country": "Greece",
+    "housing": {
+      "1_bed_center": 377.05,
+      "1_bed_outside": 338.69,
+      "3_bed_center": 677.0,
+      "3_bed_outside": 612.7,
+      "utilities": 138.77,
+      "internet": 31.08
+    },
+    "lifestyle": {
+      "dinner_for_two": 40.0,
+      "inexpensive_meal": 10.0,
+      "cappuccino": 3.15,
+      "beer": 4.0,
+      "monthly_pass": 30.0,
+      "gym_membership": 28.6,
+      "cinema_ticket": 8.0
+    },
+    "economy": {
+      "avg_monthly_salary": 787.01
+    }
+  },
+  {
+    "id": "auckland-new-zealand",
+    "label": "Auckland, New Zealand",
+    "city": "Auckland",
+    "country": "New Zealand",
+    "housing": {
+      "1_bed_center": 1127.81,
+      "1_bed_outside": 947.13,
+      "3_bed_center": 2002.12,
+      "3_bed_outside": 1640.38,
+      "utilities": 99.55,
+      "internet": 49.79
+    },
+    "lifestyle": {
+      "dinner_for_two": 50.78,
+      "inexpensive_meal": 11.95,
+      "cappuccino": 2.83,
+      "beer": 5.68,
+      "monthly_pass": 128.44,
+      "gym_membership": 37.68,
+      "cinema_ticket": 10.75
+    },
+    "economy": {
+      "avg_monthly_salary": 2344.96
+    }
+  },
+  {
+    "id": "austin-tx-united-states",
+    "label": "Austin, TX, United States",
+    "city": "Austin",
+    "country": "United States",
+    "housing": {
+      "1_bed_center": 1581.66,
+      "1_bed_outside": 995.9,
+      "3_bed_center": 2750.15,
+      "3_bed_outside": 1714.92,
+      "utilities": 124.12,
+      "internet": 55.38
+    },
+    "lifestyle": {
+      "dinner_for_two": 44.92,
+      "inexpensive_meal": 13.48,
+      "cappuccino": 3.95,
+      "beer": 4.49,
+      "monthly_pass": 37.06,
+      "gym_membership": 34.53,
+      "cinema_ticket": 10.78
+    },
+    "economy": {
+      "avg_monthly_salary": 4097.92
+    }
+  },
+  {
+    "id": "baku-azerbaijan",
+    "label": "Baku, Azerbaijan",
+    "city": "Baku",
+    "country": "Azerbaijan",
+    "housing": {
+      "1_bed_center": 290.07,
+      "1_bed_outside": 157.97,
+      "3_bed_center": 608.91,
+      "3_bed_outside": 299.45,
+      "utilities": 42.65,
+      "internet": 15.51
+    },
+    "lifestyle": {
+      "dinner_for_two": 23.73,
+      "inexpensive_meal": 5.27,
+      "cappuccino": 2.15,
+      "beer": 0.84,
+      "monthly_pass": 9.63,
+      "gym_membership": 30.43,
+      "cinema_ticket": 3.69
+    },
+    "economy": {
+      "avg_monthly_salary": 294.03
+    }
+  },
+  {
+    "id": "bangalore-india",
+    "label": "Bangalore, India",
+    "city": "Bangalore",
+    "country": "India",
+    "housing": {
+      "1_bed_center": 213.5,
+      "1_bed_outside": 124.18,
+      "3_bed_center": 545.83,
+      "3_bed_outside": 315.83,
+      "utilities": 22.24,
+      "internet": 12.42
+    },
+    "lifestyle": {
+      "dinner_for_two": 12.66,
+      "inexpensive_meal": 2.53,
+      "cappuccino": 1.63,
+      "beer": 1.9,
+      "monthly_pass": 15.82,
+      "gym_membership": 20.0,
+      "cinema_ticket": 3.8
+    },
+    "economy": {
+      "avg_monthly_salary": 579.22
+    }
+  },
+  {
+    "id": "bangkok-thailand",
+    "label": "Bangkok, Thailand",
+    "city": "Bangkok",
+    "country": "Thailand",
+    "housing": {
+      "1_bed_center": 611.26,
+      "1_bed_outside": 299.91,
+      "3_bed_center": 1819.06,
+      "3_bed_outside": 803.37,
+      "utilities": 88.89,
+      "internet": 20.69
+    },
+    "lifestyle": {
+      "dinner_for_two": 23.74,
+      "inexpensive_meal": 1.78,
+      "cappuccino": 2.07,
+      "beer": 2.37,
+      "monthly_pass": 35.61,
+      "gym_membership": 61.07,
+      "cinema_ticket": 7.42
+    },
+    "economy": {
+      "avg_monthly_salary": 668.6
+    }
+  },
+  {
+    "id": "banja-luka-bosnia-and-herzegovina",
+    "label": "Banja Luka, Bosnia And Herzegovina",
+    "city": "Banja Luka",
+    "country": "Bosnia And Herzegovina",
+    "housing": {
+      "1_bed_center": 219.72,
+      "1_bed_outside": 159.73,
+      "3_bed_center": 398.18,
+      "3_bed_outside": 259.32,
+      "utilities": 141.04,
+      "internet": 21.34
+    },
+    "lifestyle": {
+      "dinner_for_two": 22.99,
+      "inexpensive_meal": 3.58,
+      "cappuccino": 0.85,
+      "beer": 1.02,
+      "monthly_pass": 22.48,
+      "gym_membership": 20.7,
+      "cinema_ticket": 2.55
+    },
+    "economy": {
+      "avg_monthly_salary": 430.69
+    }
+  },
+  {
+    "id": "barcelona-spain",
+    "label": "Barcelona, Spain",
+    "city": "Barcelona",
+    "country": "Spain",
+    "housing": {
+      "1_bed_center": 950.28,
+      "1_bed_outside": 725.42,
+      "3_bed_center": 1502.94,
+      "3_bed_outside": 1088.73,
+      "utilities": 136.65,
+      "internet": 42.57
+    },
+    "lifestyle": {
+      "dinner_for_two": 40.0,
+      "inexpensive_meal": 11.0,
+      "cappuccino": 1.79,
+      "beer": 2.5,
+      "monthly_pass": 50.0,
+      "gym_membership": 41.14,
+      "cinema_ticket": 8.5
+    },
+    "economy": {
+      "avg_monthly_salary": 1444.48
+    }
+  },
+  {
+    "id": "beijing-china",
+    "label": "Beijing, China",
+    "city": "Beijing",
+    "country": "China",
+    "housing": {
+      "1_bed_center": 946.89,
+      "1_bed_outside": 575.19,
+      "3_bed_center": 1986.46,
+      "3_bed_outside": 1223.57,
+      "utilities": 55.03,
+      "internet": 12.43
+    },
+    "lifestyle": {
+      "dinner_for_two": 26.04,
+      "inexpensive_meal": 3.91,
+      "cappuccino": 3.99,
+      "beer": 1.95,
+      "monthly_pass": 24.74,
+      "gym_membership": 42.04,
+      "cinema_ticket": 6.51
+    },
+    "economy": {
+      "avg_monthly_salary": 1137.26
+    }
+  },
+  {
+    "id": "beirut-lebanon",
+    "label": "Beirut, Lebanon",
+    "city": "Beirut",
+    "country": "Lebanon",
+    "housing": {
+      "1_bed_center": 719.35,
+      "1_bed_outside": 393.83,
+      "3_bed_center": 1647.29,
+      "3_bed_outside": 751.31,
+      "utilities": 122.43,
+      "internet": 49.74
+    },
+    "lifestyle": {
+      "dinner_for_two": 53.91,
+      "inexpensive_meal": 8.98,
+      "cappuccino": 3.82,
+      "beer": 3.22,
+      "monthly_pass": 53.91,
+      "gym_membership": 65.66,
+      "cinema_ticket": 8.98
+    },
+    "economy": {
+      "avg_monthly_salary": 859.89
+    }
+  },
+  {
+    "id": "belgrade-serbia",
+    "label": "Belgrade, Serbia",
+    "city": "Belgrade",
+    "country": "Serbia",
+    "housing": {
+      "1_bed_center": 341.08,
+      "1_bed_outside": 216.64,
+      "3_bed_center": 652.24,
+      "3_bed_outside": 395.57,
+      "utilities": 135.76,
+      "internet": 21.45
+    },
+    "lifestyle": {
+      "dinner_for_two": 24.62,
+      "inexpensive_meal": 5.39,
+      "cappuccino": 1.41,
+      "beer": 1.7,
+      "monthly_pass": 27.17,
+      "gym_membership": 24.61,
+      "cinema_ticket": 4.24
+    },
+    "economy": {
+      "avg_monthly_salary": 437.24
+    }
+  },
+  {
+    "id": "berlin-germany",
+    "label": "Berlin, Germany",
+    "city": "Berlin",
+    "country": "Germany",
+    "housing": {
+      "1_bed_center": 896.5,
+      "1_bed_outside": 651.04,
+      "3_bed_center": 1681.19,
+      "3_bed_outside": 1217.77,
+      "utilities": 231.8,
+      "internet": 29.08
+    },
+    "lifestyle": {
+      "dinner_for_two": 40.0,
+      "inexpensive_meal": 8.5,
+      "cappuccino": 2.74,
+      "beer": 3.5,
+      "monthly_pass": 81.0,
+      "gym_membership": 26.39,
+      "cinema_ticket": 10.0
+    },
+    "economy": {
+      "avg_monthly_salary": 2289.46
+    }
+  },
+  {
+    "id": "bogota-colombia",
+    "label": "Bogota, Colombia",
+    "city": "Bogota",
+    "country": "Colombia",
+    "housing": {
+      "1_bed_center": 341.45,
+      "1_bed_outside": 245.33,
+      "3_bed_center": 608.02,
+      "3_bed_outside": 431.88,
+      "utilities": 76.59,
+      "internet": 29.06
+    },
+    "lifestyle": {
+      "dinner_for_two": 19.24,
+      "inexpensive_meal": 3.3,
+      "cappuccino": 1.18,
+      "beer": 0.96,
+      "monthly_pass": 32.98,
+      "gym_membership": 23.8,
+      "cinema_ticket": 3.85
+    },
+    "economy": {
+      "avg_monthly_salary": 306.08
+    }
+  },
+  {
+    "id": "boston-ma-united-states",
+    "label": "Boston, MA, United States",
+    "city": "Boston",
+    "country": "United States",
+    "housing": {
+      "1_bed_center": 2275.95,
+      "1_bed_outside": 1716.68,
+      "3_bed_center": 3574.7,
+      "3_bed_outside": 2503.07,
+      "utilities": 119.59,
+      "internet": 61.7
+    },
+    "lifestyle": {
+      "dinner_for_two": 62.85,
+      "inexpensive_meal": 13.47,
+      "cappuccino": 3.6,
+      "beer": 6.29,
+      "monthly_pass": 80.81,
+      "gym_membership": 51.97,
+      "cinema_ticket": 13.47
+    },
+    "economy": {
+      "avg_monthly_salary": 4132.08
+    }
+  },
+  {
+    "id": "brasov-romania",
+    "label": "Brasov, Romania",
+    "city": "Brasov",
+    "country": "Romania",
+    "housing": {
+      "1_bed_center": 304.39,
+      "1_bed_outside": 228.7,
+      "3_bed_center": 468.59,
+      "3_bed_outside": 359.43,
+      "utilities": 100.39,
+      "internet": 7.53
+    },
+    "lifestyle": {
+      "dinner_for_two": 20.91,
+      "inexpensive_meal": 6.27,
+      "cappuccino": 1.41,
+      "beer": 1.25,
+      "monthly_pass": 17.77,
+      "gym_membership": 29.81,
+      "cinema_ticket": 6.27
+    },
+    "economy": {
+      "avg_monthly_salary": 554.56
+    }
+  },
+  {
+    "id": "bratislava-slovakia",
+    "label": "Bratislava, Slovakia",
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "housing": {
+      "1_bed_center": 635.45,
+      "1_bed_outside": 486.91,
+      "3_bed_center": 1055.77,
+      "3_bed_outside": 794.0,
+      "utilities": 180.44,
+      "internet": 15.69
+    },
+    "lifestyle": {
+      "dinner_for_two": 30.0,
+      "inexpensive_meal": 6.0,
+      "cappuccino": 2.09,
+      "beer": 2.0,
+      "monthly_pass": 27.0,
+      "gym_membership": 26.77,
+      "cinema_ticket": 7.99
+    },
+    "economy": {
+      "avg_monthly_salary": 1059.38
+    }
+  },
+  {
+    "id": "brisbane-australia",
+    "label": "Brisbane, Australia",
+    "city": "Brisbane",
+    "country": "Australia",
+    "housing": {
+      "1_bed_center": 1041.75,
+      "1_bed_outside": 757.35,
+      "3_bed_center": 1796.62,
+      "3_bed_outside": 1148.61,
+      "utilities": 108.52,
+      "internet": 47.06
+    },
+    "lifestyle": {
+      "dinner_for_two": 49.54,
+      "inexpensive_meal": 12.38,
+      "cappuccino": 2.8,
+      "beer": 4.95,
+      "monthly_pass": 94.23,
+      "gym_membership": 40.03,
+      "cinema_ticket": 9.29
+    },
+    "economy": {
+      "avg_monthly_salary": 3030.03
+    }
+  },
+  {
+    "id": "brno-czech-republic",
+    "label": "Brno, Czech Republic",
+    "city": "Brno",
+    "country": "Czech Republic",
+    "housing": {
+      "1_bed_center": 558.68,
+      "1_bed_outside": 439.63,
+      "3_bed_center": 948.79,
+      "3_bed_outside": 715.4,
+      "utilities": 145.16,
+      "internet": 17.58
+    },
+    "lifestyle": {
+      "dinner_for_two": 25.19,
+      "inexpensive_meal": 5.95,
+      "cappuccino": 1.88,
+      "beer": 1.39,
+      "monthly_pass": 21.82,
+      "gym_membership": 29.98,
+      "cinema_ticket": 7.62
+    },
+    "economy": {
+      "avg_monthly_salary": 1022.13
+    }
+  },
+  {
+    "id": "brussels-belgium",
+    "label": "Brussels, Belgium",
+    "city": "Brussels",
+    "country": "Belgium",
+    "housing": {
+      "1_bed_center": 838.2,
+      "1_bed_outside": 686.19,
+      "3_bed_center": 1432.14,
+      "3_bed_outside": 1116.71,
+      "utilities": 122.98,
+      "internet": 43.43
+    },
+    "lifestyle": {
+      "dinner_for_two": 60.0,
+      "inexpensive_meal": 15.0,
+      "cappuccino": 3.17,
+      "beer": 4.0,
+      "monthly_pass": 49.0,
+      "gym_membership": 26.11,
+      "cinema_ticket": 11.0
+    },
+    "economy": {
+      "avg_monthly_salary": 2289.69
+    }
+  },
+  {
+    "id": "bucharest-romania",
+    "label": "Bucharest, Romania",
+    "city": "Bucharest",
+    "country": "Romania",
+    "housing": {
+      "1_bed_center": 401.41,
+      "1_bed_outside": 268.02,
+      "3_bed_center": 670.59,
+      "3_bed_outside": 441.78,
+      "utilities": 89.13,
+      "internet": 8.47
+    },
+    "lifestyle": {
+      "dinner_for_two": 27.21,
+      "inexpensive_meal": 6.28,
+      "cappuccino": 1.87,
+      "beer": 1.78,
+      "monthly_pass": 10.47,
+      "gym_membership": 35.84,
+      "cinema_ticket": 6.28
+    },
+    "economy": {
+      "avg_monthly_salary": 658.66
+    }
+  },
+  {
+    "id": "budapest-hungary",
+    "label": "Budapest, Hungary",
+    "city": "Budapest",
+    "country": "Hungary",
+    "housing": {
+      "1_bed_center": 480.55,
+      "1_bed_outside": 356.04,
+      "3_bed_center": 920.02,
+      "3_bed_outside": 635.08,
+      "utilities": 147.94,
+      "internet": 13.06
+    },
+    "lifestyle": {
+      "dinner_for_two": 29.96,
+      "inexpensive_meal": 5.99,
+      "cappuccino": 1.41,
+      "beer": 1.5,
+      "monthly_pass": 28.46,
+      "gym_membership": 37.85,
+      "cinema_ticket": 5.39
+    },
+    "economy": {
+      "avg_monthly_salary": 755.32
+    }
+  },
+  {
+    "id": "buenos-aires-argentina",
+    "label": "Buenos Aires, Argentina",
+    "city": "Buenos Aires",
+    "country": "Argentina",
+    "housing": {
+      "1_bed_center": 245.13,
+      "1_bed_outside": 197.02,
+      "3_bed_center": 436.43,
+      "3_bed_outside": 334.47,
+      "utilities": 68.07,
+      "internet": 24.79
+    },
+    "lifestyle": {
+      "dinner_for_two": 20.97,
+      "inexpensive_meal": 5.99,
+      "cappuccino": 1.46,
+      "beer": 1.5,
+      "monthly_pass": 10.78,
+      "gym_membership": 25.9,
+      "cinema_ticket": 5.99
+    },
+    "economy": {
+      "avg_monthly_salary": 483.99
+    }
+  },
+  {
+    "id": "bursa-turkey",
+    "label": "Bursa, Turkey",
+    "city": "Bursa",
+    "country": "Turkey",
+    "housing": {
+      "1_bed_center": 177.53,
+      "1_bed_outside": 121.74,
+      "3_bed_center": 315.38,
+      "3_bed_outside": 203.48,
+      "utilities": 67.46,
+      "internet": 12.93
+    },
+    "lifestyle": {
+      "dinner_for_two": 11.47,
+      "inexpensive_meal": 3.82,
+      "cappuccino": 1.59,
+      "beer": 2.37,
+      "monthly_pass": 22.95,
+      "gym_membership": 23.4,
+      "cinema_ticket": 3.06
+    },
+    "economy": {
+      "avg_monthly_salary": 443.85
+    }
+  },
+  {
+    "id": "cairo-egypt",
+    "label": "Cairo, Egypt",
+    "city": "Cairo",
+    "country": "Egypt",
+    "housing": {
+      "1_bed_center": 188.0,
+      "1_bed_outside": 109.76,
+      "3_bed_center": 352.74,
+      "3_bed_outside": 229.29,
+      "utilities": 25.79,
+      "internet": 14.77
+    },
+    "lifestyle": {
+      "dinner_for_two": 17.48,
+      "inexpensive_meal": 3.38,
+      "cappuccino": 1.65,
+      "beer": 1.69,
+      "monthly_pass": 11.28,
+      "gym_membership": 26.19,
+      "cinema_ticket": 4.51
+    },
+    "economy": {
+      "avg_monthly_salary": 221.7
+    }
+  },
+  {
+    "id": "calgary-canada",
+    "label": "Calgary, Canada",
+    "city": "Calgary",
+    "country": "Canada",
+    "housing": {
+      "1_bed_center": 833.74,
+      "1_bed_outside": 661.22,
+      "3_bed_center": 1352.81,
+      "3_bed_outside": 1045.82,
+      "utilities": 132.57,
+      "internet": 54.67
+    },
+    "lifestyle": {
+      "dinner_for_two": 42.97,
+      "inexpensive_meal": 13.75,
+      "cappuccino": 3.14,
+      "beer": 4.81,
+      "monthly_pass": 72.87,
+      "gym_membership": 40.58,
+      "cinema_ticket": 9.62
+    },
+    "economy": {
+      "avg_monthly_salary": 2956.33
+    }
+  },
+  {
+    "id": "cape-town-south-africa",
+    "label": "Cape Town, South Africa",
+    "city": "Cape Town",
+    "country": "South Africa",
+    "housing": {
+      "1_bed_center": 695.92,
+      "1_bed_outside": 468.15,
+      "3_bed_center": 1431.46,
+      "3_bed_outside": 954.95,
+      "utilities": 62.35,
+      "internet": 61.33
+    },
+    "lifestyle": {
+      "dinner_for_two": 35.81,
+      "inexpensive_meal": 8.91,
+      "cappuccino": 1.73,
+      "beer": 2.18,
+      "monthly_pass": 26.47,
+      "gym_membership": 34.45,
+      "cinema_ticket": 5.29
+    },
+    "economy": {
+      "avg_monthly_salary": 1140.76
+    }
+  },
+  {
+    "id": "casablanca-morocco",
+    "label": "Casablanca, Morocco",
+    "city": "Casablanca",
+    "country": "Morocco",
+    "housing": {
+      "1_bed_center": 386.18,
+      "1_bed_outside": 180.27,
+      "3_bed_center": 793.74,
+      "3_bed_outside": 383.51,
+      "utilities": 35.74,
+      "internet": 31.63
+    },
+    "lifestyle": {
+      "dinner_for_two": 20.63,
+      "inexpensive_meal": 4.45,
+      "cappuccino": 1.51,
+      "beer": 2.58,
+      "monthly_pass": 21.57,
+      "gym_membership": 24.49,
+      "cinema_ticket": 5.63
+    },
+    "economy": {
+      "avg_monthly_salary": 405.7
+    }
+  },
+  {
+    "id": "chandigarh-india",
+    "label": "Chandigarh, India",
+    "city": "Chandigarh",
+    "country": "India",
+    "housing": {
+      "1_bed_center": 149.06,
+      "1_bed_outside": 88.87,
+      "3_bed_center": 360.85,
+      "3_bed_outside": 219.96,
+      "utilities": 60.44,
+      "internet": 10.73
+    },
+    "lifestyle": {
+      "dinner_for_two": 10.16,
+      "inexpensive_meal": 2.54,
+      "cappuccino": 1.39,
+      "beer": 1.9,
+      "monthly_pass": 6.35,
+      "gym_membership": 18.59,
+      "cinema_ticket": 3.17
+    },
+    "economy": {
+      "avg_monthly_salary": 380.27
+    }
+  },
+  {
+    "id": "chennai-india",
+    "label": "Chennai, India",
+    "city": "Chennai",
+    "country": "India",
+    "housing": {
+      "1_bed_center": 163.9,
+      "1_bed_outside": 98.51,
+      "3_bed_center": 398.88,
+      "3_bed_outside": 225.75,
+      "utilities": 35.72,
+      "internet": 11.19
+    },
+    "lifestyle": {
+      "dinner_for_two": 7.59,
+      "inexpensive_meal": 1.52,
+      "cappuccino": 1.3,
+      "beer": 1.9,
+      "monthly_pass": 12.66,
+      "gym_membership": 17.63,
+      "cinema_ticket": 2.53
+    },
+    "economy": {
+      "avg_monthly_salary": 403.82
+    }
+  },
+  {
+    "id": "chicago-il-united-states",
+    "label": "Chicago, IL, United States",
+    "city": "Chicago",
+    "country": "United States",
+    "housing": {
+      "1_bed_center": 1702.25,
+      "1_bed_outside": 1100.17,
+      "3_bed_center": 3168.97,
+      "3_bed_outside": 1953.12,
+      "utilities": 117.08,
+      "internet": 57.23
+    },
+    "lifestyle": {
+      "dinner_for_two": 53.87,
+      "inexpensive_meal": 13.47,
+      "cappuccino": 3.69,
+      "beer": 4.94,
+      "monthly_pass": 94.28,
+      "gym_membership": 42.52,
+      "cinema_ticket": 11.67
+    },
+    "economy": {
+      "avg_monthly_salary": 3717.02
+    }
+  },
+  {
+    "id": "chisinau-moldova",
+    "label": "Chisinau, Moldova",
+    "city": "Chisinau",
+    "country": "Moldova",
+    "housing": {
+      "1_bed_center": 244.49,
+      "1_bed_outside": 177.96,
+      "3_bed_center": 428.67,
+      "3_bed_outside": 330.84,
+      "utilities": 113.46,
+      "internet": 8.58
+    },
+    "lifestyle": {
+      "dinner_for_two": 20.74,
+      "inexpensive_meal": 4.67,
+      "cappuccino": 1.25,
+      "beer": 1.04,
+      "monthly_pass": 9.33,
+      "gym_membership": 26.64,
+      "cinema_ticket": 5.19
+    },
+    "economy": {
+      "avg_monthly_salary": 286.95
+    }
+  },
+  {
+    "id": "cluj-napoca-romania",
+    "label": "Cluj-Napoca, Romania",
+    "city": "Cluj-Napoca",
+    "country": "Romania",
+    "housing": {
+      "1_bed_center": 387.79,
+      "1_bed_outside": 284.75,
+      "3_bed_center": 698.74,
+      "3_bed_outside": 497.97,
+      "utilities": 91.85,
+      "internet": 7.34
+    },
+    "lifestyle": {
+      "dinner_for_two": 23.0,
+      "inexpensive_meal": 5.23,
+      "cappuccino": 1.6,
+      "beer": 1.57,
+      "monthly_pass": 14.64,
+      "gym_membership": 26.21,
+      "cinema_ticket": 5.23
+    },
+    "economy": {
+      "avg_monthly_salary": 642.86
+    }
+  },
+  {
+    "id": "colombo-sri-lanka",
+    "label": "Colombo, Sri Lanka",
+    "city": "Colombo",
+    "country": "Sri Lanka",
+    "housing": {
+      "1_bed_center": 325.83,
+      "1_bed_outside": 116.89,
+      "3_bed_center": 768.96,
+      "3_bed_outside": 272.27,
+      "utilities": 37.91,
+      "internet": 13.95
+    },
+    "lifestyle": {
+      "dinner_for_two": 14.9,
+      "inexpensive_meal": 1.49,
+      "cappuccino": 2.21,
+      "beer": 1.49,
+      "monthly_pass": 4.97,
+      "gym_membership": 15.47,
+      "cinema_ticket": 3.48
+    },
+    "economy": {
+      "avg_monthly_salary": 244.23
+    }
+  },
+  {
+    "id": "copenhagen-denmark",
+    "label": "Copenhagen, Denmark",
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "housing": {
+      "1_bed_center": 1234.4,
+      "1_bed_outside": 919.12,
+      "3_bed_center": 2210.96,
+      "3_bed_outside": 1655.25,
+      "utilities": 196.67,
+      "internet": 34.45
+    },
+    "lifestyle": {
+      "dinner_for_two": 80.29,
+      "inexpensive_meal": 17.4,
+      "cappuccino": 5.21,
+      "beer": 6.69,
+      "monthly_pass": 53.53,
+      "gym_membership": 36.85,
+      "cinema_ticket": 14.72
+    },
+    "economy": {
+      "avg_monthly_salary": 2803.98
+    }
+  },
+  {
+    "id": "dallas-tx-united-states",
+    "label": "Dallas, TX, United States",
+    "city": "Dallas",
+    "country": "United States",
+    "housing": {
+      "1_bed_center": 1322.45,
+      "1_bed_outside": 961.01,
+      "3_bed_center": 2476.25,
+      "3_bed_outside": 1607.56,
+      "utilities": 139.51,
+      "internet": 59.67
+    },
+    "lifestyle": {
+      "dinner_for_two": 44.92,
+      "inexpensive_meal": 13.48,
+      "cappuccino": 3.46,
+      "beer": 4.49,
+      "monthly_pass": 86.25,
+      "gym_membership": 32.58,
+      "cinema_ticket": 10.78
+    },
+    "economy": {
+      "avg_monthly_salary": 4202.0
+    }
+  },
+  {
+    "id": "delhi-india",
+    "label": "Delhi, India",
+    "city": "Delhi",
+    "country": "India",
+    "housing": {
+      "1_bed_center": 200.32,
+      "1_bed_outside": 123.19,
+      "3_bed_center": 491.27,
+      "3_bed_outside": 291.67,
+      "utilities": 51.68,
+      "internet": 9.76
+    },
+    "lifestyle": {
+      "dinner_for_two": 15.19,
+      "inexpensive_meal": 3.8,
+      "cappuccino": 1.64,
+      "beer": 1.9,
+      "monthly_pass": 12.66,
+      "gym_membership": 21.35,
+      "cinema_ticket": 3.8
+    },
+    "economy": {
+      "avg_monthly_salary": 473.8
+    }
+  },
+  {
+    "id": "doha-qatar",
+    "label": "Doha, Qatar",
+    "city": "Doha",
+    "country": "Qatar",
+    "housing": {
+      "1_bed_center": 1320.12,
+      "1_bed_outside": 874.29,
+      "3_bed_center": 2500.0,
+      "3_bed_outside": 1729.62,
+      "utilities": 64.59,
+      "internet": 78.31
+    },
+    "lifestyle": {
+      "dinner_for_two": 49.47,
+      "inexpensive_meal": 6.18,
+      "cappuccino": 4.62,
+      "beer": 11.13,
+      "monthly_pass": 37.0,
+      "gym_membership": 95.89,
+      "cinema_ticket": 8.66
+    },
+    "economy": {
+      "avg_monthly_salary": 2827.76
+    }
+  },
+  {
+    "id": "dubai-united-arab-emirates",
+    "label": "Dubai, United Arab Emirates",
+    "city": "Dubai",
+    "country": "United Arab Emirates",
+    "housing": {
+      "1_bed_center": 1348.79,
+      "1_bed_outside": 888.37,
+      "3_bed_center": 2749.41,
+      "3_bed_outside": 1887.72,
+      "utilities": 156.63,
+      "internet": 90.42
+    },
+    "lifestyle": {
+      "dinner_for_two": 48.89,
+      "inexpensive_meal": 7.33,
+      "cappuccino": 4.4,
+      "beer": 11.0,
+      "monthly_pass": 61.11,
+      "gym_membership": 71.73,
+      "cinema_ticket": 9.78
+    },
+    "economy": {
+      "avg_monthly_salary": 2577.55
+    }
+  },
+  {
+    "id": "dublin-ireland",
+    "label": "Dublin, Ireland",
+    "city": "Dublin",
+    "country": "Ireland",
+    "housing": {
+      "1_bed_center": 1692.24,
+      "1_bed_outside": 1405.38,
+      "3_bed_center": 2964.36,
+      "3_bed_outside": 2292.57,
+      "utilities": 169.12,
+      "internet": 54.01
+    },
+    "lifestyle": {
+      "dinner_for_two": 60.0,
+      "inexpensive_meal": 15.0,
+      "cappuccino": 3.2,
+      "beer": 5.8,
+      "monthly_pass": 125.0,
+      "gym_membership": 40.22,
+      "cinema_ticket": 12.0
+    },
+    "economy": {
+      "avg_monthly_salary": 2531.16
+    }
+  },
+  {
+    "id": "durban-south-africa",
+    "label": "Durban, South Africa",
+    "city": "Durban",
+    "country": "South Africa",
+    "housing": {
+      "1_bed_center": 302.38,
+      "1_bed_outside": 325.53,
+      "3_bed_center": 583.09,
+      "3_bed_outside": 639.56,
+      "utilities": 76.88,
+      "internet": 58.2
+    },
+    "lifestyle": {
+      "dinner_for_two": 25.53,
+      "inexpensive_meal": 7.47,
+      "cappuccino": 1.58,
+      "beer": 1.62,
+      "monthly_pass": 23.35,
+      "gym_membership": 27.15,
+      "cinema_ticket": 5.29
+    },
+    "economy": {
+      "avg_monthly_salary": 933.21
+    }
+  },
+  {
+    "id": "edmonton-canada",
+    "label": "Edmonton, Canada",
+    "city": "Edmonton",
+    "country": "Canada",
+    "housing": {
+      "1_bed_center": 841.34,
+      "1_bed_outside": 680.79,
+      "3_bed_center": 1340.62,
+      "3_bed_outside": 1052.03,
+      "utilities": 154.54,
+      "internet": 52.56
+    },
+    "lifestyle": {
+      "dinner_for_two": 48.12,
+      "inexpensive_meal": 13.75,
+      "cappuccino": 2.95,
+      "beer": 4.12,
+      "monthly_pass": 66.68,
+      "gym_membership": 38.6,
+      "cinema_ticket": 9.62
+    },
+    "economy": {
+      "avg_monthly_salary": 2552.22
+    }
+  },
+  {
+    "id": "eindhoven-netherlands",
+    "label": "Eindhoven, Netherlands",
+    "city": "Eindhoven",
+    "country": "Netherlands",
+    "housing": {
+      "1_bed_center": 965.16,
+      "1_bed_outside": 838.0,
+      "3_bed_center": 1513.54,
+      "3_bed_outside": 1245.65,
+      "utilities": 168.08,
+      "internet": 36.18
+    },
+    "lifestyle": {
+      "dinner_for_two": 56.5,
+      "inexpensive_meal": 15.0,
+      "cappuccino": 2.63,
+      "beer": 5.0,
+      "monthly_pass": 72.0,
+      "gym_membership": 24.24,
+      "cinema_ticket": 12.0
+    },
+    "economy": {
+      "avg_monthly_salary": 2603.84
+    }
+  },
+  {
+    "id": "frankfurt-germany",
+    "label": "Frankfurt, Germany",
+    "city": "Frankfurt",
+    "country": "Germany",
+    "housing": {
+      "1_bed_center": 986.97,
+      "1_bed_outside": 723.8,
+      "3_bed_center": 1878.93,
+      "3_bed_outside": 1307.69,
+      "utilities": 265.52,
+      "internet": 30.74
+    },
+    "lifestyle": {
+      "dinner_for_two": 50.0,
+      "inexpensive_meal": 10.0,
+      "cappuccino": 2.74,
+      "beer": 4.0,
+      "monthly_pass": 90.4,
+      "gym_membership": 45.06,
+      "cinema_ticket": 12.0
+    },
+    "economy": {
+      "avg_monthly_salary": 2618.29
+    }
+  },
+  {
+    "id": "gdansk-poland",
+    "label": "Gdansk, Poland",
+    "city": "Gdansk",
+    "country": "Poland",
+    "housing": {
+      "1_bed_center": 515.0,
+      "1_bed_outside": 380.61,
+      "3_bed_center": 840.83,
+      "3_bed_outside": 612.47,
+      "utilities": 169.9,
+      "internet": 12.32
+    },
+    "lifestyle": {
+      "dinner_for_two": 23.62,
+      "inexpensive_meal": 5.91,
+      "cappuccino": 2.15,
+      "beer": 2.13,
+      "monthly_pass": 22.21,
+      "gym_membership": 28.79,
+      "cinema_ticket": 5.2
+    },
+    "economy": {
+      "avg_monthly_salary": 865.09
+    }
+  },
+  {
+    "id": "gothenburg-sweden",
+    "label": "Gothenburg, Sweden",
+    "city": "Gothenburg",
+    "country": "Sweden",
+    "housing": {
+      "1_bed_center": 952.59,
+      "1_bed_outside": 715.92,
+      "3_bed_center": 1561.88,
+      "3_bed_outside": 1138.77,
+      "utilities": 51.69,
+      "internet": 30.42
+    },
+    "lifestyle": {
+      "dinner_for_two": 75.97,
+      "inexpensive_meal": 10.45,
+      "cappuccino": 3.58,
+      "beer": 6.31,
+      "monthly_pass": 62.44,
+      "gym_membership": 32.03,
+      "cinema_ticket": 12.34
+    },
+    "economy": {
+      "avg_monthly_salary": 2183.46
+    }
+  },
+  {
+    "id": "guadalajara-mexico",
+    "label": "Guadalajara, Mexico",
+    "city": "Guadalajara",
+    "country": "Mexico",
+    "housing": {
+      "1_bed_center": 309.42,
+      "1_bed_outside": 186.98,
+      "3_bed_center": 634.96,
+      "3_bed_outside": 388.33,
+      "utilities": 22.64,
+      "internet": 27.53
+    },
+    "lifestyle": {
+      "dinner_for_two": 23.86,
+      "inexpensive_meal": 5.25,
+      "cappuccino": 1.99,
+      "beer": 1.43,
+      "monthly_pass": 18.67,
+      "gym_membership": 24.59,
+      "cinema_ticket": 3.58
+    },
+    "economy": {
+      "avg_monthly_salary": 498.68
+    }
+  },
+  {
+    "id": "gurgaon-india",
+    "label": "Gurgaon, India",
+    "city": "Gurgaon",
+    "country": "India",
+    "housing": {
+      "1_bed_center": 238.36,
+      "1_bed_outside": 146.22,
+      "3_bed_center": 569.92,
+      "3_bed_outside": 350.88,
+      "utilities": 63.53,
+      "internet": 12.81
+    },
+    "lifestyle": {
+      "dinner_for_two": 12.66,
+      "inexpensive_meal": 3.8,
+      "cappuccino": 1.71,
+      "beer": 1.96,
+      "monthly_pass": 13.92,
+      "gym_membership": 29.15,
+      "cinema_ticket": 4.43
+    },
+    "economy": {
+      "avg_monthly_salary": 859.33
+    }
+  },
+  {
+    "id": "hamburg-germany",
+    "label": "Hamburg, Germany",
+    "city": "Hamburg",
+    "country": "Germany",
+    "housing": {
+      "1_bed_center": 873.12,
+      "1_bed_outside": 647.42,
+      "3_bed_center": 1730.0,
+      "3_bed_outside": 1306.25,
+      "utilities": 232.62,
+      "internet": 31.29
+    },
+    "lifestyle": {
+      "dinner_for_two": 50.0,
+      "inexpensive_meal": 11.0,
+      "cappuccino": 2.91,
+      "beer": 4.0,
+      "monthly_pass": 86.0,
+      "gym_membership": 42.0,
+      "cinema_ticket": 12.0
+    },
+    "economy": {
+      "avg_monthly_salary": 2532.52
+    }
+  },
+  {
+    "id": "hanoi-vietnam",
+    "label": "Hanoi, Vietnam",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "housing": {
+      "1_bed_center": 318.43,
+      "1_bed_outside": 192.28,
+      "3_bed_center": 608.96,
+      "3_bed_outside": 426.13,
+      "utilities": 67.49,
+      "internet": 9.41
+    },
+    "lifestyle": {
+      "dinner_for_two": 15.52,
+      "inexpensive_meal": 1.94,
+      "cappuccino": 1.57,
+      "beer": 0.78,
+      "monthly_pass": 7.76,
+      "gym_membership": 24.06,
+      "cinema_ticket": 3.69
+    },
+    "economy": {
+      "avg_monthly_salary": 354.62
+    }
+  },
+  {
+    "id": "helsinki-finland",
+    "label": "Helsinki, Finland",
+    "city": "Helsinki",
+    "country": "Finland",
+    "housing": {
+      "1_bed_center": 986.93,
+      "1_bed_outside": 758.13,
+      "3_bed_center": 1819.32,
+      "3_bed_outside": 1271.16,
+      "utilities": 82.66,
+      "internet": 22.31
+    },
+    "lifestyle": {
+      "dinner_for_two": 65.0,
+      "inexpensive_meal": 12.0,
+      "cappuccino": 3.87,
+      "beer": 6.5,
+      "monthly_pass": 59.7,
+      "gym_membership": 34.54,
+      "cinema_ticket": 14.0
+    },
+    "economy": {
+      "avg_monthly_salary": 2382.56
+    }
+  },
+  {
+    "id": "ho-chi-minh-city-vietnam",
+    "label": "Ho Chi Minh City, Vietnam",
+    "city": "Ho Chi Minh City",
+    "country": "Vietnam",
+    "housing": {
+      "1_bed_center": 421.19,
+      "1_bed_outside": 284.19,
+      "3_bed_center": 971.4,
+      "3_bed_outside": 588.11,
+      "utilities": 51.25,
+      "internet": 10.42
+    },
+    "lifestyle": {
+      "dinner_for_two": 17.5,
+      "inexpensive_meal": 1.94,
+      "cappuccino": 1.72,
+      "beer": 0.78,
+      "monthly_pass": 5.83,
+      "gym_membership": 21.48,
+      "cinema_ticket": 3.5
+    },
+    "economy": {
+      "avg_monthly_salary": 347.14
+    }
+  },
+  {
+    "id": "hong-kong-hong-kong",
+    "label": "Hong Kong, Hong Kong",
+    "city": "Hong Kong",
+    "country": "Hong Kong",
+    "housing": {
+      "1_bed_center": 2041.88,
+      "1_bed_outside": 1405.71,
+      "3_bed_center": 4516.75,
+      "3_bed_outside": 2823.07,
+      "utilities": 176.27,
+      "internet": 21.61
+    },
+    "lifestyle": {
+      "dinner_for_two": 46.26,
+      "inexpensive_meal": 5.78,
+      "cappuccino": 4.15,
+      "beer": 5.78,
+      "monthly_pass": 56.96,
+      "gym_membership": 68.37,
+      "cinema_ticket": 11.57
+    },
+    "economy": {
+      "avg_monthly_salary": 2387.66
+    }
+  },
+  {
+    "id": "houston-tx-united-states",
+    "label": "Houston, TX, United States",
+    "city": "Houston",
+    "country": "United States",
+    "housing": {
+      "1_bed_center": 1258.81,
+      "1_bed_outside": 859.49,
+      "3_bed_center": 2166.31,
+      "3_bed_outside": 1494.14,
+      "utilities": 122.34,
+      "internet": 54.13
+    },
+    "lifestyle": {
+      "dinner_for_two": 53.91,
+      "inexpensive_meal": 13.48,
+      "cappuccino": 4.03,
+      "beer": 5.39,
+      "monthly_pass": 44.25,
+      "gym_membership": 32.13,
+      "cinema_ticket": 9.7
+    },
+    "economy": {
+      "avg_monthly_salary": 3568.78
+    }
+  },
+  {
+    "id": "hyderabad-india",
+    "label": "Hyderabad, India",
+    "city": "Hyderabad",
+    "country": "India",
+    "housing": {
+      "1_bed_center": 156.95,
+      "1_bed_outside": 92.66,
+      "3_bed_center": 392.34,
+      "3_bed_outside": 221.72,
+      "utilities": 21.79,
+      "internet": 9.47
+    },
+    "lifestyle": {
+      "dinner_for_two": 8.86,
+      "inexpensive_meal": 1.9,
+      "cappuccino": 1.17,
+      "beer": 1.52,
+      "monthly_pass": 12.02,
+      "gym_membership": 18.1,
+      "cinema_ticket": 2.53
+    },
+    "economy": {
+      "avg_monthly_salary": 441.12
+    }
+  },
+  {
+    "id": "iasi-romania",
+    "label": "Iasi, Romania",
+    "city": "Iasi",
+    "country": "Romania",
+    "housing": {
+      "1_bed_center": 272.07,
+      "1_bed_outside": 202.65,
+      "3_bed_center": 479.23,
+      "3_bed_outside": 338.9,
+      "utilities": 115.11,
+      "internet": 6.8
+    },
+    "lifestyle": {
+      "dinner_for_two": 20.93,
+      "inexpensive_meal": 5.23,
+      "cappuccino": 1.48,
+      "beer": 1.26,
+      "monthly_pass": 16.74,
+      "gym_membership": 28.32,
+      "cinema_ticket": 5.02
+    },
+    "economy": {
+      "avg_monthly_salary": 529.52
+    }
+  },
+  {
+    "id": "istanbul-turkey",
+    "label": "Istanbul, Turkey",
+    "city": "Istanbul",
+    "country": "Turkey",
+    "housing": {
+      "1_bed_center": 291.55,
+      "1_bed_outside": 177.72,
+      "3_bed_center": 545.5,
+      "3_bed_outside": 314.98,
+      "utilities": 59.33,
+      "internet": 14.2
+    },
+    "lifestyle": {
+      "dinner_for_two": 15.28,
+      "inexpensive_meal": 4.58,
+      "cappuccino": 1.84,
+      "beer": 3.06,
+      "monthly_pass": 31.32,
+      "gym_membership": 25.1,
+      "cinema_ticket": 3.82
+    },
+    "economy": {
+      "avg_monthly_salary": 436.0
+    }
+  },
+  {
+    "id": "izmir-turkey",
+    "label": "Izmir, Turkey",
+    "city": "Izmir",
+    "country": "Turkey",
+    "housing": {
+      "1_bed_center": 212.22,
+      "1_bed_outside": 128.36,
+      "3_bed_center": 353.76,
+      "3_bed_outside": 225.34,
+      "utilities": 51.07,
+      "internet": 12.89
+    },
+    "lifestyle": {
+      "dinner_for_two": 12.22,
+      "inexpensive_meal": 3.06,
+      "cappuccino": 1.56,
+      "beer": 2.29,
+      "monthly_pass": 22.92,
+      "gym_membership": 20.64,
+      "cinema_ticket": 3.06
+    },
+    "economy": {
+      "avg_monthly_salary": 392.07
+    }
+  },
+  {
+    "id": "jakarta-indonesia",
+    "label": "Jakarta, Indonesia",
+    "city": "Jakarta",
+    "country": "Indonesia",
+    "housing": {
+      "1_bed_center": 401.19,
+      "1_bed_outside": 224.82,
+      "3_bed_center": 1361.18,
+      "3_bed_outside": 634.08,
+      "utilities": 96.12,
+      "internet": 26.47
+    },
+    "lifestyle": {
+      "dinner_for_two": 16.4,
+      "inexpensive_meal": 2.62,
+      "cappuccino": 2.32,
+      "beer": 2.62,
+      "monthly_pass": 11.41,
+      "gym_membership": 38.09,
+      "cinema_ticket": 3.28
+    },
+    "economy": {
+      "avg_monthly_salary": 414.33
+    }
+  },
+  {
+    "id": "jerusalem-israel",
+    "label": "Jerusalem, Israel",
+    "city": "Jerusalem",
+    "country": "Israel",
+    "housing": {
+      "1_bed_center": 919.4,
+      "1_bed_outside": 740.05,
+      "3_bed_center": 1577.52,
+      "3_bed_outside": 1213.39,
+      "utilities": 166.88,
+      "internet": 24.16
+    },
+    "lifestyle": {
+      "dinner_for_two": 62.24,
+      "inexpensive_meal": 15.56,
+      "cappuccino": 2.8,
+      "beer": 7.26,
+      "monthly_pass": 55.23,
+      "gym_membership": 71.27,
+      "cinema_ticket": 10.37
+    },
+    "economy": {
+      "avg_monthly_salary": 1911.12
+    }
+  },
+  {
+    "id": "johannesburg-south-africa",
+    "label": "Johannesburg, South Africa",
+    "city": "Johannesburg",
+    "country": "South Africa",
+    "housing": {
+      "1_bed_center": 421.71,
+      "1_bed_outside": 369.1,
+      "3_bed_center": 854.92,
+      "3_bed_outside": 706.5,
+      "utilities": 83.28,
+      "internet": 59.93
+    },
+    "lifestyle": {
+      "dinner_for_two": 31.37,
+      "inexpensive_meal": 8.47,
+      "cappuccino": 1.67,
+      "beer": 1.73,
+      "monthly_pass": 50.2,
+      "gym_membership": 33.16,
+      "cinema_ticket": 5.65
+    },
+    "economy": {
+      "avg_monthly_salary": 1089.06
+    }
+  },
+  {
+    "id": "kathmandu-nepal",
+    "label": "Kathmandu, Nepal",
+    "city": "Kathmandu",
+    "country": "Nepal",
+    "housing": {
+      "1_bed_center": 155.63,
+      "1_bed_outside": 100.89,
+      "3_bed_center": 295.43,
+      "3_bed_outside": 186.01,
+      "utilities": 24.92,
+      "internet": 16.66
+    },
+    "lifestyle": {
+      "dinner_for_two": 11.92,
+      "inexpensive_meal": 1.99,
+      "cappuccino": 1.54,
+      "beer": 2.38,
+      "monthly_pass": 7.15,
+      "gym_membership": 24.02,
+      "cinema_ticket": 3.06
+    },
+    "economy": {
+      "avg_monthly_salary": 184.17
+    }
+  },
+  {
+    "id": "kaunas-lithuania",
+    "label": "Kaunas, Lithuania",
+    "city": "Kaunas",
+    "country": "Lithuania",
+    "housing": {
+      "1_bed_center": 359.31,
+      "1_bed_outside": 246.21,
+      "3_bed_center": 616.67,
+      "3_bed_outside": 396.0,
+      "utilities": 122.48,
+      "internet": 10.14
+    },
+    "lifestyle": {
+      "dinner_for_two": 30.0,
+      "inexpensive_meal": 6.0,
+      "cappuccino": 2.12,
+      "beer": 2.7,
+      "monthly_pass": 28.0,
+      "gym_membership": 27.64,
+      "cinema_ticket": 7.0
+    },
+    "economy": {
+      "avg_monthly_salary": 771.0
+    }
+  },
+  {
+    "id": "kharkiv-ukraine",
+    "label": "Kharkiv, Ukraine",
+    "city": "Kharkiv",
+    "country": "Ukraine",
+    "housing": {
+      "1_bed_center": 346.56,
+      "1_bed_outside": 217.86,
+      "3_bed_center": 615.91,
+      "3_bed_outside": 392.63,
+      "utilities": 117.46,
+      "internet": 5.57
+    },
+    "lifestyle": {
+      "dinner_for_two": 18.76,
+      "inexpensive_meal": 4.5,
+      "cappuccino": 1.03,
+      "beer": 0.88,
+      "monthly_pass": 11.42,
+      "gym_membership": 18.58,
+      "cinema_ticket": 3.75
+    },
+    "economy": {
+      "avg_monthly_salary": 337.4
+    }
+  },
+  {
+    "id": "kiev-ukraine",
+    "label": "Kiev, Ukraine",
+    "city": "Kiev",
+    "country": "Ukraine",
+    "housing": {
+      "1_bed_center": 589.81,
+      "1_bed_outside": 340.8,
+      "3_bed_center": 988.82,
+      "3_bed_outside": 560.35,
+      "utilities": 98.74,
+      "internet": 5.11
+    },
+    "lifestyle": {
+      "dinner_for_two": 22.51,
+      "inexpensive_meal": 5.63,
+      "cappuccino": 1.17,
+      "beer": 1.13,
+      "monthly_pass": 12.19,
+      "gym_membership": 20.92,
+      "cinema_ticket": 4.31
+    },
+    "economy": {
+      "avg_monthly_salary": 516.75
+    }
+  },
+  {
+    "id": "kolkata-india",
+    "label": "Kolkata, India",
+    "city": "Kolkata",
+    "country": "India",
+    "housing": {
+      "1_bed_center": 138.31,
+      "1_bed_outside": 79.35,
+      "3_bed_center": 321.93,
+      "3_bed_outside": 184.5,
+      "utilities": 29.47,
+      "internet": 7.72
+    },
+    "lifestyle": {
+      "dinner_for_two": 10.76,
+      "inexpensive_meal": 2.53,
+      "cappuccino": 1.38,
+      "beer": 1.87,
+      "monthly_pass": 3.16,
+      "gym_membership": 15.18,
+      "cinema_ticket": 3.16
+    },
+    "economy": {
+      "avg_monthly_salary": 323.06
+    }
+  },
+  {
+    "id": "krakow-cracow-poland",
+    "label": "Krakow (Cracow), Poland",
+    "city": "Krakow (Cracow)",
+    "country": "Poland",
+    "housing": {
+      "1_bed_center": 513.06,
+      "1_bed_outside": 392.83,
+      "3_bed_center": 897.17,
+      "3_bed_outside": 626.23,
+      "utilities": 173.28,
+      "internet": 12.75
+    },
+    "lifestyle": {
+      "dinner_for_two": 23.62,
+      "inexpensive_meal": 5.91,
+      "cappuccino": 2.05,
+      "beer": 2.13,
+      "monthly_pass": 25.04,
+      "gym_membership": 23.27,
+      "cinema_ticket": 5.91
+    },
+    "economy": {
+      "avg_monthly_salary": 855.87
+    }
+  },
+  {
+    "id": "kuala-lumpur-malaysia",
+    "label": "Kuala Lumpur, Malaysia",
+    "city": "Kuala Lumpur",
+    "country": "Malaysia",
+    "housing": {
+      "1_bed_center": 478.24,
+      "1_bed_outside": 273.76,
+      "3_bed_center": 845.42,
+      "3_bed_outside": 450.9,
+      "utilities": 48.02,
+      "internet": 26.76
+    },
+    "lifestyle": {
+      "dinner_for_two": 16.6,
+      "inexpensive_meal": 2.87,
+      "cappuccino": 2.53,
+      "beer": 3.32,
+      "monthly_pass": 22.11,
+      "gym_membership": 38.52,
+      "cinema_ticket": 3.98
+    },
+    "economy": {
+      "avg_monthly_salary": 923.24
+    }
+  },
+  {
+    "id": "las-vegas-nv-united-states",
+    "label": "Las Vegas, NV, United States",
+    "city": "Las Vegas",
+    "country": "United States",
+    "housing": {
+      "1_bed_center": 992.86,
+      "1_bed_outside": 874.56,
+      "3_bed_center": 1665.0,
+      "3_bed_outside": 1339.05,
+      "utilities": 138.51,
+      "internet": 64.64
+    },
+    "lifestyle": {
+      "dinner_for_two": 53.87,
+      "inexpensive_meal": 13.47,
+      "cappuccino": 3.65,
+      "beer": 5.39,
+      "monthly_pass": 58.36,
+      "gym_membership": 23.03,
+      "cinema_ticket": 10.77
+    },
+    "economy": {
+      "avg_monthly_salary": 3132.38
+    }
+  },
+  {
+    "id": "lima-peru",
+    "label": "Lima, Peru",
+    "city": "Lima",
+    "country": "Peru",
+    "housing": {
+      "1_bed_center": 435.67,
+      "1_bed_outside": 279.01,
+      "3_bed_center": 847.79,
+      "3_bed_outside": 560.23,
+      "utilities": 63.97,
+      "internet": 34.82
+    },
+    "lifestyle": {
+      "dinner_for_two": 21.71,
+      "inexpensive_meal": 3.26,
+      "cappuccino": 2.14,
+      "beer": 1.9,
+      "monthly_pass": 23.2,
+      "gym_membership": 48.84,
+      "cinema_ticket": 5.43
+    },
+    "economy": {
+      "avg_monthly_salary": 439.49
+    }
+  },
+  {
+    "id": "lisbon-portugal",
+    "label": "Lisbon, Portugal",
+    "city": "Lisbon",
+    "country": "Portugal",
+    "housing": {
+      "1_bed_center": 886.21,
+      "1_bed_outside": 619.04,
+      "3_bed_center": 1697.7,
+      "3_bed_outside": 1131.34,
+      "utilities": 99.29,
+      "internet": 32.35
+    },
+    "lifestyle": {
+      "dinner_for_two": 35.0,
+      "inexpensive_meal": 8.5,
+      "cappuccino": 1.44,
+      "beer": 2.0,
+      "monthly_pass": 40.0,
+      "gym_membership": 34.6,
+      "cinema_ticket": 7.0
+    },
+    "economy": {
+      "avg_monthly_salary": 913.81
+    }
+  },
+  {
+    "id": "ljubljana-slovenia",
+    "label": "Ljubljana, Slovenia",
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "housing": {
+      "1_bed_center": 579.89,
+      "1_bed_outside": 448.26,
+      "3_bed_center": 1063.75,
+      "3_bed_outside": 783.33,
+      "utilities": 199.61,
+      "internet": 33.0
+    },
+    "lifestyle": {
+      "dinner_for_two": 35.0,
+      "inexpensive_meal": 8.0,
+      "cappuccino": 1.48,
+      "beer": 2.6,
+      "monthly_pass": 37.0,
+      "gym_membership": 40.61,
+      "cinema_ticket": 6.78
+    },
+    "economy": {
+      "avg_monthly_salary": 1155.72
+    }
+  },
+  {
+    "id": "lodz-poland",
+    "label": "Lodz, Poland",
+    "city": "Lodz",
+    "country": "Poland",
+    "housing": {
+      "1_bed_center": 362.66,
+      "1_bed_outside": 280.88,
+      "3_bed_center": 593.51,
+      "3_bed_outside": 473.31,
+      "utilities": 172.01,
+      "internet": 12.53
+    },
+    "lifestyle": {
+      "dinner_for_two": 23.61,
+      "inexpensive_meal": 4.72,
+      "cappuccino": 1.73,
+      "beer": 1.77,
+      "monthly_pass": 21.25,
+      "gym_membership": 26.35,
+      "cinema_ticket": 5.9
+    },
+    "economy": {
+      "avg_monthly_salary": 689.44
+    }
+  },
+  {
+    "id": "london-united-kingdom",
+    "label": "London, United Kingdom",
+    "city": "London",
+    "country": "United Kingdom",
+    "housing": {
+      "1_bed_center": 2015.24,
+      "1_bed_outside": 1420.02,
+      "3_bed_center": 3634.96,
+      "3_bed_outside": 2373.78,
+      "utilities": 186.96,
+      "internet": 37.07
+    },
+    "lifestyle": {
+      "dinner_for_two": 64.15,
+      "inexpensive_meal": 17.49,
+      "cappuccino": 3.3,
+      "beer": 5.83,
+      "monthly_pass": 167.34,
+      "gym_membership": 46.02,
+      "cinema_ticket": 14.0
+    },
+    "economy": {
+      "avg_monthly_salary": 2756.93
+    }
+  },
+  {
+    "id": "los-angeles-ca-united-states",
+    "label": "Los Angeles, CA, United States",
+    "city": "Los Angeles",
+    "country": "United States",
+    "housing": {
+      "1_bed_center": 1980.11,
+      "1_bed_outside": 1564.78,
+      "3_bed_center": 3611.37,
+      "3_bed_outside": 2696.53,
+      "utilities": 111.99,
+      "internet": 55.74
+    },
+    "lifestyle": {
+      "dinner_for_two": 58.36,
+      "inexpensive_meal": 13.47,
+      "cappuccino": 4.01,
+      "beer": 5.39,
+      "monthly_pass": 89.79,
+      "gym_membership": 36.78,
+      "cinema_ticket": 13.47
+    },
+    "economy": {
+      "avg_monthly_salary": 3968.48
+    }
+  },
+  {
+    "id": "lviv-ukraine",
+    "label": "Lviv, Ukraine",
+    "city": "Lviv",
+    "country": "Ukraine",
+    "housing": {
+      "1_bed_center": 364.65,
+      "1_bed_outside": 249.9,
+      "3_bed_center": 589.43,
+      "3_bed_outside": 414.33,
+      "utilities": 88.45,
+      "internet": 4.44
+    },
+    "lifestyle": {
+      "dinner_for_two": 18.76,
+      "inexpensive_meal": 3.75,
+      "cappuccino": 1.15,
+      "beer": 1.5,
+      "monthly_pass": 5.63,
+      "gym_membership": 17.16,
+      "cinema_ticket": 3.75
+    },
+    "economy": {
+      "avg_monthly_salary": 341.38
+    }
+  },
+  {
+    "id": "madrid-spain",
+    "label": "Madrid, Spain",
+    "city": "Madrid",
+    "country": "Spain",
+    "housing": {
+      "1_bed_center": 933.23,
+      "1_bed_outside": 703.38,
+      "3_bed_center": 1643.28,
+      "3_bed_outside": 1122.1,
+      "utilities": 119.87,
+      "internet": 41.89
+    },
+    "lifestyle": {
+      "dinner_for_two": 40.0,
+      "inexpensive_meal": 12.0,
+      "cappuccino": 1.76,
+      "beer": 3.0,
+      "monthly_pass": 54.6,
+      "gym_membership": 35.57,
+      "cinema_ticket": 9.0
+    },
+    "economy": {
+      "avg_monthly_salary": 1578.77
+    }
+  },
+  {
+    "id": "manila-philippines",
+    "label": "Manila, Philippines",
+    "city": "Manila",
+    "country": "Philippines",
+    "housing": {
+      "1_bed_center": 552.51,
+      "1_bed_outside": 192.18,
+      "3_bed_center": 1679.37,
+      "3_bed_outside": 462.62,
+      "utilities": 120.87,
+      "internet": 45.47
+    },
+    "lifestyle": {
+      "dinner_for_two": 17.82,
+      "inexpensive_meal": 3.56,
+      "cappuccino": 2.29,
+      "beer": 1.25,
+      "monthly_pass": 12.05,
+      "gym_membership": 43.97,
+      "cinema_ticket": 5.35
+    },
+    "economy": {
+      "avg_monthly_salary": 358.2
+    }
+  },
+  {
+    "id": "melbourne-australia",
+    "label": "Melbourne, Australia",
+    "city": "Melbourne",
+    "country": "Australia",
+    "housing": {
+      "1_bed_center": 1134.86,
+      "1_bed_outside": 859.46,
+      "3_bed_center": 2027.71,
+      "3_bed_outside": 1341.31,
+      "utilities": 127.87,
+      "internet": 43.28
+    },
+    "lifestyle": {
+      "dinner_for_two": 49.54,
+      "inexpensive_meal": 10.22,
+      "cappuccino": 2.63,
+      "beer": 5.57,
+      "monthly_pass": 95.36,
+      "gym_membership": 46.28,
+      "cinema_ticket": 12.38
+    },
+    "economy": {
+      "avg_monthly_salary": 2791.96
+    }
+  },
+  {
+    "id": "mexico-city-mexico",
+    "label": "Mexico City, Mexico",
+    "city": "Mexico City",
+    "country": "Mexico",
+    "housing": {
+      "1_bed_center": 550.18,
+      "1_bed_outside": 342.38,
+      "3_bed_center": 1139.78,
+      "3_bed_outside": 734.62,
+      "utilities": 30.09,
+      "internet": 26.34
+    },
+    "lifestyle": {
+      "dinner_for_two": 23.86,
+      "inexpensive_meal": 4.77,
+      "cappuccino": 2.0,
+      "beer": 1.91,
+      "monthly_pass": 14.32,
+      "gym_membership": 49.56,
+      "cinema_ticket": 3.82
+    },
+    "economy": {
+      "avg_monthly_salary": 596.3
+    }
+  },
+  {
+    "id": "milan-italy",
+    "label": "Milan, Italy",
+    "city": "Milan",
+    "country": "Italy",
+    "housing": {
+      "1_bed_center": 1099.67,
+      "1_bed_outside": 731.69,
+      "3_bed_center": 2311.84,
+      "3_bed_outside": 1428.3,
+      "utilities": 163.97,
+      "internet": 28.93
+    },
+    "lifestyle": {
+      "dinner_for_two": 60.0,
+      "inexpensive_meal": 15.0,
+      "cappuccino": 1.46,
+      "beer": 5.0,
+      "monthly_pass": 39.0,
+      "gym_membership": 66.62,
+      "cinema_ticket": 10.0
+    },
+    "economy": {
+      "avg_monthly_salary": 1601.0
+    }
+  },
+  {
+    "id": "minsk-belarus",
+    "label": "Minsk, Belarus",
+    "city": "Minsk",
+    "country": "Belarus",
+    "housing": {
+      "1_bed_center": 376.92,
+      "1_bed_outside": 244.9,
+      "3_bed_center": 593.05,
+      "3_bed_outside": 386.38,
+      "utilities": 48.29,
+      "internet": 12.84
+    },
+    "lifestyle": {
+      "dinner_for_two": 27.95,
+      "inexpensive_meal": 8.93,
+      "cappuccino": 1.64,
+      "beer": 1.8,
+      "monthly_pass": 13.48,
+      "gym_membership": 31.85,
+      "cinema_ticket": 4.04
+    },
+    "economy": {
+      "avg_monthly_salary": 433.37
+    }
+  },
+  {
+    "id": "monterrey-mexico",
+    "label": "Monterrey, Mexico",
+    "city": "Monterrey",
+    "country": "Mexico",
+    "housing": {
+      "1_bed_center": 342.55,
+      "1_bed_outside": 207.9,
+      "3_bed_center": 757.86,
+      "3_bed_outside": 461.34,
+      "utilities": 49.81,
+      "internet": 25.84
+    },
+    "lifestyle": {
+      "dinner_for_two": 23.94,
+      "inexpensive_meal": 5.75,
+      "cappuccino": 2.28,
+      "beer": 1.68,
+      "monthly_pass": 17.96,
+      "gym_membership": 34.28,
+      "cinema_ticket": 3.59
+    },
+    "economy": {
+      "avg_monthly_salary": 695.46
+    }
+  },
+  {
+    "id": "montevideo-uruguay",
+    "label": "Montevideo, Uruguay",
+    "city": "Montevideo",
+    "country": "Uruguay",
+    "housing": {
+      "1_bed_center": 428.25,
+      "1_bed_outside": 338.45,
+      "3_bed_center": 727.77,
+      "3_bed_outside": 578.57,
+      "utilities": 98.22,
+      "internet": 28.65
+    },
+    "lifestyle": {
+      "dinner_for_two": 31.23,
+      "inexpensive_meal": 8.41,
+      "cappuccino": 2.35,
+      "beer": 1.92,
+      "monthly_pass": 36.04,
+      "gym_membership": 40.13,
+      "cinema_ticket": 7.21
+    },
+    "economy": {
+      "avg_monthly_salary": 642.49
+    }
+  },
+  {
+    "id": "montreal-canada",
+    "label": "Montreal, Canada",
+    "city": "Montreal",
+    "country": "Canada",
+    "housing": {
+      "1_bed_center": 871.26,
+      "1_bed_outside": 551.99,
+      "3_bed_center": 1481.25,
+      "3_bed_outside": 942.77,
+      "utilities": 66.62,
+      "internet": 42.59
+    },
+    "lifestyle": {
+      "dinner_for_two": 44.69,
+      "inexpensive_meal": 10.31,
+      "cappuccino": 2.83,
+      "beer": 4.81,
+      "monthly_pass": 59.47,
+      "gym_membership": 23.04,
+      "cinema_ticket": 8.94
+    },
+    "economy": {
+      "avg_monthly_salary": 2182.51
+    }
+  },
+  {
+    "id": "moscow-russia",
+    "label": "Moscow, Russia",
+    "city": "Moscow",
+    "country": "Russia",
+    "housing": {
+      "1_bed_center": 888.23,
+      "1_bed_outside": 518.48,
+      "3_bed_center": 1840.45,
+      "3_bed_outside": 990.88,
+      "utilities": 126.36,
+      "internet": 6.79
+    },
+    "lifestyle": {
+      "dinner_for_two": 36.69,
+      "inexpensive_meal": 8.8,
+      "cappuccino": 2.43,
+      "beer": 2.93,
+      "monthly_pass": 31.84,
+      "gym_membership": 41.55,
+      "cinema_ticket": 6.6
+    },
+    "economy": {
+      "avg_monthly_salary": 970.29
+    }
+  },
+  {
+    "id": "mumbai-india",
+    "label": "Mumbai, India",
+    "city": "Mumbai",
+    "country": "India",
+    "housing": {
+      "1_bed_center": 515.42,
+      "1_bed_outside": 263.33,
+      "3_bed_center": 1443.43,
+      "3_bed_outside": 608.27,
+      "utilities": 47.45,
+      "internet": 9.09
+    },
+    "lifestyle": {
+      "dinner_for_two": 15.19,
+      "inexpensive_meal": 3.8,
+      "cappuccino": 1.92,
+      "beer": 2.28,
+      "monthly_pass": 3.8,
+      "gym_membership": 24.63,
+      "cinema_ticket": 3.8
+    },
+    "economy": {
+      "avg_monthly_salary": 487.96
+    }
+  },
+  {
+    "id": "munich-germany",
+    "label": "Munich, Germany",
+    "city": "Munich",
+    "country": "Germany",
+    "housing": {
+      "1_bed_center": 1198.0,
+      "1_bed_outside": 873.39,
+      "3_bed_center": 2191.11,
+      "3_bed_outside": 1681.91,
+      "utilities": 242.66,
+      "internet": 34.09
+    },
+    "lifestyle": {
+      "dinner_for_two": 60.0,
+      "inexpensive_meal": 12.0,
+      "cappuccino": 2.98,
+      "beer": 3.8,
+      "monthly_pass": 66.0,
+      "gym_membership": 34.69,
+      "cinema_ticket": 12.0
+    },
+    "economy": {
+      "avg_monthly_salary": 2627.51
+    }
+  },
+  {
+    "id": "nairobi-kenya",
+    "label": "Nairobi, Kenya",
+    "city": "Nairobi",
+    "country": "Kenya",
+    "housing": {
+      "1_bed_center": 383.88,
+      "1_bed_outside": 170.65,
+      "3_bed_center": 832.14,
+      "3_bed_outside": 403.17,
+      "utilities": 46.9,
+      "internet": 51.91
+    },
+    "lifestyle": {
+      "dinner_for_two": 26.58,
+      "inexpensive_meal": 4.43,
+      "cappuccino": 2.27,
+      "beer": 2.04,
+      "monthly_pass": 26.58,
+      "gym_membership": 45.4,
+      "cinema_ticket": 7.09
+    },
+    "economy": {
+      "avg_monthly_salary": 327.85
+    }
+  },
+  {
+    "id": "new-york-ny-united-states",
+    "label": "New York, NY, United States",
+    "city": "New York",
+    "country": "United States",
+    "housing": {
+      "1_bed_center": 2854.26,
+      "1_bed_outside": 1788.76,
+      "3_bed_center": 5574.89,
+      "3_bed_outside": 3314.05,
+      "utilities": 116.65,
+      "internet": 55.18
+    },
+    "lifestyle": {
+      "dinner_for_two": 76.37,
+      "inexpensive_meal": 17.97,
+      "cappuccino": 4.22,
+      "beer": 6.29,
+      "monthly_pass": 114.11,
+      "gym_membership": 67.04,
+      "cinema_ticket": 14.38
+    },
+    "economy": {
+      "avg_monthly_salary": 4665.46
+    }
+  },
+  {
+    "id": "noida-india",
+    "label": "Noida, India",
+    "city": "Noida",
+    "country": "India",
+    "housing": {
+      "1_bed_center": 153.28,
+      "1_bed_outside": 94.92,
+      "3_bed_center": 344.64,
+      "3_bed_outside": 208.55,
+      "utilities": 61.65,
+      "internet": 11.58
+    },
+    "lifestyle": {
+      "dinner_for_two": 12.66,
+      "inexpensive_meal": 3.8,
+      "cappuccino": 1.45,
+      "beer": 1.39,
+      "monthly_pass": 12.66,
+      "gym_membership": 22.23,
+      "cinema_ticket": 3.8
+    },
+    "economy": {
+      "avg_monthly_salary": 536.67
+    }
+  },
+  {
+    "id": "novi-sad-serbia",
+    "label": "Novi Sad, Serbia",
+    "city": "Novi Sad",
+    "country": "Serbia",
+    "housing": {
+      "1_bed_center": 262.4,
+      "1_bed_outside": 195.75,
+      "3_bed_center": 451.15,
+      "3_bed_outside": 302.16,
+      "utilities": 122.93,
+      "internet": 19.3
+    },
+    "lifestyle": {
+      "dinner_for_two": 17.85,
+      "inexpensive_meal": 4.84,
+      "cappuccino": 1.11,
+      "beer": 1.5,
+      "monthly_pass": 20.0,
+      "gym_membership": 22.89,
+      "cinema_ticket": 3.4
+    },
+    "economy": {
+      "avg_monthly_salary": 439.58
+    }
+  },
+  {
+    "id": "novosibirsk-russia",
+    "label": "Novosibirsk, Russia",
+    "city": "Novosibirsk",
+    "country": "Russia",
+    "housing": {
+      "1_bed_center": 344.85,
+      "1_bed_outside": 225.13,
+      "3_bed_center": 635.89,
+      "3_bed_outside": 406.41,
+      "utilities": 94.51,
+      "internet": 7.96
+    },
+    "lifestyle": {
+      "dinner_for_two": 22.01,
+      "inexpensive_meal": 5.72,
+      "cappuccino": 1.88,
+      "beer": 1.1,
+      "monthly_pass": 11.01,
+      "gym_membership": 27.49,
+      "cinema_ticket": 4.4
+    },
+    "economy": {
+      "avg_monthly_salary": 436.28
+    }
+  },
+  {
+    "id": "odessa-ukraine",
+    "label": "Odessa, Ukraine",
+    "city": "Odessa",
+    "country": "Ukraine",
+    "housing": {
+      "1_bed_center": 344.01,
+      "1_bed_outside": 232.04,
+      "3_bed_center": 599.79,
+      "3_bed_outside": 405.27,
+      "utilities": 94.58,
+      "internet": 5.73
+    },
+    "lifestyle": {
+      "dinner_for_two": 20.67,
+      "inexpensive_meal": 5.65,
+      "cappuccino": 1.19,
+      "beer": 0.94,
+      "monthly_pass": 6.77,
+      "gym_membership": 20.84,
+      "cinema_ticket": 4.52
+    },
+    "economy": {
+      "avg_monthly_salary": 360.47
+    }
+  },
+  {
+    "id": "oslo-norway",
+    "label": "Oslo, Norway",
+    "city": "Oslo",
+    "country": "Norway",
+    "housing": {
+      "1_bed_center": 1280.03,
+      "1_bed_outside": 990.78,
+      "3_bed_center": 2080.65,
+      "3_bed_outside": 1595.19,
+      "utilities": 158.58,
+      "internet": 45.73
+    },
+    "lifestyle": {
+      "dinner_for_two": 80.88,
+      "inexpensive_meal": 18.7,
+      "cappuccino": 4.28,
+      "beer": 9.0,
+      "monthly_pass": 75.83,
+      "gym_membership": 42.44,
+      "cinema_ticket": 14.15
+    },
+    "economy": {
+      "avg_monthly_salary": 2985.88
+    }
+  },
+  {
+    "id": "ottawa-canada",
+    "label": "Ottawa, Canada",
+    "city": "Ottawa",
+    "country": "Canada",
+    "housing": {
+      "1_bed_center": 961.81,
+      "1_bed_outside": 745.27,
+      "3_bed_center": 1642.15,
+      "3_bed_outside": 1256.39,
+      "utilities": 102.76,
+      "internet": 43.85
+    },
+    "lifestyle": {
+      "dinner_for_two": 55.0,
+      "inexpensive_meal": 11.0,
+      "cappuccino": 2.85,
+      "beer": 4.81,
+      "monthly_pass": 80.09,
+      "gym_membership": 40.21,
+      "cinema_ticket": 9.62
+    },
+    "economy": {
+      "avg_monthly_salary": 2904.67
+    }
+  },
+  {
+    "id": "panama-city-panama",
+    "label": "Panama City, Panama",
+    "city": "Panama City",
+    "country": "Panama",
+    "housing": {
+      "1_bed_center": 811.63,
+      "1_bed_outside": 547.73,
+      "3_bed_center": 1387.66,
+      "3_bed_outside": 962.66,
+      "utilities": 90.98,
+      "internet": 41.58
+    },
+    "lifestyle": {
+      "dinner_for_two": 35.94,
+      "inexpensive_meal": 8.98,
+      "cappuccino": 2.63,
+      "beer": 2.58,
+      "monthly_pass": 17.97,
+      "gym_membership": 40.47,
+      "cinema_ticket": 5.39
+    },
+    "economy": {
+      "avg_monthly_salary": 706.33
+    }
+  },
+  {
+    "id": "paris-france",
+    "label": "Paris, France",
+    "city": "Paris",
+    "country": "France",
+    "housing": {
+      "1_bed_center": 1177.51,
+      "1_bed_outside": 837.76,
+      "3_bed_center": 2597.17,
+      "3_bed_outside": 1736.93,
+      "utilities": 170.29,
+      "internet": 27.15
+    },
+    "lifestyle": {
+      "dinner_for_two": 50.0,
+      "inexpensive_meal": 15.0,
+      "cappuccino": 3.4,
+      "beer": 7.0,
+      "monthly_pass": 75.0,
+      "gym_membership": 39.98,
+      "cinema_ticket": 11.0
+    },
+    "economy": {
+      "avg_monthly_salary": 2215.02
+    }
+  },
+  {
+    "id": "perth-australia",
+    "label": "Perth, Australia",
+    "city": "Perth",
+    "country": "Australia",
+    "housing": {
+      "1_bed_center": 897.5,
+      "1_bed_outside": 639.56,
+      "3_bed_center": 1474.61,
+      "3_bed_outside": 982.76,
+      "utilities": 129.02,
+      "internet": 43.78
+    },
+    "lifestyle": {
+      "dinner_for_two": 56.55,
+      "inexpensive_meal": 12.43,
+      "cappuccino": 2.86,
+      "beer": 5.9,
+      "monthly_pass": 84.02,
+      "gym_membership": 39.32,
+      "cinema_ticket": 11.19
+    },
+    "economy": {
+      "avg_monthly_salary": 2493.77
+    }
+  },
+  {
+    "id": "phoenix-az-united-states",
+    "label": "Phoenix, AZ, United States",
+    "city": "Phoenix",
+    "country": "United States",
+    "housing": {
+      "1_bed_center": 1092.25,
+      "1_bed_outside": 824.8,
+      "3_bed_center": 1657.74,
+      "3_bed_outside": 1317.96,
+      "utilities": 161.5,
+      "internet": 67.23
+    },
+    "lifestyle": {
+      "dinner_for_two": 53.87,
+      "inexpensive_meal": 10.77,
+      "cappuccino": 3.6,
+      "beer": 3.59,
+      "monthly_pass": 57.47,
+      "gym_membership": 27.66,
+      "cinema_ticket": 9.88
+    },
+    "economy": {
+      "avg_monthly_salary": 3113.47
+    }
+  },
+  {
+    "id": "plovdiv-bulgaria",
+    "label": "Plovdiv, Bulgaria",
+    "city": "Plovdiv",
+    "country": "Bulgaria",
+    "housing": {
+      "1_bed_center": 240.77,
+      "1_bed_outside": 179.23,
+      "3_bed_center": 412.1,
+      "3_bed_outside": 290.7,
+      "utilities": 79.71,
+      "internet": 11.57
+    },
+    "lifestyle": {
+      "dinner_for_two": 20.42,
+      "inexpensive_meal": 5.1,
+      "cappuccino": 1.27,
+      "beer": 1.28,
+      "monthly_pass": 20.42,
+      "gym_membership": 24.85,
+      "cinema_ticket": 5.61
+    },
+    "economy": {
+      "avg_monthly_salary": 514.73
+    }
+  },
+  {
+    "id": "podgorica-montenegro",
+    "label": "Podgorica, Montenegro",
+    "city": "Podgorica",
+    "country": "Montenegro",
+    "housing": {
+      "1_bed_center": 307.27,
+      "1_bed_outside": 222.86,
+      "3_bed_center": 553.57,
+      "3_bed_outside": 389.5,
+      "utilities": 103.09,
+      "internet": 23.52
+    },
+    "lifestyle": {
+      "dinner_for_two": 25.0,
+      "inexpensive_meal": 5.0,
+      "cappuccino": 1.45,
+      "beer": 1.5,
+      "monthly_pass": 25.0,
+      "gym_membership": 30.0,
+      "cinema_ticket": 5.0
+    },
+    "economy": {
+      "avg_monthly_salary": 484.81
+    }
+  },
+  {
+    "id": "portland-or-united-states",
+    "label": "Portland, OR, United States",
+    "city": "Portland",
+    "country": "United States",
+    "housing": {
+      "1_bed_center": 1399.8,
+      "1_bed_outside": 1045.69,
+      "3_bed_center": 2472.7,
+      "3_bed_outside": 1769.49,
+      "utilities": 150.98,
+      "internet": 60.86
+    },
+    "lifestyle": {
+      "dinner_for_two": 44.92,
+      "inexpensive_meal": 12.58,
+      "cappuccino": 3.85,
+      "beer": 4.49,
+      "monthly_pass": 89.85,
+      "gym_membership": 39.9,
+      "cinema_ticket": 10.78
+    },
+    "economy": {
+      "avg_monthly_salary": 3403.15
+    }
+  },
+  {
+    "id": "porto-portugal",
+    "label": "Porto, Portugal",
+    "city": "Porto",
+    "country": "Portugal",
+    "housing": {
+      "1_bed_center": 682.5,
+      "1_bed_outside": 507.14,
+      "3_bed_center": 1281.43,
+      "3_bed_outside": 862.5,
+      "utilities": 101.15,
+      "internet": 31.12
+    },
+    "lifestyle": {
+      "dinner_for_two": 30.0,
+      "inexpensive_meal": 7.0,
+      "cappuccino": 1.61,
+      "beer": 2.0,
+      "monthly_pass": 31.0,
+      "gym_membership": 32.22,
+      "cinema_ticket": 6.95
+    },
+    "economy": {
+      "avg_monthly_salary": 801.61
+    }
+  },
+  {
+    "id": "poznan-poland",
+    "label": "Poznan, Poland",
+    "city": "Poznan",
+    "country": "Poland",
+    "housing": {
+      "1_bed_center": 443.21,
+      "1_bed_outside": 351.37,
+      "3_bed_center": 742.09,
+      "3_bed_outside": 582.42,
+      "utilities": 155.6,
+      "internet": 11.62
+    },
+    "lifestyle": {
+      "dinner_for_two": 23.61,
+      "inexpensive_meal": 5.9,
+      "cappuccino": 2.06,
+      "beer": 2.01,
+      "monthly_pass": 26.7,
+      "gym_membership": 22.13,
+      "cinema_ticket": 5.9
+    },
+    "economy": {
+      "avg_monthly_salary": 791.94
+    }
+  },
+  {
+    "id": "prague-czech-republic",
+    "label": "Prague, Czech Republic",
+    "city": "Prague",
+    "country": "Czech Republic",
+    "housing": {
+      "1_bed_center": 805.86,
+      "1_bed_outside": 593.84,
+      "3_bed_center": 1294.8,
+      "3_bed_outside": 908.64,
+      "utilities": 177.27,
+      "internet": 19.95
+    },
+    "lifestyle": {
+      "dinner_for_two": 29.75,
+      "inexpensive_meal": 5.95,
+      "cappuccino": 2.17,
+      "beer": 1.59,
+      "monthly_pass": 21.82,
+      "gym_membership": 34.67,
+      "cinema_ticket": 7.93
+    },
+    "economy": {
+      "avg_monthly_salary": 1183.75
+    }
+  },
+  {
+    "id": "pune-india",
+    "label": "Pune, India",
+    "city": "Pune",
+    "country": "India",
+    "housing": {
+      "1_bed_center": 205.68,
+      "1_bed_outside": 127.68,
+      "3_bed_center": 400.17,
+      "3_bed_outside": 259.74,
+      "utilities": 26.65,
+      "internet": 11.7
+    },
+    "lifestyle": {
+      "dinner_for_two": 12.66,
+      "inexpensive_meal": 3.16,
+      "cappuccino": 1.61,
+      "beer": 2.28,
+      "monthly_pass": 12.66,
+      "gym_membership": 16.08,
+      "cinema_ticket": 3.54
+    },
+    "economy": {
+      "avg_monthly_salary": 531.09
+    }
+  },
+  {
+    "id": "quito-ecuador",
+    "label": "Quito, Ecuador",
+    "city": "Quito",
+    "country": "Ecuador",
+    "housing": {
+      "1_bed_center": 369.07,
+      "1_bed_outside": 221.89,
+      "3_bed_center": 680.28,
+      "3_bed_outside": 447.51,
+      "utilities": 39.64,
+      "internet": 36.77
+    },
+    "lifestyle": {
+      "dinner_for_two": 31.45,
+      "inexpensive_meal": 3.59,
+      "cappuccino": 1.81,
+      "beer": 1.35,
+      "monthly_pass": 23.81,
+      "gym_membership": 40.91,
+      "cinema_ticket": 5.39
+    },
+    "economy": {
+      "avg_monthly_salary": 527.18
+    }
+  },
+  {
+    "id": "reykjavik-iceland",
+    "label": "Reykjavik, Iceland",
+    "city": "Reykjavik",
+    "country": "Iceland",
+    "housing": {
+      "1_bed_center": 1458.29,
+      "1_bed_outside": 1203.14,
+      "3_bed_center": 2332.0,
+      "3_bed_outside": 1918.32,
+      "utilities": 88.14,
+      "internet": 59.63
+    },
+    "lifestyle": {
+      "dinner_for_two": 109.16,
+      "inexpensive_meal": 17.96,
+      "cappuccino": 4.11,
+      "beer": 8.73,
+      "monthly_pass": 93.15,
+      "gym_membership": 54.44,
+      "cinema_ticket": 11.57
+    },
+    "economy": {
+      "avg_monthly_salary": 2908.86
+    }
+  },
+  {
+    "id": "riga-latvia",
+    "label": "Riga, Latvia",
+    "city": "Riga",
+    "country": "Latvia",
+    "housing": {
+      "1_bed_center": 385.07,
+      "1_bed_outside": 276.53,
+      "3_bed_center": 698.49,
+      "3_bed_outside": 488.06,
+      "utilities": 172.23,
+      "internet": 16.2
+    },
+    "lifestyle": {
+      "dinner_for_two": 40.0,
+      "inexpensive_meal": 7.0,
+      "cappuccino": 2.45,
+      "beer": 2.9,
+      "monthly_pass": 50.0,
+      "gym_membership": 34.77,
+      "cinema_ticket": 8.0
+    },
+    "economy": {
+      "avg_monthly_salary": 806.02
+    }
+  },
+  {
+    "id": "rome-italy",
+    "label": "Rome, Italy",
+    "city": "Rome",
+    "country": "Italy",
+    "housing": {
+      "1_bed_center": 987.37,
+      "1_bed_outside": 679.27,
+      "3_bed_center": 1870.0,
+      "3_bed_outside": 1176.32,
+      "utilities": 171.15,
+      "internet": 29.64
+    },
+    "lifestyle": {
+      "dinner_for_two": 55.0,
+      "inexpensive_meal": 15.0,
+      "cappuccino": 1.28,
+      "beer": 5.0,
+      "monthly_pass": 35.0,
+      "gym_membership": 57.77,
+      "cinema_ticket": 8.5
+    },
+    "economy": {
+      "avg_monthly_salary": 1466.06
+    }
+  },
+  {
+    "id": "rotterdam-netherlands",
+    "label": "Rotterdam, Netherlands",
+    "city": "Rotterdam",
+    "country": "Netherlands",
+    "housing": {
+      "1_bed_center": 1103.13,
+      "1_bed_outside": 844.33,
+      "3_bed_center": 1845.83,
+      "3_bed_outside": 1230.43,
+      "utilities": 153.76,
+      "internet": 38.2
+    },
+    "lifestyle": {
+      "dinner_for_two": 50.0,
+      "inexpensive_meal": 13.0,
+      "cappuccino": 2.73,
+      "beer": 4.0,
+      "monthly_pass": 70.42,
+      "gym_membership": 28.8,
+      "cinema_ticket": 12.0
+    },
+    "economy": {
+      "avg_monthly_salary": 2312.39
+    }
+  },
+  {
+    "id": "saint-petersburg-russia",
+    "label": "Saint Petersburg, Russia",
+    "city": "Saint Petersburg",
+    "country": "Russia",
+    "housing": {
+      "1_bed_center": 524.45,
+      "1_bed_outside": 344.27,
+      "3_bed_center": 1012.53,
+      "3_bed_outside": 615.19,
+      "utilities": 102.17,
+      "internet": 6.96
+    },
+    "lifestyle": {
+      "dinner_for_two": 29.35,
+      "inexpensive_meal": 7.34,
+      "cappuccino": 1.96,
+      "beer": 2.2,
+      "monthly_pass": 42.56,
+      "gym_membership": 26.27,
+      "cinema_ticket": 5.14
+    },
+    "economy": {
+      "avg_monthly_salary": 645.94
+    }
+  },
+  {
+    "id": "san-diego-ca-united-states",
+    "label": "San Diego, CA, United States",
+    "city": "San Diego",
+    "country": "United States",
+    "housing": {
+      "1_bed_center": 1816.1,
+      "1_bed_outside": 1479.24,
+      "3_bed_center": 3254.51,
+      "3_bed_outside": 2492.91,
+      "utilities": 123.99,
+      "internet": 56.97
+    },
+    "lifestyle": {
+      "dinner_for_two": 53.91,
+      "inexpensive_meal": 13.48,
+      "cappuccino": 3.83,
+      "beer": 5.39,
+      "monthly_pass": 64.69,
+      "gym_membership": 32.62,
+      "cinema_ticket": 12.58
+    },
+    "economy": {
+      "avg_monthly_salary": 4293.13
+    }
+  },
+  {
+    "id": "san-francisco-ca-united-states",
+    "label": "San Francisco, CA, United States",
+    "city": "San Francisco",
+    "country": "United States",
+    "housing": {
+      "1_bed_center": 3131.06,
+      "1_bed_outside": 2527.11,
+      "3_bed_center": 5661.53,
+      "3_bed_outside": 4320.95,
+      "utilities": 127.73,
+      "internet": 60.0
+    },
+    "lifestyle": {
+      "dinner_for_two": 71.88,
+      "inexpensive_meal": 15.95,
+      "cappuccino": 4.06,
+      "beer": 6.29,
+      "monthly_pass": 72.78,
+      "gym_membership": 77.08,
+      "cinema_ticket": 13.48
+    },
+    "economy": {
+      "avg_monthly_salary": 6532.21
+    }
+  },
+  {
+    "id": "san-jose-costa-rica",
+    "label": "San Jose, Costa Rica",
+    "city": "San Jose",
+    "country": "Costa Rica",
+    "housing": {
+      "1_bed_center": 461.72,
+      "1_bed_outside": 405.66,
+      "3_bed_center": 884.11,
+      "3_bed_outside": 757.82,
+      "utilities": 65.12,
+      "internet": 65.3
+    },
+    "lifestyle": {
+      "dinner_for_two": 42.47,
+      "inexpensive_meal": 6.29,
+      "cappuccino": 2.64,
+      "beer": 2.36,
+      "monthly_pass": 42.12,
+      "gym_membership": 53.68,
+      "cinema_ticket": 5.5
+    },
+    "economy": {
+      "avg_monthly_salary": 708.44
+    }
+  },
+  {
+    "id": "santiago-chile",
+    "label": "Santiago, Chile",
+    "city": "Santiago",
+    "country": "Chile",
+    "housing": {
+      "1_bed_center": 369.11,
+      "1_bed_outside": 349.97,
+      "3_bed_center": 701.83,
+      "3_bed_outside": 635.33,
+      "utilities": 89.62,
+      "internet": 29.58
+    },
+    "lifestyle": {
+      "dinner_for_two": 34.68,
+      "inexpensive_meal": 6.94,
+      "cappuccino": 2.19,
+      "beer": 2.95,
+      "monthly_pass": 43.57,
+      "gym_membership": 26.45,
+      "cinema_ticket": 5.78
+    },
+    "economy": {
+      "avg_monthly_salary": 618.33
+    }
+  },
+  {
+    "id": "santo-domingo-dominican-republic",
+    "label": "Santo Domingo, Dominican Republic",
+    "city": "Santo Domingo",
+    "country": "Dominican Republic",
+    "housing": {
+      "1_bed_center": 381.17,
+      "1_bed_outside": 203.64,
+      "3_bed_center": 754.18,
+      "3_bed_outside": 359.54,
+      "utilities": 53.67,
+      "internet": 50.03
+    },
+    "lifestyle": {
+      "dinner_for_two": 34.01,
+      "inexpensive_meal": 5.1,
+      "cappuccino": 1.51,
+      "beer": 1.7,
+      "monthly_pass": 34.01,
+      "gym_membership": 22.49,
+      "cinema_ticket": 5.1
+    },
+    "economy": {
+      "avg_monthly_salary": 335.33
+    }
+  },
+  {
+    "id": "sao-paulo-brazil",
+    "label": "Sao Paulo, Brazil",
+    "city": "Sao Paulo",
+    "country": "Brazil",
+    "housing": {
+      "1_bed_center": 448.08,
+      "1_bed_outside": 294.58,
+      "3_bed_center": 879.31,
+      "3_bed_outside": 580.49,
+      "utilities": 54.21,
+      "internet": 24.2
+    },
+    "lifestyle": {
+      "dinner_for_two": 28.51,
+      "inexpensive_meal": 6.58,
+      "cappuccino": 1.46,
+      "beer": 1.97,
+      "monthly_pass": 45.82,
+      "gym_membership": 25.41,
+      "cinema_ticket": 7.68
+    },
+    "economy": {
+      "avg_monthly_salary": 470.25
+    }
+  },
+  {
+    "id": "sarajevo-bosnia-and-herzegovina",
+    "label": "Sarajevo, Bosnia And Herzegovina",
+    "city": "Sarajevo",
+    "country": "Bosnia And Herzegovina",
+    "housing": {
+      "1_bed_center": 254.49,
+      "1_bed_outside": 170.61,
+      "3_bed_center": 510.21,
+      "3_bed_outside": 307.2,
+      "utilities": 140.53,
+      "internet": 22.77
+    },
+    "lifestyle": {
+      "dinner_for_two": 20.42,
+      "inexpensive_meal": 3.57,
+      "cappuccino": 1.28,
+      "beer": 1.79,
+      "monthly_pass": 27.06,
+      "gym_membership": 26.5,
+      "cinema_ticket": 3.57
+    },
+    "economy": {
+      "avg_monthly_salary": 486.12
+    }
+  },
+  {
+    "id": "seattle-wa-united-states",
+    "label": "Seattle, WA, United States",
+    "city": "Seattle",
+    "country": "United States",
+    "housing": {
+      "1_bed_center": 1919.17,
+      "1_bed_outside": 1450.04,
+      "3_bed_center": 3199.48,
+      "3_bed_outside": 2321.44,
+      "utilities": 144.15,
+      "internet": 58.46
+    },
+    "lifestyle": {
+      "dinner_for_two": 62.89,
+      "inexpensive_meal": 13.48,
+      "cappuccino": 3.81,
+      "beer": 5.39,
+      "monthly_pass": 88.95,
+      "gym_membership": 48.94,
+      "cinema_ticket": 13.48
+    },
+    "economy": {
+      "avg_monthly_salary": 4741.65
+    }
+  },
+  {
+    "id": "seoul-south-korea",
+    "label": "Seoul, South Korea",
+    "city": "Seoul",
+    "country": "South Korea",
+    "housing": {
+      "1_bed_center": 714.76,
+      "1_bed_outside": 465.05,
+      "3_bed_center": 1903.9,
+      "3_bed_outside": 1036.41,
+      "utilities": 150.79,
+      "internet": 19.76
+    },
+    "lifestyle": {
+      "dinner_for_two": 31.11,
+      "inexpensive_meal": 6.42,
+      "cappuccino": 3.72,
+      "beer": 3.11,
+      "monthly_pass": 42.78,
+      "gym_membership": 55.64,
+      "cinema_ticket": 7.78
+    },
+    "economy": {
+      "avg_monthly_salary": 2120.34
+    }
+  },
+  {
+    "id": "shanghai-china",
+    "label": "Shanghai, China",
+    "city": "Shanghai",
+    "country": "China",
+    "housing": {
+      "1_bed_center": 970.31,
+      "1_bed_outside": 477.33,
+      "3_bed_center": 2220.7,
+      "3_bed_outside": 1159.18,
+      "utilities": 51.7,
+      "internet": 14.26
+    },
+    "lifestyle": {
+      "dinner_for_two": 26.04,
+      "inexpensive_meal": 4.56,
+      "cappuccino": 3.82,
+      "beer": 1.3,
+      "monthly_pass": 26.04,
+      "gym_membership": 44.9,
+      "cinema_ticket": 7.81
+    },
+    "economy": {
+      "avg_monthly_salary": 1111.52
+    }
+  },
+  {
+    "id": "singapore-singapore",
+    "label": "Singapore, Singapore",
+    "city": "Singapore",
+    "country": "Singapore",
+    "housing": {
+      "1_bed_center": 1859.98,
+      "1_bed_outside": 1174.57,
+      "3_bed_center": 3509.54,
+      "3_bed_outside": 2007.43,
+      "utilities": 97.79,
+      "internet": 28.85
+    },
+    "lifestyle": {
+      "dinner_for_two": 39.98,
+      "inexpensive_meal": 8.33,
+      "cappuccino": 3.66,
+      "beer": 6.66,
+      "monthly_pass": 79.96,
+      "gym_membership": 88.55,
+      "cinema_ticket": 8.66
+    },
+    "economy": {
+      "avg_monthly_salary": 2988.12
+    }
+  },
+  {
+    "id": "skopje-macedonia",
+    "label": "Skopje, Macedonia",
+    "city": "Skopje",
+    "country": "Macedonia",
+    "housing": {
+      "1_bed_center": 233.43,
+      "1_bed_outside": 168.07,
+      "3_bed_center": 418.35,
+      "3_bed_outside": 296.24,
+      "utilities": 107.26,
+      "internet": 15.11
+    },
+    "lifestyle": {
+      "dinner_for_two": 16.25,
+      "inexpensive_meal": 4.87,
+      "cappuccino": 1.37,
+      "beer": 1.62,
+      "monthly_pass": 24.37,
+      "gym_membership": 22.03,
+      "cinema_ticket": 4.06
+    },
+    "economy": {
+      "avg_monthly_salary": 393.01
+    }
+  },
+  {
+    "id": "sofia-bulgaria",
+    "label": "Sofia, Bulgaria",
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "housing": {
+      "1_bed_center": 370.72,
+      "1_bed_outside": 285.96,
+      "3_bed_center": 665.27,
+      "3_bed_outside": 479.09,
+      "utilities": 89.74,
+      "internet": 10.38
+    },
+    "lifestyle": {
+      "dinner_for_two": 25.57,
+      "inexpensive_meal": 6.14,
+      "cappuccino": 1.25,
+      "beer": 1.53,
+      "monthly_pass": 25.57,
+      "gym_membership": 24.34,
+      "cinema_ticket": 6.14
+    },
+    "economy": {
+      "avg_monthly_salary": 708.65
+    }
+  },
+  {
+    "id": "stockholm-sweden",
+    "label": "Stockholm, Sweden",
+    "city": "Stockholm",
+    "country": "Sweden",
+    "housing": {
+      "1_bed_center": 1167.36,
+      "1_bed_outside": 804.1,
+      "3_bed_center": 1930.04,
+      "3_bed_outside": 1198.21,
+      "utilities": 75.9,
+      "internet": 27.98
+    },
+    "lifestyle": {
+      "dinner_for_two": 66.47,
+      "inexpensive_meal": 11.4,
+      "cappuccino": 3.64,
+      "beer": 6.55,
+      "monthly_pass": 84.51,
+      "gym_membership": 37.83,
+      "cinema_ticket": 12.82
+    },
+    "economy": {
+      "avg_monthly_salary": 2476.17
+    }
+  },
+  {
+    "id": "sydney-australia",
+    "label": "Sydney, Australia",
+    "city": "Sydney",
+    "country": "Australia",
+    "housing": {
+      "1_bed_center": 1568.39,
+      "1_bed_outside": 1140.67,
+      "3_bed_center": 2674.32,
+      "3_bed_outside": 1810.32,
+      "utilities": 110.7,
+      "internet": 43.51
+    },
+    "lifestyle": {
+      "dinner_for_two": 54.37,
+      "inexpensive_meal": 11.81,
+      "cappuccino": 2.48,
+      "beer": 4.97,
+      "monthly_pass": 130.49,
+      "gym_membership": 47.37,
+      "cinema_ticket": 12.43
+    },
+    "economy": {
+      "avg_monthly_salary": 3018.36
+    }
+  },
+  {
+    "id": "taipei-taiwan",
+    "label": "Taipei, Taiwan",
+    "city": "Taipei",
+    "country": "Taiwan",
+    "housing": {
+      "1_bed_center": 487.78,
+      "1_bed_outside": 323.83,
+      "3_bed_center": 1084.45,
+      "3_bed_outside": 730.68,
+      "utilities": 68.8,
+      "internet": 20.55
+    },
+    "lifestyle": {
+      "dinner_for_two": 24.04,
+      "inexpensive_meal": 3.61,
+      "cappuccino": 2.64,
+      "beer": 1.77,
+      "monthly_pass": 38.47,
+      "gym_membership": 40.35,
+      "cinema_ticket": 9.02
+    },
+    "economy": {
+      "avg_monthly_salary": 1340.77
+    }
+  },
+  {
+    "id": "tallinn-estonia",
+    "label": "Tallinn, Estonia",
+    "city": "Tallinn",
+    "country": "Estonia",
+    "housing": {
+      "1_bed_center": 533.33,
+      "1_bed_outside": 364.36,
+      "3_bed_center": 869.29,
+      "3_bed_outside": 611.46,
+      "utilities": 175.25,
+      "internet": 22.88
+    },
+    "lifestyle": {
+      "dinner_for_two": 45.0,
+      "inexpensive_meal": 8.0,
+      "cappuccino": 2.79,
+      "beer": 4.0,
+      "monthly_pass": 23.0,
+      "gym_membership": 45.44,
+      "cinema_ticket": 8.0
+    },
+    "economy": {
+      "avg_monthly_salary": 1188.81
+    }
+  },
+  {
+    "id": "tashkent-uzbekistan",
+    "label": "Tashkent, Uzbekistan",
+    "city": "Tashkent",
+    "country": "Uzbekistan",
+    "housing": {
+      "1_bed_center": 209.86,
+      "1_bed_outside": 124.02,
+      "3_bed_center": 449.24,
+      "3_bed_outside": 239.9,
+      "utilities": 31.53,
+      "internet": 35.48
+    },
+    "lifestyle": {
+      "dinner_for_two": 15.72,
+      "inexpensive_meal": 3.59,
+      "cappuccino": 1.11,
+      "beer": 0.9,
+      "monthly_pass": 13.48,
+      "gym_membership": 24.77,
+      "cinema_ticket": 3.59
+    },
+    "economy": {
+      "avg_monthly_salary": 205.98
+    }
+  },
+  {
+    "id": "tbilisi-georgia",
+    "label": "Tbilisi, Georgia",
+    "city": "Tbilisi",
+    "country": "Georgia",
+    "housing": {
+      "1_bed_center": 306.63,
+      "1_bed_outside": 184.31,
+      "3_bed_center": 625.77,
+      "3_bed_outside": 348.41,
+      "utilities": 52.69,
+      "internet": 14.09
+    },
+    "lifestyle": {
+      "dinner_for_two": 18.69,
+      "inexpensive_meal": 4.67,
+      "cappuccino": 1.4,
+      "beer": 0.93,
+      "monthly_pass": 9.34,
+      "gym_membership": 30.29,
+      "cinema_ticket": 4.49
+    },
+    "economy": {
+      "avg_monthly_salary": 248.07
+    }
+  },
+  {
+    "id": "tel-aviv-yafo-israel",
+    "label": "Tel Aviv-Yafo, Israel",
+    "city": "Tel Aviv-Yafo",
+    "country": "Israel",
+    "housing": {
+      "1_bed_center": 1326.91,
+      "1_bed_outside": 993.88,
+      "3_bed_center": 2192.51,
+      "3_bed_outside": 1613.78,
+      "utilities": 197.25,
+      "internet": 24.84
+    },
+    "lifestyle": {
+      "dinner_for_two": 64.75,
+      "inexpensive_meal": 15.54,
+      "cappuccino": 3.4,
+      "beer": 7.77,
+      "monthly_pass": 55.69,
+      "gym_membership": 67.82,
+      "cinema_ticket": 10.36
+    },
+    "economy": {
+      "avg_monthly_salary": 2306.23
+    }
+  },
+  {
+    "id": "thessaloniki-greece",
+    "label": "Thessaloniki, Greece",
+    "city": "Thessaloniki",
+    "country": "Greece",
+    "housing": {
+      "1_bed_center": 336.96,
+      "1_bed_outside": 269.45,
+      "3_bed_center": 543.56,
+      "3_bed_outside": 440.83,
+      "utilities": 160.39,
+      "internet": 30.22
+    },
+    "lifestyle": {
+      "dinner_for_two": 35.0,
+      "inexpensive_meal": 10.0,
+      "cappuccino": 3.21,
+      "beer": 3.5,
+      "monthly_pass": 30.0,
+      "gym_membership": 31.3,
+      "cinema_ticket": 8.0
+    },
+    "economy": {
+      "avg_monthly_salary": 660.51
+    }
+  },
+  {
+    "id": "timisoara-romania",
+    "label": "Timisoara, Romania",
+    "city": "Timisoara",
+    "country": "Romania",
+    "housing": {
+      "1_bed_center": 287.68,
+      "1_bed_outside": 217.44,
+      "3_bed_center": 531.19,
+      "3_bed_outside": 385.53,
+      "utilities": 95.29,
+      "internet": 7.53
+    },
+    "lifestyle": {
+      "dinner_for_two": 20.91,
+      "inexpensive_meal": 5.23,
+      "cappuccino": 1.42,
+      "beer": 1.25,
+      "monthly_pass": 18.82,
+      "gym_membership": 25.3,
+      "cinema_ticket": 5.23
+    },
+    "economy": {
+      "avg_monthly_salary": 613.27
+    }
+  },
+  {
+    "id": "tirana-albania",
+    "label": "Tirana, Albania",
+    "city": "Tirana",
+    "country": "Albania",
+    "housing": {
+      "1_bed_center": 296.37,
+      "1_bed_outside": 175.58,
+      "3_bed_center": 578.83,
+      "3_bed_outside": 326.01,
+      "utilities": 68.27,
+      "internet": 19.18
+    },
+    "lifestyle": {
+      "dinner_for_two": 24.62,
+      "inexpensive_meal": 4.1,
+      "cappuccino": 1.2,
+      "beer": 1.27,
+      "monthly_pass": 13.13,
+      "gym_membership": 29.49,
+      "cinema_ticket": 4.92
+    },
+    "economy": {
+      "avg_monthly_salary": 336.43
+    }
+  },
+  {
+    "id": "tokyo-japan",
+    "label": "Tokyo, Japan",
+    "city": "Tokyo",
+    "country": "Japan",
+    "housing": {
+      "1_bed_center": 1013.36,
+      "1_bed_outside": 636.07,
+      "3_bed_center": 2270.89,
+      "3_bed_outside": 1221.64,
+      "utilities": 162.41,
+      "internet": 38.33
+    },
+    "lifestyle": {
+      "dinner_for_two": 40.97,
+      "inexpensive_meal": 8.19,
+      "cappuccino": 3.21,
+      "beer": 4.1,
+      "monthly_pass": 81.95,
+      "gym_membership": 77.29,
+      "cinema_ticket": 14.75
+    },
+    "economy": {
+      "avg_monthly_salary": 2657.42
+    }
+  },
+  {
+    "id": "toronto-canada",
+    "label": "Toronto, Canada",
+    "city": "Toronto",
+    "country": "Canada",
+    "housing": {
+      "1_bed_center": 1474.75,
+      "1_bed_outside": 1180.29,
+      "3_bed_center": 2401.86,
+      "3_bed_outside": 1792.3,
+      "utilities": 95.48,
+      "internet": 44.42
+    },
+    "lifestyle": {
+      "dinner_for_two": 55.0,
+      "inexpensive_meal": 13.75,
+      "cappuccino": 3.1,
+      "beer": 5.16,
+      "monthly_pass": 103.91,
+      "gym_membership": 37.38,
+      "cinema_ticket": 10.31
+    },
+    "economy": {
+      "avg_monthly_salary": 2352.69
+    }
+  },
+  {
+    "id": "tunis-tunisia",
+    "label": "Tunis, Tunisia",
+    "city": "Tunis",
+    "country": "Tunisia",
+    "housing": {
+      "1_bed_center": 173.76,
+      "1_bed_outside": 121.37,
+      "3_bed_center": 331.41,
+      "3_bed_outside": 244.12,
+      "utilities": 30.66,
+      "internet": 17.03
+    },
+    "lifestyle": {
+      "dinner_for_two": 12.78,
+      "inexpensive_meal": 1.92,
+      "cappuccino": 0.67,
+      "beer": 1.6,
+      "monthly_pass": 9.58,
+      "gym_membership": 22.1,
+      "cinema_ticket": 3.19
+    },
+    "economy": {
+      "avg_monthly_salary": 285.79
+    }
+  },
+  {
+    "id": "utrecht-netherlands",
+    "label": "Utrecht, Netherlands",
+    "city": "Utrecht",
+    "country": "Netherlands",
+    "housing": {
+      "1_bed_center": 1135.77,
+      "1_bed_outside": 791.9,
+      "3_bed_center": 1944.44,
+      "3_bed_outside": 1272.5,
+      "utilities": 193.84,
+      "internet": 35.06
+    },
+    "lifestyle": {
+      "dinner_for_two": 65.0,
+      "inexpensive_meal": 15.0,
+      "cappuccino": 3.03,
+      "beer": 5.0,
+      "monthly_pass": 90.0,
+      "gym_membership": 28.05,
+      "cinema_ticket": 11.0
+    },
+    "economy": {
+      "avg_monthly_salary": 2214.18
+    }
+  },
+  {
+    "id": "valencia-spain",
+    "label": "Valencia, Spain",
+    "city": "Valencia",
+    "country": "Spain",
+    "housing": {
+      "1_bed_center": 672.08,
+      "1_bed_outside": 463.64,
+      "3_bed_center": 1053.57,
+      "3_bed_outside": 704.81,
+      "utilities": 113.44,
+      "internet": 35.26
+    },
+    "lifestyle": {
+      "dinner_for_two": 35.0,
+      "inexpensive_meal": 8.75,
+      "cappuccino": 1.53,
+      "beer": 2.0,
+      "monthly_pass": 41.9,
+      "gym_membership": 31.35,
+      "cinema_ticket": 8.0
+    },
+    "economy": {
+      "avg_monthly_salary": 1342.17
+    }
+  },
+  {
+    "id": "vancouver-canada",
+    "label": "Vancouver, Canada",
+    "city": "Vancouver",
+    "country": "Canada",
+    "housing": {
+      "1_bed_center": 1424.9,
+      "1_bed_outside": 1133.13,
+      "3_bed_center": 2586.43,
+      "3_bed_outside": 1863.02,
+      "utilities": 62.72,
+      "internet": 48.94
+    },
+    "lifestyle": {
+      "dinner_for_two": 55.0,
+      "inexpensive_meal": 11.69,
+      "cappuccino": 3.05,
+      "beer": 4.81,
+      "monthly_pass": 67.37,
+      "gym_membership": 35.6,
+      "cinema_ticket": 10.31
+    },
+    "economy": {
+      "avg_monthly_salary": 2625.31
+    }
+  },
+  {
+    "id": "varna-bulgaria",
+    "label": "Varna, Bulgaria",
+    "city": "Varna",
+    "country": "Bulgaria",
+    "housing": {
+      "1_bed_center": 235.36,
+      "1_bed_outside": 170.63,
+      "3_bed_center": 440.04,
+      "3_bed_outside": 305.21,
+      "utilities": 75.54,
+      "internet": 11.2
+    },
+    "lifestyle": {
+      "dinner_for_two": 20.42,
+      "inexpensive_meal": 6.12,
+      "cappuccino": 1.23,
+      "beer": 1.02,
+      "monthly_pass": 20.42,
+      "gym_membership": 22.19,
+      "cinema_ticket": 6.12
+    },
+    "economy": {
+      "avg_monthly_salary": 511.5
+    }
+  },
+  {
+    "id": "victoria-canada",
+    "label": "Victoria, Canada",
+    "city": "Victoria",
+    "country": "Canada",
+    "housing": {
+      "1_bed_center": 1047.12,
+      "1_bed_outside": 872.6,
+      "3_bed_center": 1847.98,
+      "3_bed_outside": 1513.3,
+      "utilities": 78.71,
+      "internet": 54.21
+    },
+    "lifestyle": {
+      "dinner_for_two": 49.93,
+      "inexpensive_meal": 12.05,
+      "cappuccino": 3.12,
+      "beer": 4.82,
+      "monthly_pass": 58.54,
+      "gym_membership": 36.17,
+      "cinema_ticket": 10.33
+    },
+    "economy": {
+      "avg_monthly_salary": 2338.36
+    }
+  },
+  {
+    "id": "vienna-austria",
+    "label": "Vienna, Austria",
+    "city": "Vienna",
+    "country": "Austria",
+    "housing": {
+      "1_bed_center": 858.37,
+      "1_bed_outside": 621.65,
+      "3_bed_center": 1584.2,
+      "3_bed_outside": 1105.34,
+      "utilities": 158.45,
+      "internet": 30.86
+    },
+    "lifestyle": {
+      "dinner_for_two": 45.0,
+      "inexpensive_meal": 10.0,
+      "cappuccino": 3.19,
+      "beer": 4.0,
+      "monthly_pass": 48.0,
+      "gym_membership": 27.44,
+      "cinema_ticket": 10.0
+    },
+    "economy": {
+      "avg_monthly_salary": 1900.43
+    }
+  },
+  {
+    "id": "vilnius-lithuania",
+    "label": "Vilnius, Lithuania",
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "housing": {
+      "1_bed_center": 488.14,
+      "1_bed_outside": 329.77,
+      "3_bed_center": 840.0,
+      "3_bed_outside": 523.64,
+      "utilities": 115.86,
+      "internet": 11.03
+    },
+    "lifestyle": {
+      "dinner_for_two": 35.0,
+      "inexpensive_meal": 7.0,
+      "cappuccino": 2.1,
+      "beer": 3.0,
+      "monthly_pass": 29.0,
+      "gym_membership": 27.61,
+      "cinema_ticket": 7.0
+    },
+    "economy": {
+      "avg_monthly_salary": 912.37
+    }
+  },
+  {
+    "id": "warsaw-poland",
+    "label": "Warsaw, Poland",
+    "city": "Warsaw",
+    "country": "Poland",
+    "housing": {
+      "1_bed_center": 616.05,
+      "1_bed_outside": 467.73,
+      "3_bed_center": 1071.69,
+      "3_bed_outside": 789.88,
+      "utilities": 147.35,
+      "internet": 12.7
+    },
+    "lifestyle": {
+      "dinner_for_two": 28.35,
+      "inexpensive_meal": 5.91,
+      "cappuccino": 2.49,
+      "beer": 2.36,
+      "monthly_pass": 25.99,
+      "gym_membership": 25.97,
+      "cinema_ticket": 7.09
+    },
+    "economy": {
+      "avg_monthly_salary": 979.42
+    }
+  },
+  {
+    "id": "winnipeg-canada",
+    "label": "Winnipeg, Canada",
+    "city": "Winnipeg",
+    "country": "Canada",
+    "housing": {
+      "1_bed_center": 679.1,
+      "1_bed_outside": 640.46,
+      "3_bed_center": 1000.58,
+      "3_bed_outside": 944.4,
+      "utilities": 87.74,
+      "internet": 48.43
+    },
+    "lifestyle": {
+      "dinner_for_two": 41.25,
+      "inexpensive_meal": 10.31,
+      "cappuccino": 3.09,
+      "beer": 4.12,
+      "monthly_pass": 68.75,
+      "gym_membership": 34.77,
+      "cinema_ticket": 8.94
+    },
+    "economy": {
+      "avg_monthly_salary": 2068.87
+    }
+  },
+  {
+    "id": "wroclaw-poland",
+    "label": "Wroclaw, Poland",
+    "city": "Wroclaw",
+    "country": "Poland",
+    "housing": {
+      "1_bed_center": 517.55,
+      "1_bed_outside": 411.5,
+      "3_bed_center": 843.34,
+      "3_bed_outside": 642.74,
+      "utilities": 162.51,
+      "internet": 12.26
+    },
+    "lifestyle": {
+      "dinner_for_two": 25.99,
+      "inexpensive_meal": 5.91,
+      "cappuccino": 2.12,
+      "beer": 1.89,
+      "monthly_pass": 21.26,
+      "gym_membership": 22.14,
+      "cinema_ticket": 5.91
+    },
+    "economy": {
+      "avg_monthly_salary": 848.11
+    }
+  },
+  {
+    "id": "yekaterinburg-russia",
+    "label": "Yekaterinburg, Russia",
+    "city": "Yekaterinburg",
+    "country": "Russia",
+    "housing": {
+      "1_bed_center": 332.66,
+      "1_bed_outside": 232.83,
+      "3_bed_center": 549.9,
+      "3_bed_outside": 394.59,
+      "utilities": 113.13,
+      "internet": 7.61
+    },
+    "lifestyle": {
+      "dinner_for_two": 29.42,
+      "inexpensive_meal": 5.88,
+      "cappuccino": 1.65,
+      "beer": 1.47,
+      "monthly_pass": 29.42,
+      "gym_membership": 35.51,
+      "cinema_ticket": 3.68
+    },
+    "economy": {
+      "avg_monthly_salary": 537.99
+    }
+  },
+  {
+    "id": "yerevan-armenia",
+    "label": "Yerevan, Armenia",
+    "city": "Yerevan",
+    "country": "Armenia",
+    "housing": {
+      "1_bed_center": 320.04,
+      "1_bed_outside": 170.55,
+      "3_bed_center": 664.25,
+      "3_bed_outside": 313.63,
+      "utilities": 60.06,
+      "internet": 14.09
+    },
+    "lifestyle": {
+      "dinner_for_two": 22.54,
+      "inexpensive_meal": 4.7,
+      "cappuccino": 1.95,
+      "beer": 1.13,
+      "monthly_pass": 11.27,
+      "gym_membership": 43.14,
+      "cinema_ticket": 4.7
+    },
+    "economy": {
+      "avg_monthly_salary": 295.66
+    }
+  },
+  {
+    "id": "zagreb-croatia",
+    "label": "Zagreb, Croatia",
+    "city": "Zagreb",
+    "country": "Croatia",
+    "housing": {
+      "1_bed_center": 473.12,
+      "1_bed_outside": 341.08,
+      "3_bed_center": 777.81,
+      "3_bed_outside": 542.49,
+      "utilities": 174.07,
+      "internet": 22.12
+    },
+    "lifestyle": {
+      "dinner_for_two": 33.58,
+      "inexpensive_meal": 6.72,
+      "cappuccino": 1.51,
+      "beer": 2.01,
+      "monthly_pass": 48.36,
+      "gym_membership": 34.96,
+      "cinema_ticket": 5.37
+    },
+    "economy": {
+      "avg_monthly_salary": 903.99
+    }
+  },
+  {
+    "id": "zurich-switzerland",
+    "label": "Zurich, Switzerland",
+    "city": "Zurich",
+    "country": "Switzerland",
+    "housing": {
+      "1_bed_center": 1701.77,
+      "1_bed_outside": 1263.69,
+      "3_bed_center": 3099.86,
+      "3_bed_outside": 2296.54,
+      "utilities": 162.87,
+      "internet": 48.71
+    },
+    "lifestyle": {
+      "dinner_for_two": 92.46,
+      "inexpensive_meal": 23.12,
+      "cappuccino": 4.66,
+      "beer": 6.24,
+      "monthly_pass": 78.59,
+      "gym_membership": 76.33,
+      "cinema_ticket": 16.64
+    },
+    "economy": {
+      "avg_monthly_salary": 5714.8
+    }
+  }
+]

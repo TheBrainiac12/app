@@ -9,6 +9,7 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: { display: ["Bricolage Grotesque", "sans-serif"], mono: ["JetBrains Mono", "monospace"] },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

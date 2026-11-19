@@ -1,0 +1,196 @@
+{
+  "project_name": "What Your Rent Buys Elsewhere",
+  "theme_strategy": {
+    "default_mode": "dark",
+    "theme_support": "Toggleable dark/light mode with dark as high-impact viral default (Spotify Wrapped vibes + Zillow clarity)",
+    "background_dark": "#0B0F17",
+    "background_light": "#F8FAFC",
+    "card_dark": "#111827",
+    "card_light": "#FFFFFF",
+    "border_dark": "rgba(255, 255, 255, 0.08)",
+    "border_light": "rgba(15, 23, 42, 0.08)"
+  },
+  "typography": {
+    "font_family_headings": "Outfit, Clash Display, Cabinet Grotesk, sans-serif",
+    "font_family_body": "Inter, system-ui, sans-serif",
+    "font_family_mono": "JetBrains Mono, monospace",
+    "scale": {
+      "hero_title": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none",
+      "section_title": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
+      "card_title": "text-xl sm:text-2xl font-bold tracking-tight",
+      "stat_number": "text-2xl sm:text-3xl font-black tracking-tight",
+      "body": "text-sm sm:text-base leading-relaxed text-muted-foreground",
+      "badge": "text-xs font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full",
+      "subtext": "text-xs text-muted-foreground/80"
+    }
+  },
+  "tier_color_system": {
+    "affordable": {
+      "tier_name": "Thriving & Bargain (Affordable)",
+      "badge": "Pocket Heavy",
+      "accent_color": "#10B981",
+      "accent_glow": "rgba(16, 185, 129, 0.25)",
+      "tag_bg": "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
+      "accent_gradient": "from-emerald-500 to-teal-400",
+      "vibe": "Living like royalty, pocketing massive savings every month"
+    },
+    "mid_range": {
+      "tier_name": "Sweet Spot (Mid-Range)",
+      "badge": "Balanced Living",
+      "accent_color": "#3B82F6",
+      "accent_glow": "rgba(59, 130, 246, 0.25)",
+      "tag_bg": "bg-blue-500/10 text-blue-400 border-blue-500/30",
+      "accent_gradient": "from-blue-500 to-cyan-400",
+      "vibe": "Prime central neighborhood, balanced perks, walk to everything"
+    },
+    "dream_tier": {
+      "tier_name": "Dream Tier (Luxury)",
+      "badge": "Penthouse Mood",
+      "accent_color": "#8B5CF6",
+      "accent_glow": "rgba(139, 92, 246, 0.25)",
+      "tag_bg": "bg-purple-500/10 text-purple-400 border-purple-500/30",
+      "accent_gradient": "from-purple-500 to-pink-500",
+      "vibe": "Architectural gems, infinity skyline, high-floor indulgence"
+    },
+    "reality_check": {
+      "tier_name": "Reality Check (Hyper-Cost City / Wildcard)",
+      "badge": "Reality Check",
+      "accent_color": "#F43F5E",
+      "accent_glow": "rgba(244, 63, 94, 0.25)",
+      "tag_bg": "bg-rose-500/10 text-rose-400 border-rose-500/30",
+      "accent_gradient": "from-rose-500 to-amber-500",
+      "vibe": "The brutal tradeoff: shoebox studio or steep budget gap, but unmatched hustle"
+    },
+    "wildcard": {
+      "tier_name": "Wildcard (Digital Nomad / Unexpected)",
+      "badge": "Nomad Escape",
+      "accent_color": "#F59E0B",
+      "accent_glow": "rgba(245, 158, 11, 0.25)",
+      "tag_bg": "bg-amber-500/10 text-amber-400 border-amber-500/30",
+      "accent_gradient": "from-amber-500 to-orange-400",
+      "vibe": "Tropical breeze, co-working villas, 2 min walk to surf breaks"
+    }
+  },
+  "layout_and_grids": {
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "header": "sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border/40 py-3.5",
+    "hero_section": "py-10 sm:py-16 text-center max-w-4xl mx-auto",
+    "results_grid": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-10",
+    "mobile_grid_behavior": "Horizontal swipeable snap-carousel or vertical stacked list with 3 primary cards + 1 wildcard toggle",
+    "desktop_grid_behavior": "4 distinct contrasting cards side-by-side with staggered Framer Motion entrance"
+  },
+  "component_hierarchy": [
+    {
+      "name": "HeaderNav",
+      "file": "/app/frontend/src/components/HeaderNav.js",
+      "purpose": "Minimalist top bar with brand badge 'RentBuys // Worldwide', theme toggle, currency switcher, and sample city quick-picks",
+      "testid": "header-nav"
+    },
+    {
+      "name": "RentHeroInput",
+      "file": "/app/frontend/src/components/RentHeroInput.js",
+      "purpose": "Searchable autocomplete for 160+ world cities, reactive monthly rent input, quick currency conversion pill, and dual range slider ($200 to $10,000 / ₹15,000 to ₹800,000 / €200 to €9,000)",
+      "testid": "rent-hero-input-form"
+    },
+    {
+      "name": "PlayfulLoader",
+      "file": "/app/frontend/src/components/PlayfulLoader.js",
+      "purpose": "0.8s micro-journey with animated step text ('Packing your bags…', 'Checking 160+ global listings…', 'Converting living expenses…', 'Calculating lifestyle index…')",
+      "testid": "playful-loading-screen"
+    },
+    {
+      "name": "ComparisonGrid",
+      "file": "/app/frontend/src/components/ComparisonGrid.js",
+      "purpose": "Renders 4 contrasting city cards: Affordable, Mid-Range, Dream Tier, and Reality Check / Wildcard, with action toolbar (Shuffle, Share, Edit Inputs)",
+      "testid": "comparison-results-grid"
+    },
+    {
+      "name": "CityRentCard",
+      "file": "/app/frontend/src/components/CityRentCard.js",
+      "purpose": "Zillow-meets-Wrapped card with real estate photo, tier badge, apartment type, relative rent progress bar (User Rent vs Target City Median), utilities badge, lifestyle perks (date nights, cappuccino, gym pass), savings counter, and salary ratio badge",
+      "testid": "city-comparison-card"
+    },
+    {
+      "name": "RealityCheckCard",
+      "file": "/app/frontend/src/components/RealityCheckCard.js",
+      "purpose": "High-contrast dream/high-cost variant showing budget gap or hilarious compromise ('4 roommates in Soho' or '+$1,450 needed for 1-bed')",
+      "testid": "reality-check-card"
+    },
+    {
+      "name": "ShareCardModal",
+      "file": "/app/frontend/src/components/ShareCardModal.js",
+      "purpose": "Dialog allowing users to choose Square (1080x1080) or Story (1080x1920) export preview, uses html2canvas/canvas rendering with solid hex colors (no blur) for clean PNG download",
+      "testid": "share-card-dialog"
+    },
+    {
+      "name": "CityExportCanvas",
+      "file": "/app/frontend/src/components/CityExportCanvas.js",
+      "purpose": "Dedicated high-contrast graphic card component tailored for social export (Instagram story/square Wrapped aesthetic)",
+      "testid": "city-export-canvas"
+    }
+  ],
+  "image_urls": {
+    "luxury_penthouse": {
+      "url": "https://images.unsplash.com/photo-1564078516393-cf04bd966897?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcGFydG1lbnQlMjBpbnRlcmlvciUyMGxpdmluZyUyMHJvb218ZW58MHx8fHwxNzk1MDIzODA2fDA&ixlib=rb-4.1.0&q=85",
+      "category": "card_image_dream_tier",
+      "alt": "High-end luxury apartment with panoramic windows and modern furniture"
+    },
+    "modern_living_room": {
+      "url": "https://images.unsplash.com/photo-1724582586458-a51791349977?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBhcGFydG1lbnQlMjBpbnRlcmlvciUyMGxpdmluZyUyMHJvb218ZW58MHx8fHwxNzk1MDIzODA2fDA&ixlib=rb-4.1.0&q=85",
+      "category": "card_image_mid_range",
+      "alt": "Modern sunny living room with minimalist aesthetics"
+    },
+    "studio_parisian_view": {
+      "url": "https://images.unsplash.com/photo-1541628951107-a9af5346a3e4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2ODl8MHwxfHNlYXJjaHwyfHxjb3p5JTIwc3R1ZGlvJTIwYXBhcnRtZW50JTIwd2luZG93JTIwdmlld3xlbnwwfHx8fDE3OTUwNzA2NzF8MA&ixlib=rb-4.1.0&q=85",
+      "category": "card_image_reality_check",
+      "alt": "Cozy historic city window view overlooking European rooftops"
+    },
+    "cozy_loft_apartment": {
+      "url": "https://images.pexels.com/photos/7040695/pexels-photo-7040695.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "category": "card_image_affordable_bargain",
+      "alt": "Spacious studio loft with exposed brick walls and open kitchen dining"
+    },
+    "tokyo_building_twilight": {
+      "url": "https://images.pexels.com/photos/38172681/pexels-photo-38172681.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "category": "card_image_wildcard_tokyo",
+      "alt": "Tokyo residential building lit up at twilight with vibrant urban life"
+    }
+  },
+  "motion_and_interactions": {
+    "entrance_animation": "Cards stagger in with opacity: 0, y: 30 to opacity: 1, y: 0 with spring physics (damping: 18, stiffness: 120)",
+    "hover_effect": "Hover lift -translate-y-2 with slight glow border and image scale 1.04 transition",
+    "shuffle_animation": "Spinning icon, brief fade-scale shuffle, and numbers count-up simulation",
+    "slider_microinteraction": "Smooth thumb slide with real-time equivalent currency badge updating instantaneously without lag"
+  },
+  "required_data_testids": {
+    "city_search_input": "city-autocomplete-input",
+    "rent_amount_input": "monthly-rent-input",
+    "rent_slider": "monthly-rent-slider",
+    "currency_selector": "currency-selector-dropdown",
+    "compare_submit_button": "compare-rent-submit-button",
+    "loading_indicator": "playful-loader-container",
+    "results_grid": "comparison-cards-grid",
+    "shuffle_button": "shuffle-cities-button",
+    "share_button": "open-share-modal-button",
+    "edit_inputs_button": "edit-hero-inputs-button",
+    "card_affordable": "card-tier-affordable",
+    "card_midrange": "card-tier-midrange",
+    "card_dream": "card-tier-dream",
+    "card_reality_check": "card-tier-reality-check",
+    "share_format_square": "share-format-square-radio",
+    "share_format_story": "share-format-story-radio",
+    "download_png_button": "download-card-png-button"
+  },
+  "instructions_to_main_agent": [
+    "Follow this exact React .js file structure without converting to .tsx (project uses JS/JSX with craco and Tailwind).",
+    "Support 160 curated global cities across all continents (e.g. Mumbai, New York, London, Tokyo, Berlin, Bali, Lisbon, Buenos Aires, Dubai, Cape Town, Bangkok, Seoul, Mexico City, Toronto, Sydney, Paris, Medellin, Istanbul, Tbilisi, etc.) with real benchmark rental medians in USD and local currencies.",
+    "Implement the 0.8s playful loader using setTimeout/Framer Motion before revealing comparison cards.",
+    "Deliver 4 cards in desktop (Affordable, Mid-Range, Dream, Reality Check) and responsive 3/4 layout in mobile with toggle.",
+    "Ensure each card features: City/Country, Tier badge, Apartment description ('3-Bed · City Centre'), user rent vs target rent visual bar, utilities & wifi badge, 2-3 lifestyle perks (cappuccinos, gym, transit pass, dining), savings or gap counter, and local salary ratio.",
+    "Implement the Share Modal that exports clean, crisp Instagram Square (1080x1080) or Story (1080x1920) graphics using HTML Canvas/SVG/html2canvas or canvas drawing logic with solid hex colors and bold typography.",
+    "Add 'Shuffle Cities' which pulls 4 fresh contrasting cities from the 160-city pool matching the user's budget with smooth card flip or fade transitions.",
+    "Add 'Edit Inputs' to smoothly scroll or toggle back to the hero section.",
+    "Include data-testid on all interactive buttons, inputs, modals, and card tiers as specified.",
+    "Keep colors accessible: strictly maintain WCAG AA contrast on both dark and light modes."
+  ]
+}
