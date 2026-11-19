@@ -49,8 +49,8 @@ const SalaryBox = ({ card, s }) => (
 
 const BoardingDivider = () => (
   <div style={{ position: "relative", height: 60, margin: "0 -90px" }}>
-    <div style={{ position: "absolute", left: -30, top: 0, width: 60, height: 60, borderRadius: 30, background: "#000" }} />
-    <div style={{ position: "absolute", right: -30, top: 0, width: 60, height: 60, borderRadius: 30, background: "#000" }} />
+    <div style={{ position: "absolute", left: -30, top: 0, width: 60, height: 60, borderRadius: 30, background: BG, border: "3px solid #2E3546", boxSizing: "border-box" }} />
+    <div style={{ position: "absolute", right: -30, top: 0, width: 60, height: 60, borderRadius: 30, background: BG, border: "3px solid #2E3546", boxSizing: "border-box" }} />
     <div style={{ position: "absolute", left: 60, right: 60, top: 29, borderTop: "3px dashed #2E3546" }} />
   </div>
 );

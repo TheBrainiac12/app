@@ -1,0 +1,32 @@
+{
+  "summary": "Frontend-only test of iteration-2 polish at 1920 and 390. No page errors. PASS: all 4 preset pills fill the form and run the comparison right away, with the right headline amounts (₹45,000, ₹65,000, £2,200, $3,500). Each card has a 4-cell vibe grid, a flag emoji and a salary pill. Every country in the data has a flag. Share export: long names never overflow, checked two ways. (a) Real cards: San Francisco, Santo Domingo and Saint Petersburg in both square and story. (b) The 17 longest dataset names injected into the export node, including Ho Chi Minh City, Krakow (Cracow), Yekaterinburg and Amsterdam: scrollWidth<=clientWidth everywhere, single line. Story shows the Rent breakdown, the 'vs. local avg salary' box and the dashed divider. Both PNGs download (117KB / 174KB) and the toast appears. Compare is white text on green when enabled. Regressions pass: prefix-ranked autocomplete, slider, rent input, empty rent disables Compare, Edit keeps inputs, 3 cards on mobile with no horizontal scroll. FAIL: the lead-perk diversity rule is not met where alternatives exist. FAIL (minor): the white/12 border class is not generated, so the disabled Compare button has no border.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "engine.js diversify()", "issue": "diversify() is greedy and goes left to right. Each card takes its highest-value perk type that no earlier card used. When an earlier card has several options and a later card has only one or two, the earlier card takes the later card's only option and the later card ends up with a duplicate lead. Simulation (/app/tests/engine_sim_iter2.js, 4800 batches): 1156 batches had a duplicate lead, and in 640 (13%) a duplicate-free assignment existed. Example (Abu Dhabi x0.3): leads were transit / gym / R / gym, but cappuccino / gym / R / transit was possible. Example (Abu Dhabi x0.6): card1 [cappuccino, gym, transit] took cappuccino, which left card2 (cappuccino only) duplicated. Seen in the UI 3 times in 12 batches: Bangalore ₹45k Bogota+Lima both lead with cappuccino; Mumbai ₹65k Chisinau, Lisbon and Winnipeg all lead with cappuccino; London £2,200 Portland+Zurich both lead with cappuccino.", "selector": "article[data-testid^='city-comparison-card-'] li:first-child", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Hero", "issues": [
+        "Tailwind 3.4 has no '12' step in its opacity scale, so 'border-white/12' and 'disabled:border-white/12' are never generated. Computed styles: the disabled Compare button border is rgba(0,0,0,0), so the requested subtle border is missing. Preset pills fall back to the global light grey border rgb(229,229,229), which is much brighter than intended. Fix: use border-white/10 or border-white/15, or the arbitrary form border-white/[0.12]."
+      ]},
+      {"screen": "Share Story export", "issues": ["The boarding-pass notch circles are solid #000 on the #0C0F16 card. In the preview they read as black blobs at the edges, not cut-outs. Consider matching the dialog background (#121620) or making them transparent."]}
+    ]
+  },
+  "test_report_links": ["/app/tests/engine_sim_iter2.js", "/app/tests/engine_sim.js"],
+  "action_items": [
+    "Fix diversify() so lead perks are unique whenever possible. Process cards with fewer perk options first, or do a small bipartite matching or backtracking over the ≤4 cards' perk types. Only allow a duplicate when no unique assignment exists. Re-run node /app/tests/engine_sim_iter2.js; 'avoidable' should be 0.",
+    "Replace border-white/12 (RentHero Compare disabled state and preset pills) with a generated class such as border-white/[0.12] or border-white/15."
+  ],
+  "critical_code_review_comments": [
+    "diversify() picks from the full perks list and then slices to 3, which is fine. Its greedy order is the cause of the avoidable duplicates.",
+    "nameSize() uses character-count buckets. It works for every current dataset name (the longest is 16 characters, single line at 66/79px), but it relies on overflowWrap for anything longer. Fine for now.",
+    "The Breakdown percentage logic is duplicated between ExportCard and CityCard RentBar (minor DRY issue)."
+  ],
+  "updated_files": ["/app/tests/engine_sim_iter2.js"],
+  "success_rate": {"backend": "N/A", "frontend": "90%"},
+  "seed_data_creation": "none",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Simulation setup: build /tmp/engine.js with sed (replace the data import with require, strip 'export ', and append module.exports={generateBatch,buildCard,CITIES}). Build /tmp/flags.js the same way with module.exports={flagOf}. Then run node /app/tests/engine_sim_iter2.js. A good way to get long-name cards in the UI is Hanoi at 150,000,000 VND plus Shuffle. Preset testids are hero-preset-{city-id}. The export node is [data-testid=export-city-name]."
+}

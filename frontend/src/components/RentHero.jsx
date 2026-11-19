@@ -64,7 +64,7 @@ const Presets = ({ onPick }) => (
         type="button"
         data-testid={`hero-preset-${p.id}`}
         onClick={() => onPick(CITIES.find((c) => c.id === p.id), p.rent)}
-        className="rounded-full border border-white/12 bg-white/[0.04] px-3.5 py-1.5 text-xs font-semibold text-white/80 transition-[background-color,border-color,color] hover:border-[#10E39A]/60 hover:bg-[#10E39A]/10 hover:text-white"
+        className="rounded-full border border-white/15 bg-white/[0.04] px-3.5 py-1.5 text-xs font-semibold text-white/80 transition-[background-color,border-color,color] hover:border-[#10E39A]/60 hover:bg-[#10E39A]/10 hover:text-white"
       >
         {p.label}
       </button>
@@ -112,7 +112,7 @@ export const RentHero = ({ city, setCity, rent, setRent, onCompare }) => {
           type="submit"
           data-testid={RENT.compareButton}
           disabled={!ready}
-          className="group flex h-14 w-full items-center justify-center gap-2 rounded-full border border-transparent bg-[#0B9E6C] font-display text-lg font-bold text-white shadow-[0_0_40px_-8px_rgba(16,227,154,0.6)] transition-[transform,background-color,box-shadow] hover:bg-[#0DB57C] active:scale-[0.98] disabled:cursor-not-allowed disabled:border-white/12 disabled:bg-transparent disabled:text-white/35 disabled:shadow-none"
+          className="group flex h-14 w-full items-center justify-center gap-2 rounded-full border border-transparent bg-[#0B9E6C] font-display text-lg font-bold text-white shadow-[0_0_40px_-8px_rgba(16,227,154,0.6)] transition-[transform,background-color,box-shadow] hover:bg-[#0DB57C] active:scale-[0.98] disabled:cursor-not-allowed disabled:border-white/15 disabled:bg-transparent disabled:text-white/35 disabled:shadow-none"
         >
           Compare <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
         </button>

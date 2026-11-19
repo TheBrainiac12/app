@@ -135,14 +135,28 @@ const rawBatch = (originId, rentEur, prevIds = []) => {
   return { allGap: false, cards: chosen.map((c, i) => buildCard(c, rentEur, slots[i])) };
 };
 
+const bestLeads = (options, i = 0, used = new Set()) => {
+  if (i === options.length) return { dup: 0, cost: 0, picks: [] };
+  let best = null;
+  const choices = options[i].length ? options[i] : [null];
+  choices.forEach((type, idx) => {
+    const dup = type && used.has(type) ? 1 : 0;
+    const next = new Set(used);
+    if (type) next.add(type);
+    const rest = bestLeads(options, i + 1, next);
+    const cand = { dup: dup + rest.dup, cost: idx + rest.cost, picks: [idx, ...rest.picks] };
+    if (!best || cand.dup < best.dup || (cand.dup === best.dup && cand.cost < best.cost)) best = cand;
+  });
+  return best;
+};
+
 const diversify = (cards) => {
-  const used = new Set();
-  return cards.map((card) => {
+  const options = cards.map((c) => (c.reality ? [] : c.perks.map((p) => p.type)));
+  const { picks } = bestLeads(options);
+  return cards.map((card, i) => {
     if (card.reality) return card;
     const perks = [...card.perks];
-    const idx = perks.findIndex((p) => !used.has(p.type));
-    if (idx > 0) perks.unshift(...perks.splice(idx, 1));
-    if (perks[0]) used.add(perks[0].type);
+    if (picks[i] > 0) perks.unshift(...perks.splice(picks[i], 1));
     return { ...card, perks: perks.slice(0, 3) };
   });
 };
