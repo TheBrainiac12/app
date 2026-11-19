@@ -24,7 +24,8 @@ export const ShareDialog = ({ card, onClose, ...props }) => {
   const [busy, setBusy] = useState(false);
   const ref = useRef(null);
   const height = format === "story" ? 1920 : 1080;
-  const scale = format === "story" ? 0.22 : 0.36;
+  const fit = Math.min(1, (window.innerWidth - 64) / 389);
+  const scale = (format === "story" ? 0.22 : 0.36) * fit;
 
   const download = async () => {
     setBusy(true);
@@ -43,7 +44,7 @@ export const ShareDialog = ({ card, onClose, ...props }) => {
 
   return (
     <Dialog open={!!card} onOpenChange={(o) => !o && onClose()}>
-      <DialogContent data-testid={RENT.shareDialog} className="max-w-md border-white/10 bg-[#121620] text-white">
+      <DialogContent data-testid={RENT.shareDialog} className="max-w-[calc(100vw-16px)] sm:max-w-md border-white/10 bg-[#121620] text-white">
         <DialogHeader>
           <DialogTitle className="font-display text-2xl">Share this comparison</DialogTitle>
           <DialogDescription className="text-white/50">Made on your device. Nothing is uploaded.</DialogDescription>

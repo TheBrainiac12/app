@@ -1,0 +1,25 @@
+{
+  "summary": "Frontend-only retest of the iteration-2 fixes. PASS: (1) Lead-perk diversity. The node sim (/app/tests/engine_sim_iter2.js, 4800 batches) reports avoidable=0, down from 640. 488 batches still have a duplicate lead, and in every one of them no unique assignment exists. In the UI, all 4 presets plus 3 shuffles each (16 batches) gave distinct lead perks on every non-reality card. (2) The disabled Compare button border computes to rgba(255,255,255,0.15) at 1920 and 390, and the preset pill border computes to rgba(255,255,255,0.15), no longer light grey. (3) Story export notches: checked in the downloaded 1080x1920 PNG. They are outlined half-circles (3px #2E3546 stroke) filled with the card colour #0C0F16, no longer black blobs. Square and story PNGs both download (112KB / 169KB, named rent-bangalore-vs-ankara-{fmt}.png) and the toast appears. (4) Regression: cards render, the share dialog opens, mobile 390 shows 3 visible cards (the 4th is display:none) with no page horizontal scroll, and there were no page errors. NEW minor issue: on mobile 390 the Share dialog content overflows on the right.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "ShareDialog (mobile 390px)", "issue": "In Square format the preview wrapper has a fixed width of 1080*0.36 = 389px. The dialog's content box is only 342px (390 minus p-6), so the grid track grows to 413px. The title, the format radios (the Story radio is cut off at the right edge), the preview and the Download button all extend to right=414, past the 390 viewport. Content looks off-centre with no right padding. Story format (0.22 scale = 238px) fits.", "selector": "[data-testid='share-card-dialog'] div.mx-auto.overflow-hidden", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/tests/engine_sim_iter2.js"],
+  "action_items": [
+    "ShareDialog: make the preview scale responsive. For example, compute the scale from the container width (min(0.36, (containerWidth)/1080)), or use a smaller scale on narrow screens, so the 389px square preview fits inside the 342px mobile content box. Also consider adding min-w-0 on the grid children."
+  ],
+  "critical_code_review_comments": [
+    "bestLeads() does an exhaustive search over at most 4 cards × up to 7 perk types. That is at most about 2.4k leaves, which is cheap and correct. The tie-break minimises the sum of perk indexes, so it keeps each card's highest-value perk where possible.",
+    "Side effect of diversity: lower-value perks such as 'a gym pass' sometimes lead instead of the card's top-value perk. This is intended."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "97%"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Simulation setup: build /tmp/engine.js with sed (replace the data import with require, strip 'export ', and append module.exports={generateBatch,buildCard,CITIES}). Build /tmp/flags.js the same way with module.exports={flagOf}. Then run node /app/tests/engine_sim_iter2.js; 'avoidable' should be 0. The only open item is the mobile ShareDialog square-preview overflow. On mobile the 4th card is hidden by design."
+}

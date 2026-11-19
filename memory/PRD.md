@@ -17,6 +17,7 @@ A viral single-page app for a hackathon. A renter picks their city and monthly r
 - Balanced batches (Affordable / Mid / Dream / Wildcard), at most 1 Reality Check card, allGap and fewCovered fallbacks with a note.
 - Perks: bills badge, gym, transit, cappuccino, then date nights / meals / movies with caps, and savings. Correct plurals.
 - Share dialog: Square 1080×1080 and Story 1080×1920 PNG export.
+- Polish (Jun 2026): long city names auto-scale in the export image; Story adds a rent breakdown, a salary stat box and a boarding-pass divider; cards get a Local Vibe 2×2 price grid, flag emoji, a bigger apartment tier and a salary pill; lead perks are unique across a batch (best-assignment search, craft beers added); hero quick-try presets; Compare button contrast; dot-grid background; share dialog fits mobile.
 
 ## Backlog
 - P1: compare against a chosen city; region filter; 1-bed vs 3-bed preference.
