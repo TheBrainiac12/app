@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import "@/App.css";
 import { Toaster } from "@/components/ui/sonner";
@@ -10,7 +10,7 @@ import { BottomDock } from "@/components/BottomDock";
 import { SummaryChip } from "@/components/SummaryChip";
 import { ShareDialog } from "@/components/ShareDialog";
 import { cardFor, generateBatch } from "@/lib/engine";
-import { currencyOf, formatMoney, toEur } from "@/lib/currency";
+import { currencyOf, formatMoney, fromEur, niceRound, toEur } from "@/lib/currency";
 
 const NOTES = {
   allGap: "That rent is a real bargain already. No other city beats it, so here are the closest ones.",
@@ -27,6 +27,7 @@ function App() {
   const [focus, setFocus] = useState(null);
   const [selected, setSelected] = useState(null);
   const [shareCard, setShareCard] = useState(null);
+  const [focusKey, setFocusKey] = useState(0);
 
   const origin = batch ? batch.origin : null;
   const code = origin ? currencyOf(origin.country) : "USD";
@@ -86,27 +87,66 @@ function App() {
     flyTo(c, altitude);
   };
 
+  const selectOrigin = (c) => {
+    setEditing(true);
+    setSelected(null);
+    setExplore(false);
+    setCityState(c);
+    setRent(niceRound(fromEur(c.housing["1_bed_center"], currencyOf(c.country))));
+    flyTo(c, 1.6);
+    setFocusKey(Date.now());
+  };
+
+  const closeDrawer = () => {
+    setSelected(null);
+    overview(origin, batch.cards);
+  };
+
+  const keys = useRef({});
+  keys.current = { batch, editing, selected, shareCard, loading, pick, closeDrawer };
+  useEffect(() => {
+    const onKey = (e) => {
+      const k = keys.current;
+      const t = e.target;
+      const typing = t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.getAttribute("role") === "slider" || t.isContentEditable);
+      if (e.key === "Escape") {
+        if (k.shareCard) return;
+        if (k.selected) k.closeDrawer();
+        return;
+      }
+      if ((e.key !== "ArrowLeft" && e.key !== "ArrowRight") || typing || !k.batch || k.editing || k.loading || k.shareCard) return;
+      e.preventDefault();
+      const list = k.batch.cards;
+      const i = k.selected ? list.findIndex((x) => x.city.id === k.selected.city.id) : -1;
+      const step = e.key === "ArrowRight" ? 1 : -1;
+      const next = i === -1 ? (step === 1 ? 0 : list.length - 1) : (i + step + list.length) % list.length;
+      k.pick(list[next].city, list[next], 1.1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   const globeOrigin = editing || !batch ? city : origin;
   const cards = useMemo(() => (editing || !batch ? [] : batch.cards), [editing, batch]);
   const note = batch && (batch.allGap ? NOTES.allGap : batch.fewCovered ? NOTES.fewCovered : null);
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-[#05070B]">
-      <GlobeView origin={globeOrigin} cards={cards} explore={explore && !editing} rentEur={rentEur} focus={focus} onPick={pick} />
+      <GlobeView origin={globeOrigin} cards={cards} explore={explore && !editing} rentEur={rentEur} focus={focus} onPick={pick} selectMode={editing || !batch} onSelectOrigin={selectOrigin} />
       <div className="glass-panel absolute left-3 right-3 top-3 z-20 max-h-[calc(100vh-110px)] overflow-y-auto rounded-[24px] p-5 sm:left-5 sm:right-auto sm:top-5 sm:w-[390px] sm:p-6">
         <div className="mb-4 flex items-center gap-2 font-display text-sm font-extrabold text-white">
           <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#10E39A] text-xs text-[#03261A]">R</span>
           RentBuys<span className="text-white/35">/elsewhere</span>
         </div>
         {editing || !batch ? (
-          <RentHero city={city} setCity={setCity} rent={rent} setRent={setRent} onCompare={compare} />
+          <RentHero city={city} setCity={setCity} rent={rent} setRent={setRent} onCompare={compare} focusKey={focusKey} />
         ) : (
           <SummaryChip origin={origin} rentLocal={formatMoney(batch.rent, code)} note={note} onEdit={() => { setEditing(true); setSelected(null); }} />
         )}
       </div>
       <AnimatePresence>{loading && <PlayfulLoader />}</AnimatePresence>
       {batch && !editing && !loading && !selected && <BottomDock onShuffle={shuffle} explore={explore} setExplore={setExplore} />}
-      <CityDrawer card={selected} code={code} onClose={() => { setSelected(null); overview(origin, batch.cards); }} onShare={setShareCard} />
+      <CityDrawer card={selected} code={code} onClose={closeDrawer} onShare={setShareCard} onMakeOrigin={selectOrigin} cycle={!!(selected && batch && batch.cards.some((x) => x.city.id === selected.city.id))} />
       {origin && <ShareDialog card={shareCard} onClose={() => setShareCard(null)} origin={origin} code={code} rentLocal={formatMoney(batch.rent, code)} />}
       <Toaster position="bottom-center" theme="dark" />
     </div>

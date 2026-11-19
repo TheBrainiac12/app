@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { cardWithSize } from "@/lib/engine";
 import { BedDouble, Check, PiggyBank, Share2, Sparkles, TrendingUp, Wifi } from "lucide-react";
 import { formatEur, formatUsd } from "@/lib/currency";
 import { salaryLine, styleFor } from "@/lib/theme";
@@ -26,6 +28,49 @@ const VibeGrid = ({ card, code, id }) => (
   </div>
 );
 
+const TIERS = [
+  { key: "1_bed_center", label: "1-Bed · Centre" },
+  { key: "1_bed_outside", label: "1-Bed · Outside" },
+  { key: "3_bed_center", label: "3-Bed · Centre" },
+  { key: "3_bed_outside", label: "3-Bed · Outside" },
+];
+
+const SizeToggle = ({ size, setSize, color, id }) => (
+  <div data-testid={`${id}-size-toggle`} className="grid grid-cols-2 rounded-full border border-white/10 bg-white/[0.03] p-1">
+    {["1", "3"].map((s) => (
+      <button
+        key={s}
+        data-testid={`${id}-size-${s}bed`}
+        aria-pressed={size === s}
+        onClick={() => setSize(s)}
+        className="h-9 rounded-full text-sm font-bold transition-colors"
+        style={size === s ? { background: color, color: "#0B0E15" } : { color: "rgba(255,255,255,0.6)" }}
+      >
+        {s}-Bed
+      </button>
+    ))}
+  </div>
+);
+
+const TierRef = ({ card, code, color, id }) => (
+  <div data-testid={`${id}-tiers`} className="space-y-2">
+    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/40">All housing tiers</p>
+    <div className="grid grid-cols-2 gap-2">
+      {TIERS.map((t) => {
+        const price = card.city.housing[t.key];
+        const active = card.tierKey === t.key;
+        const ok = price <= card.rentEur;
+        return (
+          <div key={t.key} className="rounded-xl border px-3 py-2" style={{ borderColor: active ? color : "rgba(255,255,255,0.07)", background: active ? `${color}14` : "rgba(255,255,255,0.03)" }}>
+            <p className="text-[11px] text-white/50">{t.label}</p>
+            <p className={`font-display text-sm font-bold ${ok ? "text-white" : "text-white/40 line-through decoration-[#FF5A7A]/60"}`}>{formatEur(price, code)}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+);
+
 const RentBar = ({ card, code, color }) => {
   const local = card.reality ? card.needed : card.housingCost;
   const pct = card.reality ? Math.min(100, (card.rentEur / local) * 100) : Math.min(100, (local / card.rentEur) * 100);
@@ -38,7 +83,7 @@ const RentBar = ({ card, code, color }) => {
       <div className="relative h-2.5 overflow-hidden rounded-full bg-white/10">
         <motion.div
           initial={{ width: 0 }}
-          animate={{ width: `${pct}%` }}
+          animate={{ width: `${pct}%`, background: color }}
           transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="h-full rounded-full"
           style={{ background: color }}
@@ -76,13 +121,16 @@ const RealityBody = ({ card, code, color, id }) => (
     <p data-testid={`${id}-gap`} className="font-display text-2xl font-extrabold" style={{ color }}>
       You'd need <span className="whitespace-nowrap">+{formatEur(card.gap, code)}/mo</span>
     </p>
-    <p className="text-xs font-mono text-white/45">≈ +{formatUsd(card.gap)}/mo for a 1-bed outside the centre</p>
+    <p className="text-xs font-mono text-white/45">≈ +{formatUsd(card.gap)}/mo for a {card.size}-bed outside the centre</p>
     <p className="text-sm text-white/75">{card.tradeOff}</p>
   </div>
 );
 
-export const CityCard = ({ card, code, index, onShare }) => {
-  const s = styleFor(card);
+export const CityCard = ({ card: baseCard, code, index, onShare }) => {
+  const [size, setSize] = useState(baseCard.size);
+  const card = cardWithSize(baseCard, size);
+  const s = styleFor(baseCard);
+  const bar = card.reality ? "#FF5A7A" : s.hex;
   const id = `${RENT.card}-${card.city.id}`;
   return (
     <motion.article
@@ -112,11 +160,13 @@ export const CityCard = ({ card, code, index, onShare }) => {
         <div className="flex items-center gap-2.5">
           <BedDouble className="h-6 w-6 shrink-0" style={{ color: s.hex }} />
           <p data-testid={`${id}-apartment`} className="font-display text-xl font-extrabold tracking-tight text-white sm:text-2xl">
-            {card.reality ? "Not even a 1-bed… yet" : card.apartment}
+            {card.reality ? `Not even a ${card.size}-bed… yet` : card.apartment}
           </p>
         </div>
-        <RentBar card={card} code={code} color={s.hex} />
-        {card.reality ? <RealityBody card={card} code={code} color={s.hex} id={id} /> : <Perks card={card} code={code} color={s.hex} id={id} />}
+        <SizeToggle size={size} setSize={setSize} color={s.hex} id={id} />
+        <RentBar card={card} code={code} color={bar} />
+        <TierRef card={card} code={code} color={s.hex} id={id} />
+        {card.reality ? <RealityBody card={card} code={code} color={bar} id={id} /> : <Perks card={card} code={code} color={s.hex} id={id} />}
         <div className="mt-auto space-y-4">
           <VibeGrid card={card} code={code} id={id} />
           <p data-testid={`${id}-salary`} className="rounded-full px-3.5 py-2 text-center text-xs font-semibold" style={{ background: `${s.hex}1A`, color: s.hex, border: `1px solid ${s.hex}40` }}>

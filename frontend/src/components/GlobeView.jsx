@@ -49,11 +49,18 @@ const makeLabel = (d, onClick) => {
 const GLOBE_MATERIAL = new MeshPhongMaterial({ bumpScale: 10, specular: new Color("grey"), shininess: 15 });
 new TextureLoader().load("/textures/earth-water.png", (tex) => { GLOBE_MATERIAL.specularMap = tex; GLOBE_MATERIAL.needsUpdate = true; });
 
-export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) => {
+const RANDOM_GAP = () => Math.random();
+const SUBTLE = "rgba(160,220,255,0.85)";
+
+export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick, selectMode, onSelectOrigin }) => {
   const ref = useRef(null);
+  const wrapRef = useRef(null);
   const { w, h } = useWindowSize();
+  const [hovered, setHovered] = useState(null);
   const pickRef = useRef(onPick);
   pickRef.current = onPick;
+  const stateRef = useRef({});
+  stateRef.current = { selectMode, origin, onSelectOrigin };
 
   const onReady = useCallback(() => {
     const g = ref.current;
@@ -160,13 +167,51 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
     [origin, dests]
   );
 
-  const points = useMemo(
-    () => (explore && origin ? CITIES.filter((c) => c.id !== origin.id).map((c) => ({ city: c, lat: c.coords.lat, lng: c.coords.lng, ok: isCovered(c, rentEur) })) : []),
-    [explore, origin, rentEur]
+  const points = useMemo(() => {
+    const others = CITIES.filter((c) => !origin || c.id !== origin.id);
+    if (selectMode) return others.map((c) => ({ city: c, lat: c.coords.lat, lng: c.coords.lng, ok: null }));
+    if (explore && origin) return others.map((c) => ({ city: c, lat: c.coords.lat, lng: c.coords.lng, ok: isCovered(c, rentEur) }));
+    return [];
+  }, [selectMode, explore, origin, rentEur]);
+
+  const allRings = useMemo(
+    () => (hovered ? [...rings, { lat: hovered.coords.lat, lng: hovered.coords.lng, color: "#FFFFFF", maxR: 1.8, speed: 1.2, period: 700 }] : rings),
+    [rings, hovered]
+  );
+
+  const onHover = useCallback((d) => {
+    const g = ref.current;
+    if (wrapRef.current) wrapRef.current.style.cursor = d ? "pointer" : "";
+    setHovered(d ? d.city : null);
+    if (!g) return;
+    const { selectMode: sel, origin: o } = stateRef.current;
+    if (d) g.controls().autoRotate = false;
+    else if (sel && !o) g.controls().autoRotate = true;
+  }, []);
+
+  const onPointClick = useCallback((d) => {
+    const { selectMode: sel, onSelectOrigin: pickOrigin } = stateRef.current;
+    if (sel) pickOrigin(d.city);
+    else pickRef.current(d.city, null, 0.6);
+  }, []);
+
+  const htmlElement = useCallback((d) => makeLabel(d, (x) => pickRef.current(x.city, x.card, 1.1)), []);
+  const hid = hovered ? hovered.id : null;
+  const pointColor = useCallback((d) => (d.city.id === hid ? "#FFFFFF" : d.ok === null ? SUBTLE : d.ok ? EMERALD : CORAL), [hid]);
+  const pointRadius = useCallback((d) => (d.city.id === hid ? 0.5 : 0.24), [hid]);
+  const ringColor = useCallback((d) => (t) => rgba(d.color, Math.max(0, 1 - t)), []);
+  const pointLabel = useCallback(
+    (d) => {
+      const status = d.ok === null
+        ? `<span style="color:#9fb3c8">Click to select as your city</span>`
+        : `<span style="color:${d.ok ? EMERALD : CORAL}">${d.ok ? "Your rent upgrades you here" : "Reality check: costs more"}</span>`;
+      return `<div class="globe-tip"><b>${d.city.city}</b>, ${d.city.country}<br/>${status}</div>`;
+    },
+    []
   );
 
   return (
-    <div data-testid="globe-container" className="fixed inset-0 z-0">
+    <div ref={wrapRef} data-testid="globe-container" className="fixed inset-0 z-0">
       <Globe
         ref={ref}
         width={w}
@@ -185,27 +230,28 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
         arcStroke={0.7}
         arcDashLength={0.45}
         arcDashGap={0.25}
-        arcDashInitialGap={() => Math.random()}
+        arcDashInitialGap={RANDOM_GAP}
         arcDashAnimateTime={2200}
         arcAltitudeAutoScale={0.45}
         arcsTransitionDuration={800}
-        ringsData={rings}
-        ringColor={(d) => (t) => rgba(d.color, Math.max(0, 1 - t))}
+        ringsData={allRings}
+        ringColor={ringColor}
         ringMaxRadius="maxR"
         ringPropagationSpeed="speed"
         ringRepeatPeriod="period"
         htmlElementsData={labels}
-        htmlElement={(d) => makeLabel(d, (x) => pickRef.current(x.city, x.card, 1.1))}
+        htmlElement={htmlElement}
         htmlAltitude={0.015}
         htmlTransitionDuration={600}
         pointsData={points}
-        pointColor={(d) => (d.ok ? EMERALD : CORAL)}
+        pointColor={pointColor}
         pointAltitude={0.001}
-        pointRadius={0.22}
+        pointRadius={pointRadius}
         pointsMerge={false}
-        pointsTransitionDuration={500}
-        pointLabel={(d) => `<div class="globe-tip"><b>${d.city.city}</b>, ${d.city.country}<br/><span style="color:${d.ok ? EMERALD : CORAL}">${d.ok ? "Your rent upgrades you here" : "Reality check: costs more"}</span></div>`}
-        onPointClick={(d) => pickRef.current(d.city, null, 0.6)}
+        pointsTransitionDuration={150}
+        onPointHover={onHover}
+        pointLabel={pointLabel}
+        onPointClick={onPointClick}
       />
     </div>
   );

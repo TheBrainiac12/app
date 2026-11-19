@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MapPin } from "lucide-react";
 import { CITIES } from "@/lib/engine";
 import { RENT } from "@/constants/testIds/rent";
@@ -7,6 +7,10 @@ export const CityCombobox = ({ value, onSelect }) => {
   const [query, setQuery] = useState(value ? value.label : "");
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    if (value) setQuery(value.label);
+  }, [value]);
 
   const matches = useMemo(() => {
     const q = query.trim().toLowerCase();

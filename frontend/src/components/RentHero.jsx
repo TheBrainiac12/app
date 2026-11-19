@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
@@ -8,7 +9,13 @@ import { RENT } from "@/constants/testIds/rent";
 
 const rise = (d) => ({ initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { delay: d, duration: 0.6, ease: [0.22, 1, 0.36, 1] } });
 
-export const RentField = ({ city, rent, setRent }) => {
+export const RentField = ({ city, rent, setRent, focusKey }) => {
+  const inputRef = useRef(null);
+  useEffect(() => {
+    if (!focusKey || !inputRef.current) return;
+    inputRef.current.focus();
+    inputRef.current.select();
+  }, [focusKey, city]);
   const code = currencyOf(city.country);
   const typical = fromEur(city.housing["1_bed_center"], code);
   const min = niceRound(typical * 0.3);
@@ -19,6 +26,7 @@ export const RentField = ({ city, rent, setRent }) => {
       <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 focus-within:border-[#10E39A]/70">
         <span className="font-mono text-sm text-white/50">{code}</span>
         <input
+          ref={inputRef}
           data-testid={RENT.rentInput}
           inputMode="numeric"
           value={rent ? Math.round(rent).toLocaleString(code === "INR" ? "en-IN" : "en-US") : ""}
@@ -72,7 +80,7 @@ export const Presets = ({ onPick }) => (
   </motion.div>
 );
 
-export const RentHero = ({ city, setCity, rent, setRent, onCompare }) => {
+export const RentHero = ({ city, setCity, rent, setRent, onCompare, focusKey }) => {
   const pickCity = (c) => {
     setCity(c);
     if (c) setRent(niceRound(fromEur(c.housing["1_bed_center"], currencyOf(c.country))));
@@ -84,7 +92,7 @@ export const RentHero = ({ city, setCity, rent, setRent, onCompare }) => {
         <h1 className="font-display text-3xl font-extrabold leading-[0.95] tracking-tight text-white sm:text-4xl">
           What your rent buys <span className="text-[#FFB020]">elsewhere.</span>
         </h1>
-        <p className="mt-2 text-sm text-white/55">Same money, different map. Pick your city and rent.</p>
+        <p className="mt-2 text-sm text-white/55">Same money, different map. Search or click your city on the globe.</p>
       </div>
       <form
         data-testid={RENT.heroForm}
@@ -98,7 +106,7 @@ export const RentHero = ({ city, setCity, rent, setRent, onCompare }) => {
         {city && (
           <div className="space-y-2">
             <label className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/50">I pay every month</label>
-            <RentField city={city} rent={rent} setRent={setRent} />
+            <RentField city={city} rent={rent} setRent={setRent} focusKey={focusKey} />
           </div>
         )}
         <button

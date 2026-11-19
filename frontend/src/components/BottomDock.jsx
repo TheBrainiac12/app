@@ -32,6 +32,7 @@ export const BottomDock = ({ onShuffle, explore, setExplore }) => {
         <span className="sm:hidden">All 160</span>
         <span className={`h-2 w-2 rounded-full ${explore ? "bg-[#10E39A]" : "bg-white/30"}`} />
       </button>
+      <span data-testid="dock-keyboard-hint" className="hidden pr-3 font-mono text-[11px] text-white/45 lg:inline">← → Switch cities</span>
     </motion.div>
     </div>
   );

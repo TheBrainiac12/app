@@ -76,16 +76,24 @@ const calcPerks = (city, leftover) => {
   return { perks: top, billsCovered, savings: Math.max(0, left) };
 };
 
-export const buildCard = (city, rentEur, slot) => {
-  const tier = HOUSING_ORDER.find((t) => city.housing[t.key] <= rentEur);
+export const buildCard = (city, rentEur, slot, size) => {
+  const order = size ? HOUSING_ORDER.filter((t) => t.key.startsWith(size)) : HOUSING_ORDER;
+  const tier = order.find((t) => city.housing[t.key] <= rentEur);
   const salaryRatio = rentEur / city.economy.avg_monthly_salary;
   const base = { city, slot, tier: TIER_OF[city.id], salaryRatio, rentEur };
   if (!tier) {
-    const needed = city.housing["1_bed_outside"];
-    return { ...base, reality: true, needed, gap: needed - rentEur, tradeOff: TRADE_OFFS[hash(city.id) % TRADE_OFFS.length] };
+    const s = size || "1";
+    const needed = city.housing[`${s}_bed_outside`];
+    return { ...base, size: s, reality: true, needed, gap: needed - rentEur, tradeOff: TRADE_OFFS[hash(city.id) % TRADE_OFFS.length] };
   }
   const cost = city.housing[tier.key];
-  return { ...base, reality: false, apartment: tier.label, housingCost: cost, ...calcPerks(city, rentEur - cost) };
+  return { ...base, size: tier.key[0], tierKey: tier.key, reality: false, apartment: tier.label, housingCost: cost, ...calcPerks(city, rentEur - cost) };
+};
+
+export const cardWithSize = (card, size) => {
+  if (card.size === size) return card;
+  const next = buildCard(card.city, card.rentEur, card.slot, size);
+  return next.reality ? next : { ...next, perks: next.perks.slice(0, 3) };
 };
 
 const pick = (pool, chosen, prevIds) => {
