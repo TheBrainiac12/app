@@ -100,13 +100,13 @@ export const ExportCard = forwardRef(({ card, origin, code, rentLocal, format },
           <div style={{ marginTop: 40 }}><BoardingDivider /></div>
           <div style={{ marginTop: 28, display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: MONO, fontSize: 26, color: "#8B93A7" }}>
             <span>{origin.city.toUpperCase()} → {card.city.city.toUpperCase()}</span>
-            <span style={{ color: "#F5F7FA", fontWeight: 700 }}>What Your Rent Buys Elsewhere</span>
+            <span style={{ color: "#F5F7FA", fontWeight: 800, display: "inline-flex", alignItems: "center", gap: 12 }}><img src="/logo-mark.png" alt="" style={{ width: 40, height: 40 }} />Elsewhere</span>
           </div>
         </>
       ) : (
         <div style={{ borderTop: "2px solid #262C3A", paddingTop: 28, display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: MONO, fontSize: 24, color: "#8B93A7" }}>
           <span>{salaryLine(card.salaryRatio)}</span>
-          <span style={{ color: "#F5F7FA", fontWeight: 700 }}>What Your Rent Buys Elsewhere</span>
+          <span style={{ color: "#F5F7FA", fontWeight: 800, display: "inline-flex", alignItems: "center", gap: 12 }}><img src="/logo-mark.png" alt="" style={{ width: 40, height: 40 }} />Elsewhere</span>
         </div>
       )}
     </div>

@@ -135,8 +135,8 @@ function App() {
       <GlobeView origin={globeOrigin} cards={cards} explore={explore && !editing} rentEur={rentEur} focus={focus} onPick={pick} selectMode={editing || !batch} onSelectOrigin={selectOrigin} />
       <div className="glass-panel absolute left-3 right-3 top-3 z-20 max-h-[calc(100vh-110px)] overflow-y-auto rounded-[24px] p-5 sm:left-5 sm:right-auto sm:top-5 sm:w-[390px] sm:p-6">
         <div className="mb-4 flex items-center gap-2 font-display text-sm font-extrabold text-white">
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#10E39A] text-xs text-[#03261A]">R</span>
-          RentBuys<span className="text-white/35">/elsewhere</span>
+          <img src="/logo-mark.png" alt="" data-testid="brand-logo" className="h-7 w-7" />
+          <span data-testid="brand-name" className="text-base tracking-tight">Elsewhere</span>
         </div>
         {editing || !batch ? (
           <RentHero city={city} setCity={setCity} rent={rent} setRent={setRent} onCompare={compare} focusKey={focusKey} />

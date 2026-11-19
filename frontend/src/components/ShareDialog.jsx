@@ -60,7 +60,7 @@ export const ShareDialog = ({ card, onClose, ...props }) => {
 
   const nativeShare = async () => {
     try {
-      await navigator.share({ files: [file], title: "What Your Rent Buys Elsewhere", text: caption });
+      await navigator.share({ files: [file], title: "Elsewhere", text: caption });
     } catch (e) {
       if (e && e.name !== "AbortError") toast.error("Sharing was cancelled or isn't available.");
     }
