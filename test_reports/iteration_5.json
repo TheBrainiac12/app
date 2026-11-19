@@ -1,0 +1,31 @@
+{
+  "summary": "Retest of the iteration-4 globe fixes (frontend only), using Playwright on 1920x1080 and 390x844. For each viewport we ran all 4 presets plus 1 Shuffle each (8 states), measuring every pill's bounding rect, viewport containment, intersection with the .glass-panel, and pairwise pill overlaps. DESKTOP PASS: 44/44 pills (including origin) were fully in the viewport and none were under the panel. The centroid camera works. MOBILE PARTIAL: only 27/42 pills (64%) were fully on-screen. London 3/6, London+shuffle 3/6, Mumbai 2/4, NY+shuffle 2/5. The ORIGIN 'You' pill itself was off-screen in 3/8 states (Bangalore at x=287-416, NY at x=-43, NY+shuffle at x=-23). No pill was under the panel; the +12 lat offset works vertically. The problem is horizontal: origin + 5 destinations often span more than 120° of longitude, so pills near the limb get clipped. COMPACT MOBILE PILLS: PASS (no subtitle, 38px tall). OVERLAPS: reduced, but still present. On desktop the origin pill overlapped a destination in 6/8 states (Bangalore-Mumbai 924px², London-Thessaloniki 860px², Mumbai-Ahmedabad 665px², Bangalore-Jakarta 200px²). On mobile the clusters still stack (Bangalore preset: Amman/Chisinau/Lviv triple overlap; NY preset: Belgrade/Riga/Thessaloniki up to 2450px²). REGRESSION PASS: Explore resets to aria-pressed=false after Edit -> re-compare. Edit keeps the city and rent and hides labels. Re-compare with £1,500 works. Clicking a pill opens city-drawer with the matching card and hides the dock. Share dialog downloads a PNG on desktop and mobile. Close works and the dock returns. Shuffle gives 5 fresh labels with no repeats. Mobile drawer is full screen, with no horizontal scroll. No page errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "GlobeView mobile overview (390x844)", "issue": "Only 64% of pills are fully on-screen. Destinations near the globe limb get clipped left/right (London: New York -30, Tokyo r=420, Chennai r=404; London+shuffle: Santo Domingo -68, Las Vegas -40, Hanoi r=423). The ORIGIN 'You' pill is clipped in 3/8 states (NY preset l=-43; Bangalore r=416). Altitude 3.4 is still not enough when the batch spans continents.", "selector": "[data-testid^='globe-label-'], [data-testid='globe-origin-label']", "priority": "MEDIUM"},
+      {"component": "GlobeView label slots", "issue": "Origin pill still overlaps a destination on desktop in 6/8 states, and mobile clusters stack 2-3 pills. Root causes: (1) the slot only uses a count of 'near' items, not their relative screen direction. Slot 1 places the pill BELOW its anchor (top:10px), which lands directly on the origin pill when the destination is NW of the origin (Mumbai vs Bangalore). (2) The degree threshold (16°) misses pairs that are 20-30° apart but still collide at altitude 2.6 (London-Thessaloniki about 25°, London-Kiev). (3) lng difference is not wrapped at ±180. (4) Two items with the same 'near' count get the same slot (for example two neighbours of the origin both count 1).", "selector": ".globe-pill-slot-*", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Mobile results", "issues": ["Consider fitting the camera to the bounding spread (raise altitude when the max angular distance from the centroid is above about 60°, e.g. altitude = clamp(2.6 + spread/40, 3.4, 5)), or clamp pill x into [8, innerWidth-8] using a CSS max-transform", "Alternatively, on mobile show a compact list chip in the dock for pills that are off-screen"]}
+    ]
+  },
+  "test_report_links": ["/app/tests/globe_labels_iter5.py"],
+  "action_items": [
+    "Mobile: make the overview altitude depend on angular spread (the max great-circle distance from the centroid), so the origin and all front-side pills fit within the 390px width. At minimum, the origin pill must always be on-screen.",
+    "Label slots: assign unique slots per cluster (increment the slot for each near item already taken, rather than using a count that can repeat). Make the direction (above/below) depend on relative latitude: if the neighbour is north, go above. Raise the desktop threshold to about 25° and wrap the lng delta."
+  ],
+  "critical_code_review_comments": [
+    "GlobeView dests useMemo reads window.innerWidth but only depends on [cards, origin]. Rotating or resizing the device doesn't recompute slots (minor).",
+    "near = count of nearby items, so two nearby items with the same count share a slot. Use a set of used slots per neighbourhood instead.",
+    "Math.hypot on raw lat/lng ignores the antimeridian and lng compression at high latitudes. Use great-circle distance.",
+    "App.overview: a centroid of 3D unit vectors is correct. For widely spread batches the vector norm becomes small, which is a good signal to raise the altitude."
+  ],
+  "updated_files": ["/app/tests/globe_labels_iter5.py"],
+  "success_rate": {"backend": "N/A", "frontend": "85% (desktop positioning and all regression flows pass; mobile viewport fit 64% and residual overlaps)"},
+  "seed_data_creation": "none",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "/app/tests/globe_labels_iter5.py contains the MEASURE JS (pill rects, inView, underPanel vs .glass-panel, pairwise overlaps). Paste it inline into browser_automation and use simple screenshot names (no f-string paths, because the tool rewrites them). Presets auto-compare, so wait 4s after clicking and 3s after Shuffle. Batches are random, so per-state results vary; compare aggregate counts."
+}

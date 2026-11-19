@@ -41,7 +41,13 @@ function App() {
     }, [0, 0, 0]);
     const lat = Math.atan2(v[2], Math.hypot(v[0], v[1])) / rad;
     const lng = Math.atan2(v[1], v[0]) / rad;
-    setFocus({ lat: lat + (narrow ? 12 : 0), lng, altitude: narrow ? 3.4 : 2.6, t: Date.now() });
+    const spread = Math.max(...[c, ...list.map((x) => x.city)].map((p) => {
+      const cos = Math.sin(lat * rad) * Math.sin(p.coords.lat * rad) + Math.cos(lat * rad) * Math.cos(p.coords.lat * rad) * Math.cos((lng - p.coords.lng) * rad);
+      return Math.acos(Math.min(1, Math.max(-1, cos))) / rad;
+    }));
+    const clamp = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
+    const altitude = narrow ? clamp(2.4 + spread / 30, 3.2, 4.8) : clamp(1.9 + spread / 45, 2.2, 2.8);
+    setFocus({ lat: lat + (narrow ? 12 : 0), lng, altitude, t: Date.now() });
   };
 
   const flyTo = (c, altitude) => setFocus({ lat: c.coords.lat, lng: c.coords.lng, altitude, t: Date.now() });

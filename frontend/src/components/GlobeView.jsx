@@ -26,7 +26,7 @@ const makeLabel = (d, onClick) => {
   wrap.style.pointerEvents = "none";
   const btn = document.createElement("button");
   btn.setAttribute("data-testid", d.origin ? "globe-origin-label" : `globe-label-${d.city.id}`);
-  btn.className = `globe-pill globe-pill-slot-${Math.min(d.slot || 0, 5)}`;
+  btn.className = "globe-pill";
   btn.style.setProperty("--pill", d.color);
   btn.innerHTML = d.origin
     ? `<span class="globe-pill-dot"></span><span><b>You</b> · ${d.city.city}</span>`
@@ -59,16 +59,45 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
     ref.current.pointOfView({ lat: focus.lat, lng: focus.lng, altitude: focus.altitude }, 1400);
   }, [focus]);
 
-  const dests = useMemo(() => {
-    const out = [];
-    const taken = origin ? [{ lat: origin.coords.lat, lng: origin.coords.lng }] : [];
-    cards.forEach((c) => {
-      const { lat, lng } = c.city.coords;
-      const near = [...taken, ...out].filter((o) => Math.hypot(o.lat - lat, o.lng - lng) < (window.innerWidth < 640 ? 24 : 16)).length;
-      out.push({ city: c.city, card: c, color: styleFor(c).hex, sub: c.reality ? "Reality check" : c.apartment, lat, lng, slot: near });
-    });
-    return out;
-  }, [cards, origin]);
+  const dests = useMemo(
+    () => cards.map((c) => ({ city: c.city, card: c, color: styleFor(c).hex, sub: c.reality ? "Reality check" : c.apartment, lat: c.city.coords.lat, lng: c.city.coords.lng })),
+    [cards]
+  );
+
+  useEffect(() => {
+    let raf;
+    const layout = () => {
+      const items = [...document.querySelectorAll(".globe-pill")]
+        .map((el) => {
+          const a = el.parentElement.getBoundingClientRect();
+          const w = el.offsetWidth;
+          const h = el.offsetHeight;
+          const dx = parseFloat(el.style.getPropertyValue("--dx")) || 0;
+          const dy = parseFloat(el.style.getPropertyValue("--dy")) || 0;
+          return { el, w: el.offsetParent ? w : 0, h, left: a.left - w / 2, top: a.top - 10 - h, dx, dy, origin: el.dataset.testid === "globe-origin-label" };
+        })
+        .filter((it) => it.w > 0)
+        .sort((a, b) => (b.origin - a.origin) || a.top - b.top);
+      const placed = [];
+      items.forEach((it) => {
+        const left = it.left < 8 ? 8 : it.left + it.w > window.innerWidth - 8 ? window.innerWidth - 8 - it.w : it.left;
+        let top = it.top;
+        for (let i = 0; i < 8; i++) {
+          const hit = placed.find((p) => left < p.left + p.w + 4 && left + it.w + 4 > p.left && top < p.top + p.h + 4 && top + it.h + 4 > p.top);
+          if (!hit) break;
+          top = hit.top + hit.h + 4;
+        }
+        placed.push({ left, top, w: it.w, h: it.h });
+        const ndx = left - it.left;
+        const ndy = top - it.top;
+        if (Math.abs(ndx - it.dx) > 0.5) it.el.style.setProperty("--dx", `${ndx}px`);
+        if (Math.abs(ndy - it.dy) > 0.5) it.el.style.setProperty("--dy", `${ndy}px`);
+      });
+      raf = requestAnimationFrame(layout);
+    };
+    raf = requestAnimationFrame(layout);
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   const labels = useMemo(() => {
     if (!origin) return [];
