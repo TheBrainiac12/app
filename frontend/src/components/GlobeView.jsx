@@ -266,7 +266,9 @@ const GlobeViewInner = ({ origin, cards, explore, rentEur, focus, onPick, select
   const onClick = useCallback((e) => {
     const down = downRef.current;
     if (e.target.tagName !== "CANVAS" || (down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6)) return;
-    const hit = nearest({ x: e.clientX, y: e.clientY }, e.pointerType === "touch" ? 24 : HIT_PX);
+    const touch = e.pointerType === "touch";
+    const hit = (!touch && hoverRef.current) || nearest({ x: e.clientX, y: e.clientY }, touch ? 24 : HIT_PX);
+    if (touch) mouseRef.current = null;
     if (!hit) return;
     const { selectMode: sel, onSelectOrigin: pickOrigin } = stateRef.current;
     if (sel) pickOrigin(hit.d.city);

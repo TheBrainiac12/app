@@ -44,3 +44,7 @@ A viral single-page app for a hackathon. A renter picks their city and monthly r
 ## Social share (Jun 2026)
 - lib/share.js: renderBlob (html-to-image toBlob), File what-rent-buys-[city].png, downloadBlob, copyImage (ClipboardItem), roast caption templates (big/modest/reality + salary-shock above 1.5×) with the URL appended.
 - ShareDialog: the PNG is pre-rendered on open and on format change; caption box with Shuffle and Copy; a native share button when canShare(files) is supported; X/Threads/WhatsApp (copy image, then open the intent), Facebook sharer, Instagram (native share, or download + toast), Copy Image.
+
+## Hover performance fix (Jun 2026)
+- Removed the library's point hover and label. Hovering now finds the nearest city on screen in a requestAnimationFrame loop (16px radius, 24px for touch taps), keeps the hovered city a little longer (1.4× radius, looser edge cutoff) so it doesn't flicker, and pauses rotation by setting controls directly.
+- The tooltip and highlight dot are sibling DOM elements updated directly in code (pointer-events none, no transition). GlobeView is wrapped in React.memo, and points are merged with no transition.
