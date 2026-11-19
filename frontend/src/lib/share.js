@@ -62,7 +62,7 @@ export const buildCaption = (template, { card, origin, code, rentLocal }) => {
     rent: rentLocal,
     origin: origin.city,
     target: card.city.city,
-    tier: card.reality ? "" : card.apartment,
+    tier: card.reality ? "" : card.apartment.replace(/^(\d)-Bed · (City Centre|Outside Centre)$/, (_, n, loc) => `${n}-bed ${loc === "City Centre" ? "in the city centre" : "outside the centre"}`),
     topPerk: card.reality ? "" : topPerkOf(card, code),
     gap: card.reality ? formatEur(card.gap, code) : "",
     size: card.size,

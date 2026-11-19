@@ -1,0 +1,26 @@
+{
+  "summary": "Frontend-only test of the upgraded Share modal (ShareDialog.jsx + lib/share.js) via Playwright on the public URL. Everything requested works. Drawer open: preset -> ArrowRight -> open-share-modal-button-{id}. The Download button starts disabled with a spinner and turns on once the PNG is ready. It also goes back to disabled when you switch to Story. Downloads are named what-rent-buys-izmir.png and are 1080x1080 (square) and 1080x1920 (story). Captions: all include origin, target and rent, and all end with ' See what your rent buys elsewhere: ' + location.href. 3-Bed gives the BIG family (3 unique captions), switching the same card to 1-Bed gives the MODEST family (2). Reality checks work both ways: Gothenburg at Bangalore rent 15000 shows the 1-bed gap, and Hyderabad with 3-Bed toggled on shows the 3-bed gap, with the gap matching the card. The salary-shock template appears when the ratio is above 1.5 (Kathmandu 2.5x: 4 unique captions incl. SALARY) and not when it is lower (Izmir 1.2x: 3 BIG only). Shuffle always changes the caption. Copy caption writes the exact caption to the clipboard. X/Threads/WhatsApp (window.open stubbed) open the right intent URLs; the decoded text matches the caption exactly, and the toast 'Image copied! Paste (Ctrl/Cmd+V) into your post' shows each time. Facebook opens sharer.php?u=<location.href> with no toast. Instagram on desktop downloads the PNG and shows the 'Saved! Upload this PNG...' toast. Copy Image shows the 'Image copied! Paste it anywhere.' toast. share-native-button is not rendered in desktop Chromium (canShare unavailable). On mobile (390px) the dialog fits (8-382px wide, overflow-y auto, scrollHeight 832 > clientHeight 774, no horizontal page overflow) and all 5 social buttons can be reached after scrolling. No page errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Share caption (BIG template 3)", "issues": ["Template 'a {tier} in {target} with {topPerk} left over' reads oddly with some perk texts, e.g. 'with a gym pass, sorted left over'. Perks phrased as 'Plus ...' or 'a gym pass, sorted' do not fit after 'with ... left over'."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Optional: fix the caption wording for BIG template 3 (e.g. use 'and still have {topPerk}', or strip the ', sorted' style suffix from perk text when it goes into a caption)."
+  ],
+  "critical_code_review_comments": [
+    "copyThenOpen calls clipboard.write and then window.open right away. In real Chrome/Safari the new tab takes focus, so the clipboard write may be rejected with 'Document is not focused'. The fallback toast covers this, but the image may not actually be copied on real devices. Consider awaiting copyImage (with a short timeout) before opening the tab, or opening the tab after the copy finishes in the same user action.",
+    "On Safari, ClipboardItem works more reliably when given a Promise<Blob>. Passing a ready Blob is fine, but worth checking on iOS.",
+    "On the first open, ExportCard waits for a fixed 300ms setTimeout before rendering. That works, but it is a magic number that is not tied to fonts or images being ready."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "none (frontend-only, no data created)",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Share flow: hero-preset-bangalore-india -> wait ~4.5s -> keyboard ArrowRight opens drawer card -> open-share-modal-button-{cityId}. Edit rent via edit-hero-inputs-button -> monthly-rent-input -> compare-rent-submit-button. Reality cards: apartment text starts with 'Not even'. Stub window.open to capture social URLs; grant clipboard-read/write for toasts. Toasts are [data-sonner-toast]."
+}

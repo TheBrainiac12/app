@@ -30,7 +30,7 @@ const TEMPLATES = {
   meals: [(n) => pl(n, "casual meal out", "casual meals out"), (n) => pl(n, "lunch you don't have to pack", "lunches you don't have to pack"), (n) => pl(n, "easy bite at a local spot", "easy bites at local spots")],
   movies: [(n) => pl(n, "movie night", "movie nights"), (n) => pl(n, "trip to the cinema", "trips to the cinema"), (n) => pl(n, "big-screen evening", "big-screen evenings")],
   beers: [(n) => pl(n, "craft beer", "craft beers"), (n) => pl(n, "cold pint at the local", "cold pints at the local"), (n) => pl(n, "round of beer", "rounds of beer")],
-  gym: [() => "a monthly gym membership", () => "a gym pass, sorted", () => "unlimited gym sessions"],
+  gym: [() => "a monthly gym membership", () => "a monthly gym pass", () => "unlimited gym sessions"],
   transit: [() => "an unlimited monthly transit pass", () => "a monthly metro pass", () => "free transit rides all month"],
   cappuccino: [(n) => (n >= 30 ? "a cappuccino every single day" : pl(n, "café cappuccino", "café cappuccinos")), (n) => (n >= 30 ? "your daily cappuccino, every day" : pl(n, "cappuccino a month", "cappuccinos a month"))],
 };

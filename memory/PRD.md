@@ -40,3 +40,7 @@ A viral single-page app for a hackathon. A renter picks their city and monthly r
 - Drawer: "Make this my origin city" button. The drawer is always mounted, animates its x position and unmounts once fully closed (fixes the drawer staying stuck in the page).
 - Keyboard: ←/→ cycle through the 5 matches (ignored while an input or slider is focused); Escape closes the share dialog first (defaultPrevented check), then the drawer. Hint badges in the dock and the drawer.
 - Housing: buildCard(city, rentEur, slot, size) and cardWithSize(); the card has a 1-Bed/3-Bed toggle (defaults to the best affordable size), an All Housing Tiers 2×2 grid, and the share export uses the selected size.
+
+## Social share (Jun 2026)
+- lib/share.js: renderBlob (html-to-image toBlob), File what-rent-buys-[city].png, downloadBlob, copyImage (ClipboardItem), roast caption templates (big/modest/reality + salary-shock above 1.5×) with the URL appended.
+- ShareDialog: the PNG is pre-rendered on open and on format change; caption box with Shuffle and Copy; a native share button when canShare(files) is supported; X/Threads/WhatsApp (copy image, then open the intent), Facebook sharer, Instagram (native share, or download + toast), Copy Image.
