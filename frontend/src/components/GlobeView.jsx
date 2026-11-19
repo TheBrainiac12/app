@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Globe from "react-globe.gl";
+import { AmbientLight, Color, DirectionalLight, Mesh, MeshPhongMaterial, SphereGeometry, TextureLoader, Vector3 } from "three";
 import { styleFor } from "@/lib/theme";
 import { CITIES, isCovered } from "@/lib/engine";
 
@@ -21,9 +22,18 @@ const useWindowSize = () => {
   return size;
 };
 
+const PIN = (color, core) => `<svg viewBox="0 0 24 32" width="24" height="32" aria-hidden="true"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="${color}" stroke="rgba(0,0,0,0.45)" stroke-width="1"/><circle cx="12" cy="11.5" r="4.6" fill="${core}"/></svg>`;
+
 const makeLabel = (d, onClick) => {
   const wrap = document.createElement("div");
   wrap.style.pointerEvents = "none";
+  const pin = document.createElement("div");
+  pin.className = "globe-pin";
+  pin.setAttribute("data-testid", d.origin ? "globe-origin-pin" : `globe-pin-${d.city.id}`);
+  pin.style.setProperty("--pill", d.origin ? EMERALD : d.color);
+  pin.innerHTML = d.origin ? PIN("#FFFFFF", EMERALD) : PIN(d.color, "#0B0E15");
+  if (!d.origin) pin.onclick = (e) => { e.stopPropagation(); onClick(d); };
+  wrap.appendChild(pin);
   const btn = document.createElement("button");
   btn.setAttribute("data-testid", d.origin ? "globe-origin-label" : `globe-label-${d.city.id}`);
   btn.className = "globe-pill";
@@ -35,6 +45,9 @@ const makeLabel = (d, onClick) => {
   wrap.appendChild(btn);
   return wrap;
 };
+
+const GLOBE_MATERIAL = new MeshPhongMaterial({ bumpScale: 10, specular: new Color("grey"), shininess: 15 });
+new TextureLoader().load("/textures/earth-water.png", (tex) => { GLOBE_MATERIAL.specularMap = tex; GLOBE_MATERIAL.needsUpdate = true; });
 
 export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) => {
   const ref = useRef(null);
@@ -51,6 +64,24 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
     controls.maxDistance = 520;
     controls.addEventListener("start", () => { controls.autoRotate = false; });
     g.pointOfView({ lat: 20, lng: 20, altitude: 2.4 });
+
+    const sun = new DirectionalLight(0xffffff, 2.4);
+    g.lights([new AmbientLight(0xffffff, 0.9), sun]);
+
+    const clouds = new Mesh(
+      new SphereGeometry(g.getGlobeRadius() * 1.004, 75, 75),
+      new MeshPhongMaterial({ transparent: true, opacity: 0.32, depthWrite: false })
+    );
+    new TextureLoader().load("/textures/clouds.png", (tex) => { clouds.material.map = tex; clouds.material.needsUpdate = true; });
+    g.scene().add(clouds);
+
+    const up = new Vector3(0, 1, 0);
+    const tick = () => {
+      clouds.rotation.y += 0.00035;
+      sun.position.copy(g.camera().position).applyAxisAngle(up, -0.7).add(new Vector3(0, 120, 0));
+      requestAnimationFrame(tick);
+    };
+    tick();
   }, []);
 
   useEffect(() => {
@@ -74,11 +105,11 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
           const h = el.offsetHeight;
           const dx = parseFloat(el.style.getPropertyValue("--dx")) || 0;
           const dy = parseFloat(el.style.getPropertyValue("--dy")) || 0;
-          return { el, w: el.offsetParent ? w : 0, h, left: a.left - w / 2, top: a.top - 10 - h, dx, dy, origin: el.dataset.testid === "globe-origin-label" };
+          return { el, w: el.offsetParent ? w : 0, h, left: a.left - w / 2, top: a.top - 36 - h, dx, dy, origin: el.dataset.testid === "globe-origin-label" };
         })
         .filter((it) => it.w > 0)
         .sort((a, b) => (b.origin - a.origin) || a.top - b.top);
-      const placed = [...document.querySelectorAll(".glass-panel")].map((el) => {
+      const placed = [...document.querySelectorAll(".glass-panel, .globe-pin")].filter((el) => el.offsetParent).map((el) => {
         const r = el.getBoundingClientRect();
         return { left: r.left, top: r.top, w: r.width, h: r.height };
       });
@@ -96,7 +127,7 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
         if (Math.abs(ndx - it.dx) > 0.5) it.el.style.setProperty("--dx", `${ndx}px`);
         if (Math.abs(ndy - it.dy) > 0.5) {
           it.el.style.setProperty("--dy", `${ndy}px`);
-          it.el.style.setProperty("--lead", `${Math.max(0, ndy - it.h - 10)}px`);
+          it.el.style.setProperty("--lead", `${Math.max(0, ndy - it.h - 6)}px`);
         }
       });
       raf = requestAnimationFrame(layout);
@@ -134,11 +165,13 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
         width={w}
         height={h}
         onGlobeReady={onReady}
-        globeImageUrl="/textures/earth-night.jpg"
+        globeMaterial={GLOBE_MATERIAL}
+        globeImageUrl="/textures/earth-blue-marble.jpg"
         bumpImageUrl="/textures/earth-topology.png"
         backgroundImageUrl="/textures/night-sky.png"
         backgroundColor="#05070B"
-        atmosphereColor="#3FD6FF"
+        showAtmosphere
+        atmosphereColor="#60a5fa"
         atmosphereAltitude={0.18}
         arcsData={arcs}
         arcColor="color"
@@ -160,8 +193,8 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
         htmlTransitionDuration={600}
         pointsData={points}
         pointColor={(d) => (d.ok ? EMERALD : CORAL)}
-        pointAltitude={0.012}
-        pointRadius={0.42}
+        pointAltitude={0.001}
+        pointRadius={0.22}
         pointsMerge={false}
         pointsTransitionDuration={500}
         pointLabel={(d) => `<div class="globe-tip"><b>${d.city.city}</b>, ${d.city.country}<br/><span style="color:${d.ok ? EMERALD : CORAL}">${d.ok ? "Your rent upgrades you here" : "Reality check: costs more"}</span></div>`}
