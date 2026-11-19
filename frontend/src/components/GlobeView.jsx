@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Globe from "react-globe.gl";
 import { AmbientLight, Color, DirectionalLight, Mesh, MeshPhongMaterial, SphereGeometry, TextureLoader, Vector3 } from "three";
 import { styleFor } from "@/lib/theme";
@@ -50,13 +50,28 @@ const GLOBE_MATERIAL = new MeshPhongMaterial({ bumpScale: 10, specular: new Colo
 new TextureLoader().load("/textures/earth-water.png", (tex) => { GLOBE_MATERIAL.specularMap = tex; GLOBE_MATERIAL.needsUpdate = true; });
 
 const RANDOM_GAP = () => Math.random();
+const POINT_COLOR = (d) => (d.ok === null ? SUBTLE : d.ok ? EMERALD : CORAL);
 const SUBTLE = "rgba(160,220,255,0.85)";
 
-export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick, selectMode, onSelectOrigin }) => {
+const HIT_PX = 16;
+
+const tipHtml = (d) => {
+  const status = d.ok === null
+    ? `<span style="color:#9fb3c8">Click to select</span>`
+    : `<span style="color:${d.ok ? EMERALD : CORAL}">${d.ok ? "Your rent upgrades you here" : "Reality check: costs more"} · click to compare</span>`;
+  return `<b>${d.city.city}</b>, ${d.city.country}<br/>${status}`;
+};
+
+const GlobeViewInner = ({ origin, cards, explore, rentEur, focus, onPick, selectMode, onSelectOrigin }) => {
   const ref = useRef(null);
   const wrapRef = useRef(null);
+  const tipRef = useRef(null);
+  const hiRef = useRef(null);
+  const mouseRef = useRef(null);
+  const hoverRef = useRef(null);
+  const downRef = useRef(null);
+  const pointsRef = useRef([]);
   const { w, h } = useWindowSize();
-  const [hovered, setHovered] = useState(null);
   const pickRef = useRef(onPick);
   pickRef.current = onPick;
   const stateRef = useRef({});
@@ -175,51 +190,100 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick, sele
     return [];
   }, [selectMode, explore, origin, rentEur]);
 
-  const allRings = useMemo(
-    () => (hovered ? [...rings, { lat: hovered.coords.lat, lng: hovered.coords.lng, color: "#FFFFFF", maxR: 1.8, speed: 1.2, period: 700 }] : rings),
-    [rings, hovered]
-  );
+  pointsRef.current = points;
 
-  const onHover = useCallback((d) => {
+  const nearest = useCallback((m, radius) => {
     const g = ref.current;
-    if (wrapRef.current) wrapRef.current.style.cursor = d ? "pointer" : "";
-    setHovered(d ? d.city : null);
-    if (!g) return;
-    const { selectMode: sel, origin: o } = stateRef.current;
-    const controls = g.controls();
-    clearTimeout(resumeRef.current);
-    if (d) {
-      controls.autoRotate = false;
-      controls.enableDamping = false;
-    } else {
+    if (!g || !m) return null;
+    const cam = g.camera().position;
+    const r2 = g.getGlobeRadius() ** 2;
+    let best = null;
+    let bd = radius * radius;
+    for (const d of pointsRef.current) {
+      const c = g.getCoords(d.lat, d.lng, 0);
+      if (c.x * cam.x + c.y * cam.y + c.z * cam.z <= r2 * 1.01) continue;
+      const sc = g.getScreenCoords(d.lat, d.lng, 0.001);
+      const dist = (sc.x - m.x) ** 2 + (sc.y - m.y) ** 2;
+      if (dist < bd) { bd = dist; best = { d, x: sc.x, y: sc.y }; }
+    }
+    return best;
+  }, []);
+
+  const applyHover = useCallback((hit) => {
+    const g = ref.current;
+    const prev = hoverRef.current;
+    const tip = tipRef.current;
+    const hi = hiRef.current;
+    if (!g || !tip || !hi) return;
+    hoverRef.current = hit;
+    if (hit) {
+      if (!prev || prev.d.city.id !== hit.d.city.id) {
+        tip.innerHTML = tipHtml(hit.d);
+        hi.style.setProperty("--dot", hit.d.ok === null ? "#FFFFFF" : hit.d.ok ? EMERALD : CORAL);
+      }
+      tip.style.transform = `translate(${hit.x}px, ${hit.y - 16}px) translate(-50%, -100%)`;
+      hi.style.transform = `translate(${hit.x}px, ${hit.y}px) translate(-50%, -50%)`;
+      tip.style.display = "block";
+      hi.style.display = "block";
+      wrapRef.current.style.cursor = "pointer";
+      if (!prev) {
+        clearTimeout(resumeRef.current);
+        const controls = g.controls();
+        controls.autoRotate = false;
+        controls.enableDamping = false;
+      }
+    } else if (prev) {
+      tip.style.display = "none";
+      hi.style.display = "none";
+      wrapRef.current.style.cursor = "";
+      const controls = g.controls();
       controls.enableDamping = true;
-      if (sel && !o) resumeRef.current = setTimeout(() => { if (stateRef.current.selectMode && !stateRef.current.origin) controls.autoRotate = true; }, 700);
+      resumeRef.current = setTimeout(() => {
+        if (stateRef.current.selectMode && !stateRef.current.origin && !hoverRef.current) controls.autoRotate = true;
+      }, 700);
     }
   }, []);
 
-  const onPointClick = useCallback((d) => {
-    const { selectMode: sel, onSelectOrigin: pickOrigin } = stateRef.current;
-    if (sel) pickOrigin(d.city);
-    else pickRef.current(d.city, null, 0.6);
+  useEffect(() => {
+    let raf;
+    const loop = () => {
+      if (mouseRef.current) applyHover(nearest(mouseRef.current, HIT_PX));
+      else if (hoverRef.current) applyHover(null);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, [applyHover, nearest]);
+
+  const onMove = useCallback((e) => {
+    mouseRef.current = e.target.tagName === "CANVAS" ? { x: e.clientX, y: e.clientY } : null;
   }, []);
 
+  const onDown = useCallback((e) => { downRef.current = { x: e.clientX, y: e.clientY }; }, []);
+
+  const onClick = useCallback((e) => {
+    const down = downRef.current;
+    if (e.target.tagName !== "CANVAS" || (down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6)) return;
+    const hit = nearest({ x: e.clientX, y: e.clientY }, e.pointerType === "touch" ? 24 : HIT_PX);
+    if (!hit) return;
+    const { selectMode: sel, onSelectOrigin: pickOrigin } = stateRef.current;
+    if (sel) pickOrigin(hit.d.city);
+    else pickRef.current(hit.d.city, null, 0.6);
+  }, [nearest]);
+
   const htmlElement = useCallback((d) => makeLabel(d, (x) => pickRef.current(x.city, x.card, 1.1)), []);
-  const hid = hovered ? hovered.id : null;
-  const pointColor = useCallback((d) => (d.city.id === hid ? "#FFFFFF" : d.ok === null ? SUBTLE : d.ok ? EMERALD : CORAL), [hid]);
-  const pointRadius = useCallback((d) => (d.city.id === hid ? 0.55 : 0.3), [hid]);
   const ringColor = useCallback((d) => (t) => rgba(d.color, Math.max(0, 1 - t)), []);
-  const pointLabel = useCallback(
-    (d) => {
-      const status = d.ok === null
-        ? `<span style="color:#9fb3c8">Click to select as your city</span>`
-        : `<span style="color:${d.ok ? EMERALD : CORAL}">${d.ok ? "Your rent upgrades you here" : "Reality check: costs more"}</span>`;
-      return `<div class="globe-tip"><b>${d.city.city}</b>, ${d.city.country}<br/>${status}</div>`;
-    },
-    []
-  );
 
   return (
-    <div ref={wrapRef} data-testid="globe-container" className="fixed inset-0 z-0">
+    <div
+      ref={wrapRef}
+      data-testid="globe-container"
+      className="fixed inset-0 z-0"
+      onPointerMove={onMove}
+      onPointerDown={onDown}
+      onPointerLeave={() => { mouseRef.current = null; }}
+      onClick={onClick}
+    >
       <Globe
         ref={ref}
         width={w}
@@ -242,7 +306,7 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick, sele
         arcDashAnimateTime={2200}
         arcAltitudeAutoScale={0.45}
         arcsTransitionDuration={800}
-        ringsData={allRings}
+        ringsData={rings}
         ringColor={ringColor}
         ringMaxRadius="maxR"
         ringPropagationSpeed="speed"
@@ -252,15 +316,18 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick, sele
         htmlAltitude={0.015}
         htmlTransitionDuration={600}
         pointsData={points}
-        pointColor={pointColor}
+        pointColor={POINT_COLOR}
         pointAltitude={0.001}
-        pointRadius={pointRadius}
-        pointsMerge={false}
-        pointsTransitionDuration={150}
-        onPointHover={onHover}
-        pointLabel={pointLabel}
-        onPointClick={onPointClick}
+        pointRadius={0.22}
+        pointsMerge
+        pointsTransitionDuration={0}
       />
+      <div ref={hiRef} data-testid="globe-hover-dot" className="globe-hover-dot" />
+      <div ref={tipRef} data-testid="globe-hover-tooltip" className="globe-tip globe-hover-tip" />
     </div>
   );
 };
+
+const sameProps = (a, b) => Object.keys(a).every((k) => typeof a[k] === "function" || a[k] === b[k]);
+
+export const GlobeView = memo(GlobeViewInner, sameProps);

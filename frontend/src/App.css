@@ -196,3 +196,44 @@
 .globe-pin svg {
   display: block;
 }
+
+.globe-hover-tip {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 15;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.globe-hover-dot {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 14;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: var(--dot, #fff);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18), 0 0 14px var(--dot, #fff);
+}
+
+.globe-hover-dot::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--dot, #fff);
+  opacity: 0.7;
+  animation: hover-ring 1.1s ease-out infinite;
+}
+
+@keyframes hover-ring {
+  from { transform: scale(0.5); opacity: 0.8; }
+  to { transform: scale(1.4); opacity: 0; }
+}
