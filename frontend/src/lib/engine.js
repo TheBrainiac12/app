@@ -108,16 +108,16 @@ const rawBatch = (originId, rentEur, prevIds = []) => {
   const inTier = (list, t) => list.filter((c) => TIER_OF[c.id] === t);
 
   if (covered.length === 0) {
-    const closest = [...others].sort((a, b) => a.housing["1_bed_outside"] - b.housing["1_bed_outside"]).slice(0, 8);
+    const closest = [...others].sort((a, b) => a.housing["1_bed_outside"] - b.housing["1_bed_outside"]).slice(0, 10);
     const chosen = [];
-    for (let i = 0; i < 4; i++) chosen.push(pick(closest, chosen, prevIds));
+    for (let i = 0; i < 5; i++) chosen.push(pick(closest, chosen, prevIds));
     return { allGap: true, cards: chosen.map((c) => buildCard(c, rentEur, TIER_OF[c.id])) };
   }
 
-  if (covered.length < 3) {
-    const closest = [...others].filter((c) => !covered.includes(c)).sort((a, b) => a.housing["1_bed_outside"] - b.housing["1_bed_outside"]).slice(0, 6);
+  if (covered.length < 4) {
+    const closest = [...others].filter((c) => !covered.includes(c)).sort((a, b) => a.housing["1_bed_outside"] - b.housing["1_bed_outside"]).slice(0, 8);
     const chosen = [...covered];
-    while (chosen.length < 4) chosen.push(pick(closest, chosen, prevIds));
+    while (chosen.length < 5) chosen.push(pick(closest, chosen, prevIds));
     return { allGap: false, fewCovered: true, cards: chosen.map((c) => buildCard(c, rentEur, TIER_OF[c.id])) };
   }
 
@@ -130,6 +130,7 @@ const rawBatch = (originId, rentEur, prevIds = []) => {
   const midPick = pick(midPool, chosen, prevIds);
   add(midPick || pick(covered, chosen, prevIds), midPick ? "mid" : "affordable");
   add(pick(inTier(others, "dream"), chosen, prevIds), "dream");
+  add(pick(covered, chosen, prevIds), "wildcard");
   add(pick(covered, chosen, prevIds), "wildcard");
 
   return { allGap: false, cards: chosen.map((c, i) => buildCard(c, rentEur, slots[i])) };
@@ -165,3 +166,7 @@ export const generateBatch = (...args) => {
   const batch = rawBatch(...args);
   return { ...batch, cards: diversify(batch.cards) };
 };
+
+export const cardFor = (city, rentEur) => diversify([buildCard(city, rentEur, TIER_OF[city.id])])[0];
+
+export const isCovered = (city, rentEur) => city.housing["1_bed_outside"] <= rentEur;

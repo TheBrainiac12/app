@@ -23,6 +23,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2369.85
+    },
+    "coords": {
+      "lat": 24.4539,
+      "lng": 54.3773
     }
   },
   {
@@ -49,6 +53,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2653.26
+    },
+    "coords": {
+      "lat": -34.9285,
+      "lng": 138.6007
     }
   },
   {
@@ -75,6 +83,10 @@
     },
     "economy": {
       "avg_monthly_salary": 303.54
+    },
+    "coords": {
+      "lat": 23.0225,
+      "lng": 72.5714
     }
   },
   {
@@ -101,6 +113,10 @@
     },
     "economy": {
       "avg_monthly_salary": 163.94
+    },
+    "coords": {
+      "lat": 31.2001,
+      "lng": 29.9187
     }
   },
   {
@@ -127,6 +143,10 @@
     },
     "economy": {
       "avg_monthly_salary": 374.42
+    },
+    "coords": {
+      "lat": 43.222,
+      "lng": 76.8512
     }
   },
   {
@@ -153,6 +173,10 @@
     },
     "economy": {
       "avg_monthly_salary": 545.55
+    },
+    "coords": {
+      "lat": 31.9454,
+      "lng": 35.9284
     }
   },
   {
@@ -179,6 +203,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2646.66
+    },
+    "coords": {
+      "lat": 52.3676,
+      "lng": 4.9041
     }
   },
   {
@@ -205,6 +233,10 @@
     },
     "economy": {
       "avg_monthly_salary": 440.17
+    },
+    "coords": {
+      "lat": 39.9334,
+      "lng": 32.8597
     }
   },
   {
@@ -231,6 +263,10 @@
     },
     "economy": {
       "avg_monthly_salary": 787.01
+    },
+    "coords": {
+      "lat": 37.9838,
+      "lng": 23.7275
     }
   },
   {
@@ -257,6 +293,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2344.96
+    },
+    "coords": {
+      "lat": -36.8485,
+      "lng": 174.7633
     }
   },
   {
@@ -283,6 +323,10 @@
     },
     "economy": {
       "avg_monthly_salary": 4097.92
+    },
+    "coords": {
+      "lat": 30.2672,
+      "lng": -97.7431
     }
   },
   {
@@ -309,6 +353,10 @@
     },
     "economy": {
       "avg_monthly_salary": 294.03
+    },
+    "coords": {
+      "lat": 40.4093,
+      "lng": 49.8671
     }
   },
   {
@@ -335,6 +383,10 @@
     },
     "economy": {
       "avg_monthly_salary": 579.22
+    },
+    "coords": {
+      "lat": 12.9716,
+      "lng": 77.5946
     }
   },
   {
@@ -361,6 +413,10 @@
     },
     "economy": {
       "avg_monthly_salary": 668.6
+    },
+    "coords": {
+      "lat": 13.7563,
+      "lng": 100.5018
     }
   },
   {
@@ -387,6 +443,10 @@
     },
     "economy": {
       "avg_monthly_salary": 430.69
+    },
+    "coords": {
+      "lat": 44.7722,
+      "lng": 17.191
     }
   },
   {
@@ -413,6 +473,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1444.48
+    },
+    "coords": {
+      "lat": 41.3874,
+      "lng": 2.1686
     }
   },
   {
@@ -439,6 +503,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1137.26
+    },
+    "coords": {
+      "lat": 39.9042,
+      "lng": 116.4074
     }
   },
   {
@@ -465,6 +533,10 @@
     },
     "economy": {
       "avg_monthly_salary": 859.89
+    },
+    "coords": {
+      "lat": 33.8938,
+      "lng": 35.5018
     }
   },
   {
@@ -491,6 +563,10 @@
     },
     "economy": {
       "avg_monthly_salary": 437.24
+    },
+    "coords": {
+      "lat": 44.7866,
+      "lng": 20.4489
     }
   },
   {
@@ -517,6 +593,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2289.46
+    },
+    "coords": {
+      "lat": 52.52,
+      "lng": 13.405
     }
   },
   {
@@ -543,6 +623,10 @@
     },
     "economy": {
       "avg_monthly_salary": 306.08
+    },
+    "coords": {
+      "lat": 4.711,
+      "lng": -74.0721
     }
   },
   {
@@ -569,6 +653,10 @@
     },
     "economy": {
       "avg_monthly_salary": 4132.08
+    },
+    "coords": {
+      "lat": 42.3601,
+      "lng": -71.0589
     }
   },
   {
@@ -595,6 +683,10 @@
     },
     "economy": {
       "avg_monthly_salary": 554.56
+    },
+    "coords": {
+      "lat": 45.6427,
+      "lng": 25.5887
     }
   },
   {
@@ -621,6 +713,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1059.38
+    },
+    "coords": {
+      "lat": 48.1486,
+      "lng": 17.1077
     }
   },
   {
@@ -647,6 +743,10 @@
     },
     "economy": {
       "avg_monthly_salary": 3030.03
+    },
+    "coords": {
+      "lat": -27.4705,
+      "lng": 153.026
     }
   },
   {
@@ -673,6 +773,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1022.13
+    },
+    "coords": {
+      "lat": 49.1951,
+      "lng": 16.6068
     }
   },
   {
@@ -699,6 +803,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2289.69
+    },
+    "coords": {
+      "lat": 50.8503,
+      "lng": 4.3517
     }
   },
   {
@@ -725,6 +833,10 @@
     },
     "economy": {
       "avg_monthly_salary": 658.66
+    },
+    "coords": {
+      "lat": 44.4268,
+      "lng": 26.1025
     }
   },
   {
@@ -751,6 +863,10 @@
     },
     "economy": {
       "avg_monthly_salary": 755.32
+    },
+    "coords": {
+      "lat": 47.4979,
+      "lng": 19.0402
     }
   },
   {
@@ -777,6 +893,10 @@
     },
     "economy": {
       "avg_monthly_salary": 483.99
+    },
+    "coords": {
+      "lat": -34.6037,
+      "lng": -58.3816
     }
   },
   {
@@ -803,6 +923,10 @@
     },
     "economy": {
       "avg_monthly_salary": 443.85
+    },
+    "coords": {
+      "lat": 40.1885,
+      "lng": 29.061
     }
   },
   {
@@ -829,6 +953,10 @@
     },
     "economy": {
       "avg_monthly_salary": 221.7
+    },
+    "coords": {
+      "lat": 30.0444,
+      "lng": 31.2357
     }
   },
   {
@@ -855,6 +983,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2956.33
+    },
+    "coords": {
+      "lat": 51.0447,
+      "lng": -114.0719
     }
   },
   {
@@ -881,6 +1013,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1140.76
+    },
+    "coords": {
+      "lat": -33.9249,
+      "lng": 18.4241
     }
   },
   {
@@ -907,6 +1043,10 @@
     },
     "economy": {
       "avg_monthly_salary": 405.7
+    },
+    "coords": {
+      "lat": 33.5731,
+      "lng": -7.5898
     }
   },
   {
@@ -933,6 +1073,10 @@
     },
     "economy": {
       "avg_monthly_salary": 380.27
+    },
+    "coords": {
+      "lat": 30.7333,
+      "lng": 76.7794
     }
   },
   {
@@ -959,6 +1103,10 @@
     },
     "economy": {
       "avg_monthly_salary": 403.82
+    },
+    "coords": {
+      "lat": 13.0827,
+      "lng": 80.2707
     }
   },
   {
@@ -985,6 +1133,10 @@
     },
     "economy": {
       "avg_monthly_salary": 3717.02
+    },
+    "coords": {
+      "lat": 41.8781,
+      "lng": -87.6298
     }
   },
   {
@@ -1011,6 +1163,10 @@
     },
     "economy": {
       "avg_monthly_salary": 286.95
+    },
+    "coords": {
+      "lat": 47.0105,
+      "lng": 28.8638
     }
   },
   {
@@ -1037,6 +1193,10 @@
     },
     "economy": {
       "avg_monthly_salary": 642.86
+    },
+    "coords": {
+      "lat": 46.7712,
+      "lng": 23.6236
     }
   },
   {
@@ -1063,6 +1223,10 @@
     },
     "economy": {
       "avg_monthly_salary": 244.23
+    },
+    "coords": {
+      "lat": 6.9271,
+      "lng": 79.8612
     }
   },
   {
@@ -1089,6 +1253,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2803.98
+    },
+    "coords": {
+      "lat": 55.6761,
+      "lng": 12.5683
     }
   },
   {
@@ -1115,6 +1283,10 @@
     },
     "economy": {
       "avg_monthly_salary": 4202.0
+    },
+    "coords": {
+      "lat": 32.7767,
+      "lng": -96.797
     }
   },
   {
@@ -1141,6 +1313,10 @@
     },
     "economy": {
       "avg_monthly_salary": 473.8
+    },
+    "coords": {
+      "lat": 28.6139,
+      "lng": 77.209
     }
   },
   {
@@ -1167,6 +1343,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2827.76
+    },
+    "coords": {
+      "lat": 25.2854,
+      "lng": 51.531
     }
   },
   {
@@ -1193,6 +1373,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2577.55
+    },
+    "coords": {
+      "lat": 25.2048,
+      "lng": 55.2708
     }
   },
   {
@@ -1219,6 +1403,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2531.16
+    },
+    "coords": {
+      "lat": 53.3498,
+      "lng": -6.2603
     }
   },
   {
@@ -1245,6 +1433,10 @@
     },
     "economy": {
       "avg_monthly_salary": 933.21
+    },
+    "coords": {
+      "lat": -29.8587,
+      "lng": 31.0218
     }
   },
   {
@@ -1271,6 +1463,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2552.22
+    },
+    "coords": {
+      "lat": 53.5461,
+      "lng": -113.4938
     }
   },
   {
@@ -1297,6 +1493,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2603.84
+    },
+    "coords": {
+      "lat": 51.4416,
+      "lng": 5.4697
     }
   },
   {
@@ -1323,6 +1523,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2618.29
+    },
+    "coords": {
+      "lat": 50.1109,
+      "lng": 8.6821
     }
   },
   {
@@ -1349,6 +1553,10 @@
     },
     "economy": {
       "avg_monthly_salary": 865.09
+    },
+    "coords": {
+      "lat": 54.352,
+      "lng": 18.6466
     }
   },
   {
@@ -1375,6 +1583,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2183.46
+    },
+    "coords": {
+      "lat": 57.7089,
+      "lng": 11.9746
     }
   },
   {
@@ -1401,6 +1613,10 @@
     },
     "economy": {
       "avg_monthly_salary": 498.68
+    },
+    "coords": {
+      "lat": 20.6597,
+      "lng": -103.3496
     }
   },
   {
@@ -1427,6 +1643,10 @@
     },
     "economy": {
       "avg_monthly_salary": 859.33
+    },
+    "coords": {
+      "lat": 28.4595,
+      "lng": 77.0266
     }
   },
   {
@@ -1453,6 +1673,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2532.52
+    },
+    "coords": {
+      "lat": 53.5511,
+      "lng": 9.9937
     }
   },
   {
@@ -1479,6 +1703,10 @@
     },
     "economy": {
       "avg_monthly_salary": 354.62
+    },
+    "coords": {
+      "lat": 21.0278,
+      "lng": 105.8342
     }
   },
   {
@@ -1505,6 +1733,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2382.56
+    },
+    "coords": {
+      "lat": 60.1699,
+      "lng": 24.9384
     }
   },
   {
@@ -1531,6 +1763,10 @@
     },
     "economy": {
       "avg_monthly_salary": 347.14
+    },
+    "coords": {
+      "lat": 10.8231,
+      "lng": 106.6297
     }
   },
   {
@@ -1557,6 +1793,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2387.66
+    },
+    "coords": {
+      "lat": 22.3193,
+      "lng": 114.1694
     }
   },
   {
@@ -1583,6 +1823,10 @@
     },
     "economy": {
       "avg_monthly_salary": 3568.78
+    },
+    "coords": {
+      "lat": 29.7604,
+      "lng": -95.3698
     }
   },
   {
@@ -1609,6 +1853,10 @@
     },
     "economy": {
       "avg_monthly_salary": 441.12
+    },
+    "coords": {
+      "lat": 17.385,
+      "lng": 78.4867
     }
   },
   {
@@ -1635,6 +1883,10 @@
     },
     "economy": {
       "avg_monthly_salary": 529.52
+    },
+    "coords": {
+      "lat": 47.1585,
+      "lng": 27.6014
     }
   },
   {
@@ -1661,6 +1913,10 @@
     },
     "economy": {
       "avg_monthly_salary": 436.0
+    },
+    "coords": {
+      "lat": 41.0082,
+      "lng": 28.9784
     }
   },
   {
@@ -1687,6 +1943,10 @@
     },
     "economy": {
       "avg_monthly_salary": 392.07
+    },
+    "coords": {
+      "lat": 38.4237,
+      "lng": 27.1428
     }
   },
   {
@@ -1713,6 +1973,10 @@
     },
     "economy": {
       "avg_monthly_salary": 414.33
+    },
+    "coords": {
+      "lat": -6.2088,
+      "lng": 106.8456
     }
   },
   {
@@ -1739,6 +2003,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1911.12
+    },
+    "coords": {
+      "lat": 31.7683,
+      "lng": 35.2137
     }
   },
   {
@@ -1765,6 +2033,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1089.06
+    },
+    "coords": {
+      "lat": -26.2041,
+      "lng": 28.0473
     }
   },
   {
@@ -1791,6 +2063,10 @@
     },
     "economy": {
       "avg_monthly_salary": 184.17
+    },
+    "coords": {
+      "lat": 27.7172,
+      "lng": 85.324
     }
   },
   {
@@ -1817,6 +2093,10 @@
     },
     "economy": {
       "avg_monthly_salary": 771.0
+    },
+    "coords": {
+      "lat": 54.8985,
+      "lng": 23.9036
     }
   },
   {
@@ -1843,6 +2123,10 @@
     },
     "economy": {
       "avg_monthly_salary": 337.4
+    },
+    "coords": {
+      "lat": 49.9935,
+      "lng": 36.2304
     }
   },
   {
@@ -1869,6 +2153,10 @@
     },
     "economy": {
       "avg_monthly_salary": 516.75
+    },
+    "coords": {
+      "lat": 50.4501,
+      "lng": 30.5234
     }
   },
   {
@@ -1895,6 +2183,10 @@
     },
     "economy": {
       "avg_monthly_salary": 323.06
+    },
+    "coords": {
+      "lat": 22.5726,
+      "lng": 88.3639
     }
   },
   {
@@ -1921,6 +2213,10 @@
     },
     "economy": {
       "avg_monthly_salary": 855.87
+    },
+    "coords": {
+      "lat": 50.0647,
+      "lng": 19.945
     }
   },
   {
@@ -1947,6 +2243,10 @@
     },
     "economy": {
       "avg_monthly_salary": 923.24
+    },
+    "coords": {
+      "lat": 3.139,
+      "lng": 101.6869
     }
   },
   {
@@ -1973,6 +2273,10 @@
     },
     "economy": {
       "avg_monthly_salary": 3132.38
+    },
+    "coords": {
+      "lat": 36.1699,
+      "lng": -115.1398
     }
   },
   {
@@ -1999,6 +2303,10 @@
     },
     "economy": {
       "avg_monthly_salary": 439.49
+    },
+    "coords": {
+      "lat": -12.0464,
+      "lng": -77.0428
     }
   },
   {
@@ -2025,6 +2333,10 @@
     },
     "economy": {
       "avg_monthly_salary": 913.81
+    },
+    "coords": {
+      "lat": 38.7223,
+      "lng": -9.1393
     }
   },
   {
@@ -2051,6 +2363,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1155.72
+    },
+    "coords": {
+      "lat": 46.0569,
+      "lng": 14.5058
     }
   },
   {
@@ -2077,6 +2393,10 @@
     },
     "economy": {
       "avg_monthly_salary": 689.44
+    },
+    "coords": {
+      "lat": 51.7592,
+      "lng": 19.456
     }
   },
   {
@@ -2103,6 +2423,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2756.93
+    },
+    "coords": {
+      "lat": 51.5072,
+      "lng": -0.1276
     }
   },
   {
@@ -2129,6 +2453,10 @@
     },
     "economy": {
       "avg_monthly_salary": 3968.48
+    },
+    "coords": {
+      "lat": 34.0522,
+      "lng": -118.2437
     }
   },
   {
@@ -2155,6 +2483,10 @@
     },
     "economy": {
       "avg_monthly_salary": 341.38
+    },
+    "coords": {
+      "lat": 49.8397,
+      "lng": 24.0297
     }
   },
   {
@@ -2181,6 +2513,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1578.77
+    },
+    "coords": {
+      "lat": 40.4168,
+      "lng": -3.7038
     }
   },
   {
@@ -2207,6 +2543,10 @@
     },
     "economy": {
       "avg_monthly_salary": 358.2
+    },
+    "coords": {
+      "lat": 14.5995,
+      "lng": 120.9842
     }
   },
   {
@@ -2233,6 +2573,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2791.96
+    },
+    "coords": {
+      "lat": -37.8136,
+      "lng": 144.9631
     }
   },
   {
@@ -2259,6 +2603,10 @@
     },
     "economy": {
       "avg_monthly_salary": 596.3
+    },
+    "coords": {
+      "lat": 19.4326,
+      "lng": -99.1332
     }
   },
   {
@@ -2285,6 +2633,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1601.0
+    },
+    "coords": {
+      "lat": 45.4642,
+      "lng": 9.19
     }
   },
   {
@@ -2311,6 +2663,10 @@
     },
     "economy": {
       "avg_monthly_salary": 433.37
+    },
+    "coords": {
+      "lat": 53.9006,
+      "lng": 27.559
     }
   },
   {
@@ -2337,6 +2693,10 @@
     },
     "economy": {
       "avg_monthly_salary": 695.46
+    },
+    "coords": {
+      "lat": 25.6866,
+      "lng": -100.3161
     }
   },
   {
@@ -2363,6 +2723,10 @@
     },
     "economy": {
       "avg_monthly_salary": 642.49
+    },
+    "coords": {
+      "lat": -34.9011,
+      "lng": -56.1645
     }
   },
   {
@@ -2389,6 +2753,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2182.51
+    },
+    "coords": {
+      "lat": 45.5017,
+      "lng": -73.5673
     }
   },
   {
@@ -2415,6 +2783,10 @@
     },
     "economy": {
       "avg_monthly_salary": 970.29
+    },
+    "coords": {
+      "lat": 55.7558,
+      "lng": 37.6173
     }
   },
   {
@@ -2441,6 +2813,10 @@
     },
     "economy": {
       "avg_monthly_salary": 487.96
+    },
+    "coords": {
+      "lat": 19.076,
+      "lng": 72.8777
     }
   },
   {
@@ -2467,6 +2843,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2627.51
+    },
+    "coords": {
+      "lat": 48.1351,
+      "lng": 11.582
     }
   },
   {
@@ -2493,6 +2873,10 @@
     },
     "economy": {
       "avg_monthly_salary": 327.85
+    },
+    "coords": {
+      "lat": -1.2921,
+      "lng": 36.8219
     }
   },
   {
@@ -2519,6 +2903,10 @@
     },
     "economy": {
       "avg_monthly_salary": 4665.46
+    },
+    "coords": {
+      "lat": 40.7128,
+      "lng": -74.006
     }
   },
   {
@@ -2545,6 +2933,10 @@
     },
     "economy": {
       "avg_monthly_salary": 536.67
+    },
+    "coords": {
+      "lat": 28.5355,
+      "lng": 77.391
     }
   },
   {
@@ -2571,6 +2963,10 @@
     },
     "economy": {
       "avg_monthly_salary": 439.58
+    },
+    "coords": {
+      "lat": 45.2671,
+      "lng": 19.8335
     }
   },
   {
@@ -2597,6 +2993,10 @@
     },
     "economy": {
       "avg_monthly_salary": 436.28
+    },
+    "coords": {
+      "lat": 55.0084,
+      "lng": 82.9357
     }
   },
   {
@@ -2623,6 +3023,10 @@
     },
     "economy": {
       "avg_monthly_salary": 360.47
+    },
+    "coords": {
+      "lat": 46.4825,
+      "lng": 30.7233
     }
   },
   {
@@ -2649,6 +3053,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2985.88
+    },
+    "coords": {
+      "lat": 59.9139,
+      "lng": 10.7522
     }
   },
   {
@@ -2675,6 +3083,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2904.67
+    },
+    "coords": {
+      "lat": 45.4215,
+      "lng": -75.6972
     }
   },
   {
@@ -2701,6 +3113,10 @@
     },
     "economy": {
       "avg_monthly_salary": 706.33
+    },
+    "coords": {
+      "lat": 8.9824,
+      "lng": -79.5199
     }
   },
   {
@@ -2727,6 +3143,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2215.02
+    },
+    "coords": {
+      "lat": 48.8566,
+      "lng": 2.3522
     }
   },
   {
@@ -2753,6 +3173,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2493.77
+    },
+    "coords": {
+      "lat": -31.9505,
+      "lng": 115.8605
     }
   },
   {
@@ -2779,6 +3203,10 @@
     },
     "economy": {
       "avg_monthly_salary": 3113.47
+    },
+    "coords": {
+      "lat": 33.4484,
+      "lng": -112.074
     }
   },
   {
@@ -2805,6 +3233,10 @@
     },
     "economy": {
       "avg_monthly_salary": 514.73
+    },
+    "coords": {
+      "lat": 42.1354,
+      "lng": 24.7453
     }
   },
   {
@@ -2831,6 +3263,10 @@
     },
     "economy": {
       "avg_monthly_salary": 484.81
+    },
+    "coords": {
+      "lat": 42.4304,
+      "lng": 19.2594
     }
   },
   {
@@ -2857,6 +3293,10 @@
     },
     "economy": {
       "avg_monthly_salary": 3403.15
+    },
+    "coords": {
+      "lat": 45.5152,
+      "lng": -122.6784
     }
   },
   {
@@ -2883,6 +3323,10 @@
     },
     "economy": {
       "avg_monthly_salary": 801.61
+    },
+    "coords": {
+      "lat": 41.1579,
+      "lng": -8.6291
     }
   },
   {
@@ -2909,6 +3353,10 @@
     },
     "economy": {
       "avg_monthly_salary": 791.94
+    },
+    "coords": {
+      "lat": 52.4064,
+      "lng": 16.9252
     }
   },
   {
@@ -2935,6 +3383,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1183.75
+    },
+    "coords": {
+      "lat": 50.0755,
+      "lng": 14.4378
     }
   },
   {
@@ -2961,6 +3413,10 @@
     },
     "economy": {
       "avg_monthly_salary": 531.09
+    },
+    "coords": {
+      "lat": 18.5204,
+      "lng": 73.8567
     }
   },
   {
@@ -2987,6 +3443,10 @@
     },
     "economy": {
       "avg_monthly_salary": 527.18
+    },
+    "coords": {
+      "lat": -0.1807,
+      "lng": -78.4678
     }
   },
   {
@@ -3013,6 +3473,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2908.86
+    },
+    "coords": {
+      "lat": 64.1466,
+      "lng": -21.9426
     }
   },
   {
@@ -3039,6 +3503,10 @@
     },
     "economy": {
       "avg_monthly_salary": 806.02
+    },
+    "coords": {
+      "lat": 56.9496,
+      "lng": 24.1052
     }
   },
   {
@@ -3065,6 +3533,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1466.06
+    },
+    "coords": {
+      "lat": 41.9028,
+      "lng": 12.4964
     }
   },
   {
@@ -3091,6 +3563,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2312.39
+    },
+    "coords": {
+      "lat": 51.9244,
+      "lng": 4.4777
     }
   },
   {
@@ -3117,6 +3593,10 @@
     },
     "economy": {
       "avg_monthly_salary": 645.94
+    },
+    "coords": {
+      "lat": 59.9311,
+      "lng": 30.3609
     }
   },
   {
@@ -3143,6 +3623,10 @@
     },
     "economy": {
       "avg_monthly_salary": 4293.13
+    },
+    "coords": {
+      "lat": 32.7157,
+      "lng": -117.1611
     }
   },
   {
@@ -3169,6 +3653,10 @@
     },
     "economy": {
       "avg_monthly_salary": 6532.21
+    },
+    "coords": {
+      "lat": 37.7749,
+      "lng": -122.4194
     }
   },
   {
@@ -3195,6 +3683,10 @@
     },
     "economy": {
       "avg_monthly_salary": 708.44
+    },
+    "coords": {
+      "lat": 9.9281,
+      "lng": -84.0907
     }
   },
   {
@@ -3221,6 +3713,10 @@
     },
     "economy": {
       "avg_monthly_salary": 618.33
+    },
+    "coords": {
+      "lat": -33.4489,
+      "lng": -70.6693
     }
   },
   {
@@ -3247,6 +3743,10 @@
     },
     "economy": {
       "avg_monthly_salary": 335.33
+    },
+    "coords": {
+      "lat": 18.4861,
+      "lng": -69.9312
     }
   },
   {
@@ -3273,6 +3773,10 @@
     },
     "economy": {
       "avg_monthly_salary": 470.25
+    },
+    "coords": {
+      "lat": -23.5505,
+      "lng": -46.6333
     }
   },
   {
@@ -3299,6 +3803,10 @@
     },
     "economy": {
       "avg_monthly_salary": 486.12
+    },
+    "coords": {
+      "lat": 43.8563,
+      "lng": 18.4131
     }
   },
   {
@@ -3325,6 +3833,10 @@
     },
     "economy": {
       "avg_monthly_salary": 4741.65
+    },
+    "coords": {
+      "lat": 47.6062,
+      "lng": -122.3321
     }
   },
   {
@@ -3351,6 +3863,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2120.34
+    },
+    "coords": {
+      "lat": 37.5665,
+      "lng": 126.978
     }
   },
   {
@@ -3377,6 +3893,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1111.52
+    },
+    "coords": {
+      "lat": 31.2304,
+      "lng": 121.4737
     }
   },
   {
@@ -3403,6 +3923,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2988.12
+    },
+    "coords": {
+      "lat": 1.3521,
+      "lng": 103.8198
     }
   },
   {
@@ -3429,6 +3953,10 @@
     },
     "economy": {
       "avg_monthly_salary": 393.01
+    },
+    "coords": {
+      "lat": 41.9981,
+      "lng": 21.4254
     }
   },
   {
@@ -3455,6 +3983,10 @@
     },
     "economy": {
       "avg_monthly_salary": 708.65
+    },
+    "coords": {
+      "lat": 42.6977,
+      "lng": 23.3219
     }
   },
   {
@@ -3481,6 +4013,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2476.17
+    },
+    "coords": {
+      "lat": 59.3293,
+      "lng": 18.0686
     }
   },
   {
@@ -3507,6 +4043,10 @@
     },
     "economy": {
       "avg_monthly_salary": 3018.36
+    },
+    "coords": {
+      "lat": -33.8688,
+      "lng": 151.2093
     }
   },
   {
@@ -3533,6 +4073,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1340.77
+    },
+    "coords": {
+      "lat": 25.033,
+      "lng": 121.5654
     }
   },
   {
@@ -3559,6 +4103,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1188.81
+    },
+    "coords": {
+      "lat": 59.437,
+      "lng": 24.7536
     }
   },
   {
@@ -3585,6 +4133,10 @@
     },
     "economy": {
       "avg_monthly_salary": 205.98
+    },
+    "coords": {
+      "lat": 41.2995,
+      "lng": 69.2401
     }
   },
   {
@@ -3611,6 +4163,10 @@
     },
     "economy": {
       "avg_monthly_salary": 248.07
+    },
+    "coords": {
+      "lat": 41.7151,
+      "lng": 44.8271
     }
   },
   {
@@ -3637,6 +4193,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2306.23
+    },
+    "coords": {
+      "lat": 32.0853,
+      "lng": 34.7818
     }
   },
   {
@@ -3663,6 +4223,10 @@
     },
     "economy": {
       "avg_monthly_salary": 660.51
+    },
+    "coords": {
+      "lat": 40.6401,
+      "lng": 22.9444
     }
   },
   {
@@ -3689,6 +4253,10 @@
     },
     "economy": {
       "avg_monthly_salary": 613.27
+    },
+    "coords": {
+      "lat": 45.7489,
+      "lng": 21.2087
     }
   },
   {
@@ -3715,6 +4283,10 @@
     },
     "economy": {
       "avg_monthly_salary": 336.43
+    },
+    "coords": {
+      "lat": 41.3275,
+      "lng": 19.8187
     }
   },
   {
@@ -3741,6 +4313,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2657.42
+    },
+    "coords": {
+      "lat": 35.6762,
+      "lng": 139.6503
     }
   },
   {
@@ -3767,6 +4343,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2352.69
+    },
+    "coords": {
+      "lat": 43.6532,
+      "lng": -79.3832
     }
   },
   {
@@ -3793,6 +4373,10 @@
     },
     "economy": {
       "avg_monthly_salary": 285.79
+    },
+    "coords": {
+      "lat": 36.8065,
+      "lng": 10.1815
     }
   },
   {
@@ -3819,6 +4403,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2214.18
+    },
+    "coords": {
+      "lat": 52.0907,
+      "lng": 5.1214
     }
   },
   {
@@ -3845,6 +4433,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1342.17
+    },
+    "coords": {
+      "lat": 39.4699,
+      "lng": -0.3763
     }
   },
   {
@@ -3871,6 +4463,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2625.31
+    },
+    "coords": {
+      "lat": 49.2827,
+      "lng": -123.1207
     }
   },
   {
@@ -3897,6 +4493,10 @@
     },
     "economy": {
       "avg_monthly_salary": 511.5
+    },
+    "coords": {
+      "lat": 43.2141,
+      "lng": 27.9147
     }
   },
   {
@@ -3923,6 +4523,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2338.36
+    },
+    "coords": {
+      "lat": 48.4284,
+      "lng": -123.3656
     }
   },
   {
@@ -3949,6 +4553,10 @@
     },
     "economy": {
       "avg_monthly_salary": 1900.43
+    },
+    "coords": {
+      "lat": 48.2082,
+      "lng": 16.3738
     }
   },
   {
@@ -3975,6 +4583,10 @@
     },
     "economy": {
       "avg_monthly_salary": 912.37
+    },
+    "coords": {
+      "lat": 54.6872,
+      "lng": 25.2797
     }
   },
   {
@@ -4001,6 +4613,10 @@
     },
     "economy": {
       "avg_monthly_salary": 979.42
+    },
+    "coords": {
+      "lat": 52.2297,
+      "lng": 21.0122
     }
   },
   {
@@ -4027,6 +4643,10 @@
     },
     "economy": {
       "avg_monthly_salary": 2068.87
+    },
+    "coords": {
+      "lat": 49.8951,
+      "lng": -97.1384
     }
   },
   {
@@ -4053,6 +4673,10 @@
     },
     "economy": {
       "avg_monthly_salary": 848.11
+    },
+    "coords": {
+      "lat": 51.1079,
+      "lng": 17.0385
     }
   },
   {
@@ -4079,6 +4703,10 @@
     },
     "economy": {
       "avg_monthly_salary": 537.99
+    },
+    "coords": {
+      "lat": 56.8389,
+      "lng": 60.6057
     }
   },
   {
@@ -4105,6 +4733,10 @@
     },
     "economy": {
       "avg_monthly_salary": 295.66
+    },
+    "coords": {
+      "lat": 40.1872,
+      "lng": 44.5152
     }
   },
   {
@@ -4131,6 +4763,10 @@
     },
     "economy": {
       "avg_monthly_salary": 903.99
+    },
+    "coords": {
+      "lat": 45.815,
+      "lng": 15.9819
     }
   },
   {
@@ -4157,6 +4793,10 @@
     },
     "economy": {
       "avg_monthly_salary": 5714.8
+    },
+    "coords": {
+      "lat": 47.3769,
+      "lng": 8.5417
     }
   }
 ]

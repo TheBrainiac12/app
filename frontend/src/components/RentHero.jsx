@@ -8,7 +8,7 @@ import { RENT } from "@/constants/testIds/rent";
 
 const rise = (d) => ({ initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { delay: d, duration: 0.6, ease: [0.22, 1, 0.36, 1] } });
 
-const RentField = ({ city, rent, setRent }) => {
+export const RentField = ({ city, rent, setRent }) => {
   const code = currencyOf(city.country);
   const typical = fromEur(city.housing["1_bed_center"], code);
   const min = niceRound(typical * 0.3);
@@ -55,7 +55,7 @@ const PRESETS = [
   { id: "new-york-ny-united-states", label: "New York · $3,500", rent: 3500 },
 ];
 
-const Presets = ({ onPick }) => (
+export const Presets = ({ onPick }) => (
   <motion.div {...rise(0.32)} className="flex flex-wrap items-center gap-2 pt-1">
     <span className="mr-1 font-mono text-[11px] uppercase tracking-[0.18em] text-white/40">Quick try</span>
     {PRESETS.map((p) => (
@@ -79,32 +79,25 @@ export const RentHero = ({ city, setCity, rent, setRent, onCompare }) => {
   };
   const ready = city && rent > 0;
   return (
-    <section className="mx-auto grid min-h-[calc(100vh-80px)] max-w-7xl items-center gap-12 px-5 py-12 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
+    <div className="space-y-5">
       <div>
-        <motion.p {...rise(0)} className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 font-mono text-xs uppercase tracking-[0.2em] text-[#10E39A]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#10E39A]" /> 160 cities · 0 sign-ups
-        </motion.p>
-        <motion.h1 {...rise(0.08)} className="font-display text-5xl font-extrabold leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-7xl">
-          What your rent<br />buys <span className="text-[#FFB020]">elsewhere.</span>
-        </motion.h1>
-        <motion.p {...rise(0.16)} className="mt-6 max-w-md text-base text-white/60 sm:text-lg">
-          Same money, different map. See the apartment, the date nights and the savings your monthly rent unlocks around the world.
-        </motion.p>
+        <h1 className="font-display text-3xl font-extrabold leading-[0.95] tracking-tight text-white sm:text-4xl">
+          What your rent buys <span className="text-[#FFB020]">elsewhere.</span>
+        </h1>
+        <p className="mt-2 text-sm text-white/55">Same money, different map. Pick your city and rent.</p>
       </div>
-      <div className="space-y-4">
-      <motion.form
-        {...rise(0.24)}
+      <form
         data-testid={RENT.heroForm}
         onSubmit={(e) => { e.preventDefault(); if (ready) onCompare(city, rent); }}
-        className="glass-panel space-y-6 rounded-[28px] p-6 sm:p-8"
+        className="space-y-4"
       >
         <div className="space-y-2">
-          <label className="font-mono text-xs uppercase tracking-[0.18em] text-white/50">I live in</label>
+          <label className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/50">I live in</label>
           <CityCombobox value={city} onSelect={pickCity} />
         </div>
         {city && (
           <div className="space-y-2">
-            <label className="font-mono text-xs uppercase tracking-[0.18em] text-white/50">I pay every month</label>
+            <label className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/50">I pay every month</label>
             <RentField city={city} rent={rent} setRent={setRent} />
           </div>
         )}
@@ -112,13 +105,12 @@ export const RentHero = ({ city, setCity, rent, setRent, onCompare }) => {
           type="submit"
           data-testid={RENT.compareButton}
           disabled={!ready}
-          className="group flex h-14 w-full items-center justify-center gap-2 rounded-full border border-transparent bg-[#0B9E6C] font-display text-lg font-bold text-white shadow-[0_0_40px_-8px_rgba(16,227,154,0.6)] transition-[transform,background-color,box-shadow] hover:bg-[#0DB57C] active:scale-[0.98] disabled:cursor-not-allowed disabled:border-white/15 disabled:bg-transparent disabled:text-white/35 disabled:shadow-none"
+          className="group flex h-12 w-full items-center justify-center gap-2 rounded-full border border-transparent bg-[#0B9E6C] font-display text-base font-bold text-white shadow-[0_0_40px_-8px_rgba(16,227,154,0.6)] transition-[transform,background-color,box-shadow] hover:bg-[#0DB57C] active:scale-[0.98] disabled:cursor-not-allowed disabled:border-white/15 disabled:bg-transparent disabled:text-white/35 disabled:shadow-none"
         >
-          Compare <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+          Compare on the globe <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
         </button>
-      </motion.form>
+      </form>
       <Presets onPick={(c, r) => { setCity(c); setRent(r); onCompare(c, r); }} />
-      </div>
-    </section>
+    </div>
   );
 };
