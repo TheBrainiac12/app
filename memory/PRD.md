@@ -22,3 +22,11 @@ A viral single-page app for a hackathon. A renter picks their city and monthly r
 ## Backlog
 - P1: compare against a chosen city; region filter; 1-bed vs 3-bed preference.
 - P2: native share sheet and shareable link; multi-slide story in the style of Spotify Wrapped; privacy-friendly analytics.
+
+## Globe upgrade (Jun 2026)
+- Full-screen react-globe.gl globe with local textures (/public/textures: earth-night, topology, night sky), atmosphere glow, auto-rotate until the user interacts, minDistance 150.
+- Top-left glass panel (search, rent, presets) changes to a summary with Edit after Compare. The camera flies to the origin city, which gets an emerald pulsing ring.
+- 5 matched cities (engine count = 5), tier-coloured animated arcs, pulsing rings, and clickable HTML label pills. A screen-space rAF layout keeps pills from overlapping, keeps them on screen and clear of the panels, and adds leader lines.
+- Clicking a pill or point flies to the city and opens a right slide-over drawer with the full CityCard and Share PNG. Closing the drawer returns the camera to the overview.
+- Bottom dock: Shuffle 5 Cities, plus a toggle that shows all 160 cities as points (emerald = covered, coral = reality check) with a tooltip; clicking a point zooms to altitude 0.6.
+- The camera overview centres on the middle of the origin and the destinations, with an altitude based on how far apart they are.

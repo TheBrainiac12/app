@@ -78,11 +78,14 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
         })
         .filter((it) => it.w > 0)
         .sort((a, b) => (b.origin - a.origin) || a.top - b.top);
-      const placed = [];
+      const placed = [...document.querySelectorAll(".glass-panel")].map((el) => {
+        const r = el.getBoundingClientRect();
+        return { left: r.left, top: r.top, w: r.width, h: r.height };
+      });
       items.forEach((it) => {
         const left = it.left < 8 ? 8 : it.left + it.w > window.innerWidth - 8 ? window.innerWidth - 8 - it.w : it.left;
         let top = it.top;
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < 12; i++) {
           const hit = placed.find((p) => left < p.left + p.w + 4 && left + it.w + 4 > p.left && top < p.top + p.h + 4 && top + it.h + 4 > p.top);
           if (!hit) break;
           top = hit.top + hit.h + 4;
@@ -91,7 +94,10 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
         const ndx = left - it.left;
         const ndy = top - it.top;
         if (Math.abs(ndx - it.dx) > 0.5) it.el.style.setProperty("--dx", `${ndx}px`);
-        if (Math.abs(ndy - it.dy) > 0.5) it.el.style.setProperty("--dy", `${ndy}px`);
+        if (Math.abs(ndy - it.dy) > 0.5) {
+          it.el.style.setProperty("--dy", `${ndy}px`);
+          it.el.style.setProperty("--lead", `${Math.max(0, ndy - it.h - 10)}px`);
+        }
       });
       raf = requestAnimationFrame(layout);
     };

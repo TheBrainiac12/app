@@ -1,0 +1,31 @@
+{
+  "summary": "Frontend retest of the screen-space pill layout (iteration 6), using Playwright at 1920x1080 and 390x844 with 4 presets x (preset + 2 shuffles) = 24 states. LAYOUT PASS: across 134 visible pills, pairwise overlaps = 0, pills horizontally outside the viewport = 0, pills vertically outside the viewport = 0, and the origin pill was missing or off-screen 0/24 times (mobile was 3/8 off-screen in iteration 5). The NY origin on mobile is clamped to l=8 as intended. Pills under the top glass panel: desktop 0/64, mobile 2/70 (mumbai shuffle: seattle; NY shuffle: shanghai). Pills under the bottom dock: 0 in the overview. The spread-based altitude works, since every state fits. CLICK/HOVER PASS: real mouse clicks on shifted pills (dy 46-108px) open city-drawer with the matching card 6/6, elementFromPoint at the pill center returns the pill itself, and hover applies scale(1.06) while keeping --dy. REGRESSION PASS: explore toggles aria-pressed to true and resets to false after Edit -> re-compare. Edit keeps the city and rent and hides labels. Share downloads a PNG on both viewports. Shuffle gives fresh labels with 0 repeats. No page errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "CityDrawer close / camera", "issue": "Closing the drawer does not restore the overview camera. It stays at altitude 1.1 on the picked city, so most other pills are on the back side or hidden, and one pill (Nairobi) ended up under the bottom dock. Users must press Shuffle to see the batch again, and that replaces the batch.", "selector": "[data-testid='city-drawer-close-button']", "priority": "MEDIUM"},
+      {"component": "GlobeView pills (automation)", "issue": "Playwright locator.click() often times out with 'element is not stable'. Pills get re-transformed every frame (by the CSS2D renderer plus the rAF layout and the 0.2s transform transition). Real mouse clicks work. This only affects test automation.", "selector": ".globe-pill", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Globe overview", "issues": ["Pushed-down pills can sit 50-110px below their anchor dot (mobile dubai dy=108) with no leader line, so it is unclear which dot a pill belongs to. Consider a thin connector line from the anchor to the pill, or alternating up/down pushes.", "Mobile: 2/70 pills were placed under the top glass panel. The layout loop could treat the panel and dock rects as pre-placed obstacles."]}
+    ]
+  },
+  "test_report_links": ["/app/tests/globe_labels_iter6.py"],
+  "action_items": [
+    "On drawer close (onClose), call overview(origin, batch.cards) to return the camera to the batch view.",
+    "Optional: add the .glass-panel and dock bounding rects to `placed` in the GlobeView layout loop, so pills avoid them.",
+    "Optional: draw a connector from the anchor to a shifted pill when |dy| > 20."
+  ],
+  "critical_code_review_comments": [
+    "GlobeView layout loop runs querySelectorAll plus getBoundingClientRect for every pill on every frame, forever, including while editing or when the tab is idle. This is fine for 6 pills, but consider skipping the work when nothing moved.",
+    "The collision loop only pushes downward, up to 8 iterations. A dense cluster can push pills down a long way and could exit the bottom of the viewport. This was not seen in 24 states.",
+    "Sort order uses the unshifted top, so the layout is deterministic and no oscillation was observed."
+  ],
+  "updated_files": ["/app/tests/globe_labels_iter6.py"],
+  "success_rate": {"backend": "N/A", "frontend": "97% (all requested checks pass; 2/70 mobile pills under the panel; drawer-close camera UX issue)"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Measure with offsetParent visibility. Use mouse.click at the bbox center for pills. After closing the drawer the camera stays zoomed, so use Shuffle to return to the overview. Presets auto-compare; wait 4.5s."
+}

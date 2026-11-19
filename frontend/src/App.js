@@ -106,7 +106,7 @@ function App() {
       </div>
       <AnimatePresence>{loading && <PlayfulLoader />}</AnimatePresence>
       {batch && !editing && !loading && !selected && <BottomDock onShuffle={shuffle} explore={explore} setExplore={setExplore} />}
-      <CityDrawer card={selected} code={code} onClose={() => setSelected(null)} onShare={setShareCard} />
+      <CityDrawer card={selected} code={code} onClose={() => { setSelected(null); overview(origin, batch.cards); }} onShare={setShareCard} />
       {origin && <ShareDialog card={shareCard} onClose={() => setShareCard(null)} origin={origin} code={code} rentLocal={formatMoney(batch.rent, code)} />}
       <Toaster position="bottom-center" theme="dark" />
     </div>
