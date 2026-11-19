@@ -13,6 +13,8 @@ const ISO = {
   "United Arab Emirates": "AE", "United Kingdom": "GB", "United States": "US", Uruguay: "UY", Uzbekistan: "UZ", Vietnam: "VN",
 };
 
+export const isoOf = (country) => ISO[country];
+
 export const flagOf = (country) => {
   const code = ISO[country];
   return code ? String.fromCodePoint(...[...code].map((ch) => 0x1f1e6 + ch.charCodeAt(0) - 65)) : "";

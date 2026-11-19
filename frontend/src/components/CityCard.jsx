@@ -4,7 +4,7 @@ import { cardWithSize } from "@/lib/engine";
 import { BedDouble, Check, PiggyBank, Share2, Sparkles, TrendingUp, Wifi } from "lucide-react";
 import { formatEur, formatUsd } from "@/lib/currency";
 import { salaryLine, styleFor } from "@/lib/theme";
-import { flagOf } from "@/lib/flags";
+import { Flag } from "@/components/Flag";
 import { RENT } from "@/constants/testIds/rent";
 
 const VIBE = [
@@ -152,7 +152,7 @@ export const CityCard = ({ card: baseCard, code, index, onShare }) => {
           {card.reality ? <TrendingUp className="h-5 w-5" /> : <Sparkles className="h-5 w-5" />}
         </div>
         <h3 className="relative mt-8 break-words font-display text-3xl font-extrabold leading-none tracking-tight">
-          {card.city.city} <span className="align-middle text-2xl">{flagOf(card.city.country)}</span>
+          {card.city.city} <Flag country={card.city.country} height={22} className="ml-1 -mt-1" />
         </h3>
         <p className="relative mt-1 text-sm font-medium opacity-75">{card.city.country}</p>
       </div>

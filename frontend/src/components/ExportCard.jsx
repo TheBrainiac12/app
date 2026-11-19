@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { formatEur } from "@/lib/currency";
 import { salaryLine, styleFor } from "@/lib/theme";
-import { flagOf } from "@/lib/flags";
+import { Flag } from "@/components/Flag";
 import { RENT } from "@/constants/testIds/rent";
 
 const FONT = "'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif";
@@ -80,7 +80,7 @@ export const ExportCard = forwardRef(({ card, origin, code, rentLocal, format },
         <div data-testid="export-city-name" style={{ fontSize: nameSize(card.city.city, story), fontWeight: 800, lineHeight: 1, letterSpacing: -3, marginTop: 12, overflowWrap: "break-word" }}>
           {card.city.city}
         </div>
-        <div style={{ fontSize: 36, fontWeight: 600, marginTop: 16, opacity: 0.8 }}>{flagOf(card.city.country)} {card.city.country}</div>
+        <div style={{ fontSize: 36, fontWeight: 600, marginTop: 16, opacity: 0.8 }}><Flag country={card.city.country} height={34} style={{ marginRight: 14, marginTop: -6 }} />{card.city.country}</div>
         <div style={{ display: "inline-block", marginTop: story ? 44 : 28, background: s.ink, color: s.hex, borderRadius: 999, padding: "16px 32px", fontSize: 40, fontWeight: 800 }}>
           {card.reality ? "Reality check" : card.apartment}
         </div>
