@@ -1,0 +1,32 @@
+{
+  "summary": "Frontend testing of photorealistic globe + SVG teardrop pins (iteration 7) with Playwright at 1920x1080 and 390x844. Textures: all 5 (/textures/earth-blue-marble.jpg, earth-topology.png, earth-water.png, clouds.png, night-sky.png) returned 200; 0 page errors in all runs (globeMaterial error is gone). Visual: blue-marble texture, bump, specular, blue atmosphere and clouds all render. PINS: over 12 states (3 presets + shuffle, on 2 viewports), every visible pin tip sits exactly at its wrapper anchor (0 tips off by more than 1px). Pill-pill overlaps were 0 and pill-pin overlaps were 0. 4-6 pins are visible per state; the rest are hidden on the far side of the globe, which is expected. PILLS ABOVE PINS: partial. In 11/12 states, 1-6 pills were pushed BELOW their own pin by the collision loop, which only pushes downward (e.g. desktop London shuffle: Sofia, Zagreb and Zurich all stacked beneath their pins; mobile London preset: 6/6). Leader lines are drawn, but the requirement that pills sit above pins is not met for clustered cities. CLICKS: real mouse clicks on destination pins opened the matching drawer card 4/4 (desktop + mobile), pill clicks matched 2/2, and the origin pin correctly opens nothing. Drawer close works (the element is removed). EXPLORE: the toggle sets aria-pressed=true. Points render as flush discs with no cylinders (checked zoomed in), and clicking a point opened the drawer for that city (Reykjavik, not in the batch). REGRESSION: shuffle OK. Share dialog + PNG download OK on both viewports (rent-mumbai-vs-kaunas-square.png). Edit keeps the city and rent and clears the destination pins; re-compare restores the pins. Mobile layout OK.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "GlobeView layout loop", "issue": "Pins are now obstacles and the loop only pushes down (top = hit.top + hit.h + 4), so in clustered regions (Europe) pills land below their pin, and sometimes below other pins. This happened in 11/12 states, with up to 6 pills per state on mobile. That breaks the requirement that pills sit above pins.", "selector": ".globe-pill", "priority": "MEDIUM"},
+      {"component": "Explore points", "issue": "pointRadius 0.22 makes dots about 2-4px at overview altitude, which is very hard to hover or tap, especially on mobile. Hover/click only works reliably once zoomed in.", "selector": "canvas (points layer)", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Globe overview", "issues": ["Clustered pills stack in a column under the pins, which reads like a list detached from the pins. Consider trying upward and sideways candidate positions before pushing down.", "Mobile: a pin near the top of the globe can sit partly under the glass panel (Mumbai re-compare at 80000).", "Zoomed in, the arcs become very thick tubes crossing the view. Consider an arcStroke that scales with altitude."]}
+    ]
+  },
+  "test_report_links": ["/app/tests/globe_pins_iter7.py", "/app/tests/globe_labels_iter6.py"],
+  "action_items": [
+    "In the GlobeView layout loop, try candidate offsets in this order: above (default), above-left/right, further above (top = hit.top - it.h - 4), and only then below, so that pills stay above their pins.",
+    "Optional: increase pointRadius (or scale it by camera altitude) so explore dots are tappable at overview zoom.",
+    "Optional: treat the .glass-panel rect as an exclusion zone for pins and pills on mobile."
+  ],
+  "critical_code_review_comments": [
+    "GlobeView.onReady starts an rAF tick loop (clouds/sun) that is never cancelled. If the component remounts, loops accumulate.",
+    "The layout loop still runs querySelectorAll plus getBoundingClientRect every frame, forever, and now covers pins too.",
+    "The cloud mesh is added via g.scene().add and is not part of the raycast objects, so it does not block clicks (verified).",
+    "Module-level TextureLoader for the specular map runs at import time. That works, but there is no error handler."
+  ],
+  "updated_files": ["/app/tests/globe_pins_iter7.py"],
+  "success_rate": {"backend": "N/A", "frontend": "90% (all functional checks pass; pills-above-pins requirement fails for clustered cities)"},
+  "seed_data_creation": "none",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "The browser tool rewrites screenshot paths inside f-strings, so use plain string paths. Pin anchor = pin.parentElement rect (left/top). Click pins/pills with mouse.click at the bbox centre. Explore point click: zoom in with the wheel, hide .globe-pin/.globe-pill via add_style_tag, find emerald pixels (g>170, r<90) in a PNG screenshot with PIL, hover for 250ms until .globe-tip shows, then mouse down/up. Grid scans are too slow (they exceed the 480s limit). A 'notAbove' metric (pill.bottom > pin.top) is in globe_pins_iter7.py."
+}

@@ -70,7 +70,7 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
 
     const clouds = new Mesh(
       new SphereGeometry(g.getGlobeRadius() * 1.004, 75, 75),
-      new MeshPhongMaterial({ transparent: true, opacity: 0.32, depthWrite: false })
+      new MeshPhongMaterial({ transparent: true, opacity: 0.25, depthWrite: false })
     );
     new TextureLoader().load("/textures/clouds.png", (tex) => { clouds.material.map = tex; clouds.material.needsUpdate = true; });
     g.scene().add(clouds);
@@ -108,19 +108,25 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
           return { el, w: el.offsetParent ? w : 0, h, left: a.left - w / 2, top: a.top - 36 - h, dx, dy, origin: el.dataset.testid === "globe-origin-label" };
         })
         .filter((it) => it.w > 0)
-        .sort((a, b) => (b.origin - a.origin) || a.top - b.top);
+        .sort((a, b) => (b.origin - a.origin) || b.top - a.top);
       const placed = [...document.querySelectorAll(".glass-panel, .globe-pin")].filter((el) => el.offsetParent).map((el) => {
         const r = el.getBoundingClientRect();
         return { left: r.left, top: r.top, w: r.width, h: r.height };
       });
       items.forEach((it) => {
         const left = it.left < 8 ? 8 : it.left + it.w > window.innerWidth - 8 ? window.innerWidth - 8 - it.w : it.left;
-        let top = it.top;
-        for (let i = 0; i < 12; i++) {
-          const hit = placed.find((p) => left < p.left + p.w + 4 && left + it.w + 4 > p.left && top < p.top + p.h + 4 && top + it.h + 4 > p.top);
-          if (!hit) break;
-          top = hit.top + hit.h + 4;
-        }
+        const hitAt = (t) => placed.find((p) => left < p.left + p.w + 4 && left + it.w + 4 > p.left && t < p.top + p.h + 4 && t + it.h + 4 > p.top);
+        const search = (up) => {
+          let t = it.top;
+          for (let i = 0; i < 12; i++) {
+            const hit = hitAt(t);
+            if (!hit) return t;
+            t = up ? hit.top - it.h - 4 : hit.top + hit.h + 4;
+          }
+          return null;
+        };
+        const upTop = search(true);
+        const top = upTop !== null && upTop >= 8 ? upTop : search(false) ?? it.top;
         placed.push({ left, top, w: it.w, h: it.h });
         const ndx = left - it.left;
         const ndy = top - it.top;
@@ -128,6 +134,7 @@ export const GlobeView = ({ origin, cards, explore, rentEur, focus, onPick }) =>
         if (Math.abs(ndy - it.dy) > 0.5) {
           it.el.style.setProperty("--dy", `${ndy}px`);
           it.el.style.setProperty("--lead", `${Math.max(0, ndy - it.h - 6)}px`);
+          it.el.style.setProperty("--lead-down", `${Math.max(0, -ndy)}px`);
         }
       });
       raf = requestAnimationFrame(layout);

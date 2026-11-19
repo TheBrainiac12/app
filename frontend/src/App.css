@@ -117,6 +117,18 @@
   pointer-events: none;
 }
 
+.globe-pill::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: calc(50% - var(--dx, 0px));
+  width: 1px;
+  height: var(--lead-down, 0px);
+  background: var(--pill);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .globe-pill:hover {
   transform: translate(calc(-50% + var(--dx, 0px)), calc(var(--dy, 0px) - 3px)) scale(1.06);
   background: rgba(20, 25, 36, 0.95);
