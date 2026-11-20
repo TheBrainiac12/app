@@ -7,7 +7,7 @@ export const TIER_STYLES = {
   reality: { name: "Reality Check", hex: "#FF5A7A", ink: "#3D0412" },
 };
 
-export const styleFor = (card) => (card.reality ? TIER_STYLES.reality : TIER_STYLES[card.slot]);
+export const styleFor = (card) => (card.slot === "custom" ? TIER_STYLES.custom : card.reality ? TIER_STYLES.reality : TIER_STYLES[card.slot]);
 
 export const salaryLine = (ratio) =>
   ratio >= 1

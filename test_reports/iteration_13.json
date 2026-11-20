@@ -1,0 +1,26 @@
+{
+  "summary": "Frontend-only test of the dock 'Compare vs. any city' search (DockCitySearch + pickCustom), run at 1920x1000 and 390x844 on the Mumbai preset. Everything in the brief passes. 'lis' lists Lisbon (with flag) and Tbilisi, and 'mum' lists nothing because the origin is excluded. In the input, ArrowDown/ArrowUp move the highlight (clamped). ArrowLeft/Right while typing do not open or cycle the drawer. Enter picks. Escape closes the list, clears and blurs the input, and leaves the dock open with no drawer. After a pick there are 6 globe-label-* (5 + custom); the custom pill is cyan (#22D3EE); city-drawer opens with the CUSTOM PICK badge and the stamp. Clicking an option with the mouse works. Picking a city already in the 5 (Lisbon in one random batch) opens its existing card (MID-RANGE) with no duplicate label (still 5). The 1-Bed/3-Bed toggle works on the custom card. Share > Download PNG saves what-rent-buys-porto.png. ArrowRight cycling includes the custom pick (Brasov > Manila > New York > Sofia > Kharkiv > Porto > Brasov). The input is empty when the dock comes back. Shuffle removes the custom label (back to 5). Mobile: the dock is 382px wide in a 390px viewport (scrollWidth 390, no overflow), the dropdown is visible above the dock, and the pick opens the drawer with 6 labels. No page errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "CityCard badge for custom picks that are reality cards", "issue": "The brief says a custom pick uses the cyan 'Custom Pick' styling. But styleFor() gives reality priority, so a custom pick the rent cannot cover at the default size (e.g. Zurich from Mumbai at 65,000 INR) shows a pink REALITY CHECK badge and no 'Custom Pick' marker at all. The user cannot tell it is the city they picked themselves. The behaviour is also inconsistent: if the same kind of card only becomes a reality card after the 3-Bed toggle (Porto), it keeps the CUSTOM PICK badge and cyan header. Product decision: maybe always show a Custom Pick marker for slot 'custom'.", "selector": "[data-testid=city-drawer]", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Optional: decide how a custom pick that is a reality card should look. Right now Zurich shows only REALITY CHECK and loses the CUSTOM PICK identity. One option is to keep the Custom Pick badge (or a small 'Your pick' tag) next to the reality styling."
+  ],
+  "critical_code_review_comments": [
+    "DockCitySearch: the onBlur setTimeout(150) is never cleared. Harmless, but if the component unmounts in that window (the pick opens the drawer and hides the dock) it calls setState on an unmounted component. Option clicks use onMouseDown preventDefault, so this does not break selection.",
+    "Escape in the input clears the query as well as closing the list. That is sane, but slightly more than 'close the dropdown'.",
+    "When the list is empty (e.g. 'mum' or no match), there is no 'No cities found' empty state. Consider one for clarity."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100% (7/7 requested checks); 1 low-priority styling inconsistency"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Batches are random, so before testing a custom pick, choose a city that is not among the current globe-label-* ids (Porto, Lisbon, Valencia or Krakow are good candidates from Mumbai). The drawer badge is the 4th line of the city-drawer innerText. The dock is hidden while the drawer is open."
+}
