@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { cardWithSize } from "@/lib/engine";
-import { BedDouble, Check, PiggyBank, Share2, Sparkles, TrendingUp, Wifi } from "lucide-react";
+import { BedDouble, Check, PiggyBank, Share2, Wifi } from "lucide-react";
 import { formatEur, formatUsd } from "@/lib/currency";
 import { salaryLine, styleFor } from "@/lib/theme";
 import { Flag } from "@/components/Flag";
+import { PassportStamp } from "@/components/PassportStamp";
 import { headerRoast } from "@/lib/share";
 import { RENT } from "@/constants/testIds/rent";
 
@@ -151,7 +152,7 @@ export const CityCard = ({ card: baseCard, code, index, onShare, originName }) =
           <span className="rounded-full px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.18em]" style={{ background: s.ink, color: s.hex }}>
             {s.name}
           </span>
-          {card.reality ? <TrendingUp className="h-5 w-5" /> : <Sparkles className="h-5 w-5" />}
+          <PassportStamp variant={card.reality ? "denied" : "approved"} accentColor={s.ink} size={80} opacity={0.7} testId={`${id}-stamp`} style={{ margin: "-10px -6px -24px 0" }} />
         </div>
         <h3 className="relative mt-8 break-words font-display text-3xl font-extrabold leading-none tracking-tight">
           {card.city.city} <Flag country={card.city.country} height={22} className="ml-1 -mt-1" />

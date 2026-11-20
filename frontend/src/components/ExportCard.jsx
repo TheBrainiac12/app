@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { formatEur } from "@/lib/currency";
 import { salaryLine, styleFor } from "@/lib/theme";
 import { Flag } from "@/components/Flag";
+import { PassportStamp } from "@/components/PassportStamp";
 import { RENT } from "@/constants/testIds/rent";
 
 const FONT = "'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif";
@@ -64,7 +65,7 @@ export const ExportCard = forwardRef(({ card, origin, code, rentLocal, format },
         ...(card.billsCovered ? ["Utilities + Wi-Fi covered"] : []),
         ...card.perks.map((p) => `Plus ${p.text}`),
         ...(card.savings >= 1 ? [`+ ${formatEur(card.savings, code)} saved every month`] : []),
-      ].slice(0, 4);
+      ].slice(0, story ? 4 : 3);
   return (
     <div
       ref={ref}
@@ -91,8 +92,13 @@ export const ExportCard = forwardRef(({ card, origin, code, rentLocal, format },
         </div>
       </div>
       {story && <div style={{ marginTop: 48 }}><Breakdown card={card} code={code} color={s.hex} /></div>}
-      <div style={{ display: "flex", flexDirection: "column", gap: story ? 30 : 22, marginTop: story ? 52 : 40, flex: 1 }}>
-        {lines.map((l) => <Row key={l} color={s.hex} size={story ? 40 : 36}>{l}</Row>)}
+      <div style={{ display: "flex", gap: 24, marginTop: story ? 44 : 36, marginBottom: story ? 36 : 24, flex: 1, minHeight: 0, overflow: "hidden" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: story ? 24 : 18, flex: 1, minWidth: 0 }}>
+          {lines.map((l) => <Row key={l} color={s.hex} size={story ? 36 : 34}>{l}</Row>)}
+        </div>
+        <div style={{ alignSelf: "flex-end" }}>
+          <PassportStamp variant={card.reality ? "denied" : "approved"} accentColor={s.hex} size={story ? 240 : 190} testId="export-passport-stamp" />
+        </div>
       </div>
       {story ? (
         <>
