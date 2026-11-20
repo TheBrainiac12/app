@@ -11,6 +11,7 @@ import { SummaryChip } from "@/components/SummaryChip";
 import { ShareDialog } from "@/components/ShareDialog";
 import { cardFor, cardWithSize, generateBatch } from "@/lib/engine";
 import { GuessCard } from "@/components/GuessCard";
+import { EscapeModal } from "@/components/EscapeModal";
 import { SoundToggle } from "@/components/SoundToggle";
 import { BEST_KEY, historyEntry, loadBest, pickChallenge, sessionStats } from "@/lib/guess";
 import { playPop, playVerdict } from "@/lib/soundEffects";
@@ -36,6 +37,7 @@ function App() {
   const [guess, setGuess] = useState(null);
   const [best, setBest] = useState(loadBest);
   const [streakShare, setStreakShare] = useState(null);
+  const [escape, setEscape] = useState(null);
 
   const origin = batch ? batch.origin : null;
   const code = origin ? currencyOf(origin.country) : "USD";
@@ -182,11 +184,12 @@ function App() {
   };
 
   const keys = useRef({});
-  keys.current = { batch, allCards, editing, selected, shareCard, streakShare, loading, pick, closeDrawer, guess, answer, nextRound, exitGuess };
+  keys.current = { escape, batch, allCards, editing, selected, shareCard, streakShare, loading, pick, closeDrawer, guess, answer, nextRound, exitGuess };
   useEffect(() => {
     const onKey = (e) => {
       const k = keys.current;
       const t = e.target;
+      if (k.escape) return;
       const typing = t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.getAttribute("role") === "slider" || t.isContentEditable);
       if (e.key === "Escape") {
         if (e.defaultPrevented || k.shareCard || k.streakShare || typing) return;
@@ -227,7 +230,7 @@ function App() {
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-[#05070B]">
-      <GlobeView origin={globeOrigin} cards={cards} explore={explore && !editing} rentEur={rentEur} focus={focus} onPick={pick} selectMode={editing || !batch} onSelectOrigin={selectOrigin} />
+      <GlobeView origin={globeOrigin} cards={cards} explore={explore && !editing} rentEur={rentEur} focus={focus} onPick={pick} selectMode={editing || !batch} onSelectOrigin={selectOrigin} paused={!!escape} />
       <SoundToggle />
       {!guess && <div className="glass-panel absolute left-3 right-16 top-3 z-20 max-h-[calc(100vh-110px)] overflow-y-auto rounded-[24px] p-5 sm:left-5 sm:right-auto sm:top-5 sm:w-[390px] sm:p-6">
         <div className="mb-4 flex items-center gap-2 font-display text-sm font-extrabold text-white">
@@ -241,7 +244,7 @@ function App() {
         )}
       </div>}
       <AnimatePresence>{loading && <PlayfulLoader />}</AnimatePresence>
-      {batch && !editing && !loading && !selected && !guess && <BottomDock onShuffle={shuffle} explore={explore} setExplore={setExplore} origin={origin} onPickCity={pickCustom} onGuess={() => startGuess()} />}
+      {batch && !editing && !loading && !selected && !guess && <BottomDock onShuffle={shuffle} explore={explore} setExplore={setExplore} origin={origin} onPickCity={pickCustom} onGuess={() => startGuess()} onBoard={() => { playPop(); setEscape({}); }} />}
       {guess && !selected && (
         <GuessCard
           guess={guess}
@@ -257,8 +260,11 @@ function App() {
           onShareStreak={() => shareStreak()}
         />
       )}
-      <CityDrawer card={selected} code={code} originName={origin ? origin.city : ""} onClose={closeDrawer} onShare={setShareCard} onMakeOrigin={selectOrigin} cycle={!guess && !!(selected && allCards.some((x) => x.city.id === selected.city.id))} />
+      <CityDrawer onMoveIn={(c) => { playPop(); setEscape({ dest: c.city }); }} card={selected} code={code} originName={origin ? origin.city : ""} onClose={closeDrawer} onShare={setShareCard} onMakeOrigin={selectOrigin} cycle={!guess && !!(selected && allCards.some((x) => x.city.id === selected.city.id))} />
       {origin && <ShareDialog card={shareCard} session={streakShare} onClose={() => { setShareCard(null); setStreakShare(null); }} origin={origin} code={code} rentLocal={formatMoney(batch.rent, code)} />}
+      {origin && batch && (
+        <EscapeModal isOpen={!!escape} onClose={() => setEscape(null)} homeCity={origin.city} monthlyRent={batch.rent} destCity={escape && escape.dest} />
+      )}
       <Toaster position="bottom-center" theme="dark" />
     </div>
   );

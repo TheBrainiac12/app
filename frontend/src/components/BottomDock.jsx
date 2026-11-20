@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Globe2, Shuffle, Target } from "lucide-react";
+import { Globe2, Plane, Shuffle, Target } from "lucide-react";
 import { RENT } from "@/constants/testIds/rent";
 import { DockCitySearch } from "@/components/DockCitySearch";
 
-export const BottomDock = ({ onShuffle, explore, setExplore, origin, onPickCity, onGuess }) => {
+export const BottomDock = ({ onShuffle, explore, setExplore, origin, onPickCity, onGuess, onBoard }) => {
   const [spin, setSpin] = useState(0);
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-5 z-30 flex justify-center px-3">
@@ -24,6 +24,13 @@ export const BottomDock = ({ onShuffle, explore, setExplore, origin, onPickCity,
         <span className="sm:hidden">Shuffle</span>
       </button>
       <DockCitySearch origin={origin} onPick={onPickCity} />
+      <button
+        data-testid="dock-departure-board-button"
+        onClick={onBoard}
+        className="flex h-11 items-center gap-1.5 whitespace-nowrap rounded-full border border-white/15 px-3 text-sm font-semibold text-white/85 transition-colors hover:bg-white/10 sm:px-4"
+      >
+        <Plane className="h-4 w-4" /> <span className="hidden md:inline">Departure Board</span>
+      </button>
       <button
         data-testid="dock-guess-mode-button"
         onClick={onGuess}

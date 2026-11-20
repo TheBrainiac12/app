@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Home, X } from "lucide-react";
+import { Home, MapPin, X } from "lucide-react";
 import { CityCard } from "@/components/CityCard";
 
-export const CityDrawer = ({ card, code, onClose, onShare, onMakeOrigin, cycle, originName }) => {
+export const CityDrawer = ({ card, code, onClose, onShare, onMakeOrigin, cycle, originName, onMoveIn }) => {
   const [shown, setShown] = useState(card);
   useEffect(() => {
     if (card) setShown(card);
@@ -38,11 +38,18 @@ export const CityDrawer = ({ card, code, onClose, onShare, onMakeOrigin, cycle, 
         <CityCard key={shown.city.id} card={shown} code={code} index={0} onShare={onShare} originName={originName} />
       </div>
       <button
+        data-testid="drawer-move-in-button"
+        onClick={() => onMoveIn(shown.city)}
+        className="mt-3 flex h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-[#FFB020] font-display text-sm font-bold text-[#2A1A00] transition-transform hover:-translate-y-0.5"
+      >
+        <Home className="h-4 w-4" /> Move In & Live a Day Here
+      </button>
+      <button
         data-testid="drawer-make-origin-button"
         onClick={() => onMakeOrigin(shown.city)}
         className="mt-3 flex h-10 shrink-0 items-center justify-center gap-2 rounded-full text-sm font-semibold text-white/70 transition-colors hover:bg-white/[0.06] hover:text-white"
       >
-        <Home className="h-4 w-4" /> Make this my origin city
+        <MapPin className="h-4 w-4" /> Make this my origin city
       </button>
     </motion.aside>
   );

@@ -67,7 +67,7 @@ const tipHtml = (d) => {
   return `<b>${d.city.city}</b>, ${d.city.country}<br/>${status}`;
 };
 
-const GlobeViewInner = ({ origin, cards, explore, rentEur, focus, onPick, selectMode, onSelectOrigin }) => {
+const GlobeViewInner = ({ origin, cards, explore, rentEur, focus, onPick, selectMode, onSelectOrigin, paused }) => {
   const ref = useRef(null);
   const wrapRef = useRef(null);
   const tipRef = useRef(null);
@@ -220,6 +220,17 @@ const GlobeViewInner = ({ origin, cards, explore, rentEur, focus, onPick, select
   }, [selectMode, explore, origin, rentEur]);
 
   pointsRef.current = points;
+
+  useEffect(() => {
+    const g = ref.current;
+    if (!g) return;
+    if (paused) {
+      g.controls().autoRotate = false;
+      g.pauseAnimation();
+    } else {
+      g.resumeAnimation();
+    }
+  }, [paused]);
 
   const nearest = useCallback((m, radius, keepId) => {
     const g = ref.current;
