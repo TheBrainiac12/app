@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Globe2, Plane, Shuffle, Target } from "lucide-react";
 import { RENT } from "@/constants/testIds/rent";
@@ -6,14 +6,31 @@ import { DockCitySearch } from "@/components/DockCitySearch";
 
 export const BottomDock = ({ onShuffle, explore, setExplore, origin, onPickCity, onGuess, onBoard }) => {
   const [spin, setSpin] = useState(0);
+  const [more, setMore] = useState(false);
+  const trackRef = useRef(null);
+  const check = () => {
+    const el = trackRef.current;
+    if (el) setMore(el.scrollWidth - el.clientWidth - el.scrollLeft > 4);
+  };
+  useEffect(() => {
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-5 z-30 flex justify-center px-3">
+    <div className="pointer-events-none fixed inset-x-0 bottom-4 z-30 flex justify-center px-3 pb-[env(safe-area-inset-bottom)] sm:bottom-5">
     <motion.div
       initial={{ y: 40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       data-testid="globe-bottom-dock"
-      className="glass-panel pointer-events-auto flex items-center gap-2 rounded-full p-1.5"
+      className="glass-panel pointer-events-auto relative max-w-[calc(100vw-1.5rem)] overflow-hidden rounded-full"
     >
+      <div
+        ref={trackRef}
+        onScroll={check}
+        data-testid="dock-scroll-track"
+        className="dock-track flex flex-nowrap items-center gap-2 overflow-x-auto overscroll-x-contain whitespace-nowrap p-1.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:shrink-0"
+      >
       <button
         data-testid={RENT.shuffleButton}
         onClick={() => { setSpin((s) => s + 1); onShuffle(); }}
@@ -50,6 +67,8 @@ export const BottomDock = ({ onShuffle, explore, setExplore, origin, onPickCity,
         <span className={`h-2 w-2 rounded-full ${explore ? "bg-[#10E39A]" : "bg-white/30"}`} />
       </button>
       <span data-testid="dock-keyboard-hint" className="hidden pr-3 font-mono text-[11px] text-white/45 xl:inline">← → Switch cities</span>
+      </div>
+      {more && <div data-testid="dock-scroll-fade" className="pointer-events-none absolute inset-y-0 right-0 w-12 rounded-r-full bg-gradient-to-l from-[#0B0E15] to-transparent md:hidden" />}
     </motion.div>
     </div>
   );

@@ -251,3 +251,8 @@
 .globe-wrap-hidden .globe-pin {
   pointer-events: none;
 }
+
+.dock-track {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}

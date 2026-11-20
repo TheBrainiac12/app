@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Compass } from "lucide-react";
 import { CITIES } from "@/lib/engine";
 import { Flag } from "@/components/Flag";
@@ -7,6 +8,7 @@ export const DockCitySearch = ({ origin, onPick }) => {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
+  const boxRef = useRef(null);
 
   const matches = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -33,7 +35,7 @@ export const DockCitySearch = ({ origin, onPick }) => {
 
   return (
     <div className="relative">
-      <div className="flex h-11 items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 focus-within:border-[#22D3EE]/60">
+      <div ref={boxRef} className="flex h-11 items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 focus-within:border-[#22D3EE]/60">
         <Compass className="h-4 w-4 shrink-0 text-[#22D3EE]" />
         <input
           data-testid="dock-city-search-input"
@@ -46,8 +48,15 @@ export const DockCitySearch = ({ origin, onPick }) => {
           className="w-28 min-w-0 bg-transparent text-sm text-white outline-none placeholder:text-white/40 sm:w-44"
         />
       </div>
-      {open && matches.length > 0 && (
-        <ul data-testid="dock-city-search-list" className="glass-panel absolute bottom-full left-0 mb-2 w-64 overflow-hidden rounded-2xl p-1.5">
+      {open && matches.length > 0 && boxRef.current && createPortal(
+        <ul
+          data-testid="dock-city-search-list"
+          className="glass-panel fixed z-40 w-64 overflow-hidden rounded-2xl p-1.5"
+          style={(() => {
+            const r = boxRef.current.getBoundingClientRect();
+            return { bottom: window.innerHeight - r.top + 14, left: Math.min(Math.max(r.left, 12), window.innerWidth - 268) };
+          })()}
+        >
           {matches.map((c, i) => (
             <li
               key={c.id}
@@ -61,7 +70,8 @@ export const DockCitySearch = ({ origin, onPick }) => {
               <span className="truncate text-xs text-white/45">{c.country}</span>
             </li>
           ))}
-        </ul>
+        </ul>,
+        document.body
       )}
     </div>
   );
