@@ -81,8 +81,19 @@ function App() {
     overview(origin, b.cards);
   };
 
+  const allCards = batch ? (batch.custom ? [...batch.cards, batch.custom] : batch.cards) : [];
+
+  const pickCustom = (c) => {
+    const existing = allCards.find((x) => x.city.id === c.id);
+    if (existing) return pick(c, existing, 1.1);
+    const card = { ...cardFor(c, rentEur), slot: "custom" };
+    setBatch((b) => ({ ...b, custom: card }));
+    setSelected(card);
+    flyTo(c, 1.1);
+  };
+
   const pick = (c, card, altitude) => {
-    const inBatch = batch.cards.find((x) => x.city.id === c.id);
+    const inBatch = allCards.find((x) => x.city.id === c.id);
     setSelected(card || inBatch || cardFor(c, rentEur));
     flyTo(c, altitude);
   };
@@ -99,24 +110,24 @@ function App() {
 
   const closeDrawer = () => {
     setSelected(null);
-    overview(origin, batch.cards);
+    overview(origin, allCards);
   };
 
   const keys = useRef({});
-  keys.current = { batch, editing, selected, shareCard, loading, pick, closeDrawer };
+  keys.current = { batch, allCards, editing, selected, shareCard, loading, pick, closeDrawer };
   useEffect(() => {
     const onKey = (e) => {
       const k = keys.current;
       const t = e.target;
       const typing = t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.getAttribute("role") === "slider" || t.isContentEditable);
       if (e.key === "Escape") {
-        if (e.defaultPrevented || k.shareCard) return;
+        if (e.defaultPrevented || k.shareCard || typing) return;
         if (k.selected) k.closeDrawer();
         return;
       }
       if ((e.key !== "ArrowLeft" && e.key !== "ArrowRight") || typing || !k.batch || k.editing || k.loading || k.shareCard) return;
       e.preventDefault();
-      const list = k.batch.cards;
+      const list = k.allCards;
       const i = k.selected ? list.findIndex((x) => x.city.id === k.selected.city.id) : -1;
       const step = e.key === "ArrowRight" ? 1 : -1;
       const next = i === -1 ? (step === 1 ? 0 : list.length - 1) : (i + step + list.length) % list.length;
@@ -127,7 +138,7 @@ function App() {
   }, []);
 
   const globeOrigin = editing || !batch ? city : origin;
-  const cards = useMemo(() => (editing || !batch ? [] : batch.cards), [editing, batch]);
+  const cards = useMemo(() => (editing || !batch ? [] : batch.custom ? [...batch.cards, batch.custom] : batch.cards), [editing, batch]);
   const note = batch && (batch.allGap ? NOTES.allGap : batch.fewCovered ? NOTES.fewCovered : null);
 
   return (
@@ -145,8 +156,8 @@ function App() {
         )}
       </div>
       <AnimatePresence>{loading && <PlayfulLoader />}</AnimatePresence>
-      {batch && !editing && !loading && !selected && <BottomDock onShuffle={shuffle} explore={explore} setExplore={setExplore} />}
-      <CityDrawer card={selected} code={code} originName={origin ? origin.city : ""} onClose={closeDrawer} onShare={setShareCard} onMakeOrigin={selectOrigin} cycle={!!(selected && batch && batch.cards.some((x) => x.city.id === selected.city.id))} />
+      {batch && !editing && !loading && !selected && <BottomDock onShuffle={shuffle} explore={explore} setExplore={setExplore} origin={origin} onPickCity={pickCustom} />}
+      <CityDrawer card={selected} code={code} originName={origin ? origin.city : ""} onClose={closeDrawer} onShare={setShareCard} onMakeOrigin={selectOrigin} cycle={!!(selected && allCards.some((x) => x.city.id === selected.city.id))} />
       {origin && <ShareDialog card={shareCard} onClose={() => setShareCard(null)} origin={origin} code={code} rentLocal={formatMoney(batch.rent, code)} />}
       <Toaster position="bottom-center" theme="dark" />
     </div>
