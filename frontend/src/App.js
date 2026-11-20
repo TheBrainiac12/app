@@ -10,6 +10,11 @@ import { BottomDock } from "@/components/BottomDock";
 import { SummaryChip } from "@/components/SummaryChip";
 import { ShareDialog } from "@/components/ShareDialog";
 import { cardFor, generateBatch } from "@/lib/engine";
+import { GuessCard } from "@/components/GuessCard";
+import { SoundToggle } from "@/components/SoundToggle";
+import { BEST_KEY, loadBest, pickChallenge, streakCaption } from "@/lib/guess";
+import { playPop, playVerdict } from "@/lib/soundEffects";
+import { toast } from "sonner";
 import { currencyOf, formatMoney, fromEur, niceRound, toEur } from "@/lib/currency";
 
 const NOTES = {
@@ -28,6 +33,8 @@ function App() {
   const [selected, setSelected] = useState(null);
   const [shareCard, setShareCard] = useState(null);
   const [focusKey, setFocusKey] = useState(0);
+  const [guess, setGuess] = useState(null);
+  const [best, setBest] = useState(loadBest);
 
   const origin = batch ? batch.origin : null;
   const code = origin ? currencyOf(origin.country) : "USD";
@@ -75,6 +82,7 @@ function App() {
   };
 
   const shuffle = () => {
+    playPop();
     setSelected(null);
     const b = makeBatch(origin, batch.rent, batch.cards.map((x) => x.city.id));
     setBatch(b);
@@ -93,12 +101,16 @@ function App() {
   };
 
   const pick = (c, card, altitude) => {
+    if (guess && !guess.revealed) return;
+    playPop();
     const inBatch = allCards.find((x) => x.city.id === c.id);
     setSelected(card || inBatch || cardFor(c, rentEur));
     flyTo(c, altitude);
   };
 
   const selectOrigin = (c) => {
+    playPop();
+    setGuess(null);
     setEditing(true);
     setSelected(null);
     setExplore(false);
@@ -110,11 +122,61 @@ function App() {
 
   const closeDrawer = () => {
     setSelected(null);
+    if (guess) flyTo(guess.ch.city, 1.5);
+    else overview(origin, allCards);
+  };
+
+  const startGuess = (c = origin, r = batch && batch.rent) => {
+    if (editing || !batch) {
+      setBatch(makeBatch(c, r));
+      setEditing(false);
+    }
+    const ch = pickChallenge(c.id, toEur(r, currencyOf(c.country)), []);
+    setSelected(null);
+    setExplore(false);
+    setGuess({ round: 1, streak: 0, used: [], ch, revealed: null });
+    flyTo(ch.city, 1.5);
+    playPop();
+  };
+
+  const answer = (sayApproved) => {
+    if (!guess || guess.revealed) return;
+    const correct = sayApproved === guess.ch.affordable;
+    const streak = correct ? guess.streak + 1 : 0;
+    if (streak > best) {
+      setBest(streak);
+      window.localStorage.setItem(BEST_KEY, String(streak));
+    }
+    setGuess({ ...guess, streak, revealed: { correct } });
+    setTimeout(() => playVerdict(correct, streak), 260);
+  };
+
+  const nextRound = () => {
+    if (!guess || !guess.revealed) return;
+    const used = [...guess.used, guess.ch.city.id];
+    const ch = pickChallenge(origin.id, rentEur, used);
+    setGuess({ ...guess, round: guess.round + 1, used, ch, revealed: null });
+    setSelected(null);
+    flyTo(ch.city, 1.5);
+    playPop();
+  };
+
+  const shareStreak = () => {
+    navigator.clipboard.writeText(streakCaption(best, origin.city)).then(
+      () => toast.success("Streak caption copied! Paste it anywhere."),
+      () => toast.error("Couldn't copy the caption")
+    );
+  };
+
+  const exitGuess = () => {
+    setGuess(null);
+    setSelected(null);
     overview(origin, allCards);
+    if (best > 0) toast(`Best streak: ${best} in a row`, { action: { label: "Share Streak", onClick: shareStreak } });
   };
 
   const keys = useRef({});
-  keys.current = { batch, allCards, editing, selected, shareCard, loading, pick, closeDrawer };
+  keys.current = { batch, allCards, editing, selected, shareCard, loading, pick, closeDrawer, guess, answer, nextRound, exitGuess };
   useEffect(() => {
     const onKey = (e) => {
       const k = keys.current;
@@ -123,6 +185,15 @@ function App() {
       if (e.key === "Escape") {
         if (e.defaultPrevented || k.shareCard || typing) return;
         if (k.selected) k.closeDrawer();
+        else if (k.guess) k.exitGuess();
+        return;
+      }
+      if (k.guess) {
+        if (typing || k.selected || k.shareCard) return;
+        const key = e.key.toLowerCase();
+        if (!k.guess.revealed && (key === "a" || key === "arrowleft")) { e.preventDefault(); k.answer(true); }
+        else if (!k.guess.revealed && (key === "d" || key === "arrowright")) { e.preventDefault(); k.answer(false); }
+        else if (k.guess.revealed && (key === "enter" || key === " ") && t.tagName !== "BUTTON") { e.preventDefault(); k.nextRound(); }
         return;
       }
       if ((e.key !== "ArrowLeft" && e.key !== "ArrowRight") || typing || !k.batch || k.editing || k.loading || k.shareCard) return;
@@ -138,26 +209,49 @@ function App() {
   }, []);
 
   const globeOrigin = editing || !batch ? city : origin;
-  const cards = useMemo(() => (editing || !batch ? [] : batch.custom ? [...batch.cards, batch.custom] : batch.cards), [editing, batch]);
+  const cards = useMemo(() => {
+    if (guess) {
+      const { ch, revealed } = guess;
+      const sub = revealed ? (ch.affordable ? "Rent approved" : "Entry denied") : "Can you afford it?";
+      return [{ city: ch.city, slot: revealed ? (ch.affordable ? "affordable" : "mystery") : "mystery", reality: !!revealed && !ch.affordable, apartment: sub }];
+    }
+    return editing || !batch ? [] : batch.custom ? [...batch.cards, batch.custom] : batch.cards;
+  }, [editing, batch, guess]);
   const note = batch && (batch.allGap ? NOTES.allGap : batch.fewCovered ? NOTES.fewCovered : null);
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-[#05070B]">
       <GlobeView origin={globeOrigin} cards={cards} explore={explore && !editing} rentEur={rentEur} focus={focus} onPick={pick} selectMode={editing || !batch} onSelectOrigin={selectOrigin} />
-      <div className="glass-panel absolute left-3 right-3 top-3 z-20 max-h-[calc(100vh-110px)] overflow-y-auto rounded-[24px] p-5 sm:left-5 sm:right-auto sm:top-5 sm:w-[390px] sm:p-6">
+      <SoundToggle />
+      {!guess && <div className="glass-panel absolute left-3 right-16 top-3 z-20 max-h-[calc(100vh-110px)] overflow-y-auto rounded-[24px] p-5 sm:left-5 sm:right-auto sm:top-5 sm:w-[390px] sm:p-6">
         <div className="mb-4 flex items-center gap-2 font-display text-sm font-extrabold text-white">
           <img src="/logo-mark.png" alt="" data-testid="brand-logo" className="h-7 w-7" />
           <span data-testid="brand-name" className="text-base tracking-tight">Elsewhere</span>
         </div>
         {editing || !batch ? (
-          <RentHero city={city} setCity={setCity} rent={rent} setRent={setRent} onCompare={compare} focusKey={focusKey} />
+          <RentHero city={city} setCity={setCity} rent={rent} setRent={setRent} onCompare={compare} focusKey={focusKey} onGuess={startGuess} />
         ) : (
           <SummaryChip origin={origin} rentLocal={formatMoney(batch.rent, code)} note={note} onEdit={() => { setEditing(true); setSelected(null); }} />
         )}
-      </div>
+      </div>}
       <AnimatePresence>{loading && <PlayfulLoader />}</AnimatePresence>
-      {batch && !editing && !loading && !selected && <BottomDock onShuffle={shuffle} explore={explore} setExplore={setExplore} origin={origin} onPickCity={pickCustom} />}
-      <CityDrawer card={selected} code={code} originName={origin ? origin.city : ""} onClose={closeDrawer} onShare={setShareCard} onMakeOrigin={selectOrigin} cycle={!!(selected && allCards.some((x) => x.city.id === selected.city.id))} />
+      {batch && !editing && !loading && !selected && !guess && <BottomDock onShuffle={shuffle} explore={explore} setExplore={setExplore} origin={origin} onPickCity={pickCustom} onGuess={() => startGuess()} />}
+      {guess && !selected && (
+        <GuessCard
+          guess={guess}
+          best={best}
+          rentEur={rentEur}
+          code={code}
+          rentLabel={formatMoney(batch.rent, code)}
+          originName={origin.city}
+          onAnswer={answer}
+          onNext={nextRound}
+          onReport={() => setSelected(cardFor(guess.ch.city, rentEur))}
+          onExit={exitGuess}
+          onShareStreak={shareStreak}
+        />
+      )}
+      <CityDrawer card={selected} code={code} originName={origin ? origin.city : ""} onClose={closeDrawer} onShare={setShareCard} onMakeOrigin={selectOrigin} cycle={!guess && !!(selected && allCards.some((x) => x.city.id === selected.city.id))} />
       {origin && <ShareDialog card={shareCard} onClose={() => setShareCard(null)} origin={origin} code={code} rentLocal={formatMoney(batch.rent, code)} />}
       <Toaster position="bottom-center" theme="dark" />
     </div>

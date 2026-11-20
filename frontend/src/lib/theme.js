@@ -3,6 +3,7 @@ export const TIER_STYLES = {
   mid: { name: "Mid-range", hex: "#4D8DFF", ink: "#04173D" },
   dream: { name: "Dream", hex: "#B98BFF", ink: "#1E0745" },
   wildcard: { name: "Wildcard", hex: "#FFB020", ink: "#3A2400" },
+  mystery: { name: "Mystery", hex: "#FFD36E", ink: "#3A2A00" },
   custom: { name: "Custom Pick", hex: "#22D3EE", ink: "#032A33" },
   reality: { name: "Reality Check", hex: "#FF5A7A", ink: "#3D0412" },
 };

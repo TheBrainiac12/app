@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { playPop, playVerdict } from "@/lib/soundEffects";
 import { motion } from "framer-motion";
 import { cardWithSize } from "@/lib/engine";
 import { BedDouble, Check, PiggyBank, Share2, Wifi } from "lucide-react";
@@ -32,7 +33,13 @@ const VibeGrid = ({ card, code, id }) => (
 
 const SLAM = { type: "spring", stiffness: 520, damping: 24, mass: 0.8, delay: 0.18 };
 
-const InkStamp = ({ denied, ink, id }) => (
+export const InkStamp = ({ denied, ink, id, sound = true }) => {
+  useEffect(() => {
+    if (!sound) return undefined;
+    const t = setTimeout(() => playVerdict(!denied), 260);
+    return () => clearTimeout(t);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  return (
   <div className="relative" style={{ margin: "-10px -6px -24px 0" }} data-testid={`${id}-stamp-wrap`}>
     <motion.div initial={{ scale: 2.1, opacity: 0, rotate: -22 }} animate={{ scale: 1, opacity: 0.85, rotate: -12 }} transition={SLAM}>
       <PassportStamp variant={denied ? "denied" : "approved"} accentColor={ink} size={80} opacity={1} rotate={0} testId={`${id}-stamp`} />
@@ -46,7 +53,8 @@ const InkStamp = ({ denied, ink, id }) => (
       transition={{ duration: 0.45, delay: 0.3, ease: "easeOut" }}
     />
   </div>
-);
+  );
+};
 
 const TIERS = [
   { key: "1_bed_center", label: "1-Bed · Centre" },
@@ -189,7 +197,7 @@ export const CityCard = ({ card: baseCard, code, index, onShare, originName }) =
             {card.reality ? `Not even a ${card.size}-bed… yet` : card.apartment}
           </p>
         </div>
-        <SizeToggle size={size} setSize={setSize} color={s.hex} id={id} />
+        <SizeToggle size={size} setSize={(v) => { if (v !== size) playPop(); setSize(v); }} color={s.hex} id={id} />
         <RentBar card={card} code={code} color={bar} />
         <TierRef card={card} code={code} color={s.hex} id={id} />
         {card.reality ? <RealityBody card={card} code={code} color={bar} id={id} /> : <Perks card={card} code={code} color={s.hex} id={id} />}

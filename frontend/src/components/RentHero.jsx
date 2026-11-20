@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Target } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { CityCombobox } from "@/components/CityCombobox";
 import { CITIES } from "@/lib/engine";
@@ -80,7 +80,7 @@ export const Presets = ({ onPick }) => (
   </motion.div>
 );
 
-export const RentHero = ({ city, setCity, rent, setRent, onCompare, focusKey }) => {
+export const RentHero = ({ city, setCity, rent, setRent, onCompare, focusKey, onGuess }) => {
   const pickCity = (c) => {
     setCity(c);
     if (c) setRent(niceRound(fromEur(c.housing["1_bed_center"], currencyOf(c.country))));
@@ -118,6 +118,16 @@ export const RentHero = ({ city, setCity, rent, setRent, onCompare, focusKey }) 
           Compare on the globe <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
         </button>
       </form>
+      {ready && (
+        <button
+          type="button"
+          data-testid="hero-guess-mode-button"
+          onClick={() => onGuess(city, rent)}
+          className="flex h-11 w-full items-center justify-center gap-2 rounded-full border border-[#FFD36E]/50 font-display text-sm font-bold text-[#FFD36E] transition-colors hover:bg-[#FFD36E]/10"
+        >
+          <Target className="h-4 w-4" /> Guess Mode: can your rent survive?
+        </button>
+      )}
       <Presets onPick={(c, r) => { setCity(c); setRent(r); onCompare(c, r); }} />
     </div>
   );
