@@ -237,3 +237,17 @@
   from { transform: scale(0.5); opacity: 0.8; }
   to { transform: scale(1.4); opacity: 0; }
 }
+
+.globe-wrap {
+  opacity: 1;
+  transition: opacity 0.15s ease;
+}
+
+.globe-wrap-hidden {
+  opacity: 0;
+}
+
+.globe-wrap-hidden .globe-pill,
+.globe-wrap-hidden .globe-pin {
+  pointer-events: none;
+}

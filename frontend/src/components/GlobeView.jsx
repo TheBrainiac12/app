@@ -27,6 +27,10 @@ const PIN = (color, core) => `<svg viewBox="0 0 24 32" width="24" height="32" ar
 const makeLabel = (d, onClick) => {
   const wrap = document.createElement("div");
   wrap.style.pointerEvents = "none";
+  wrap.className = "globe-wrap";
+  wrap.dataset.lat = d.lat;
+  wrap.dataset.lng = d.lng;
+  wrap.dataset.priority = d.origin ? 0 : d.priority;
   const pin = document.createElement("div");
   pin.className = "globe-pin";
   pin.setAttribute("data-testid", d.origin ? "globe-origin-pin" : `globe-pin-${d.city.id}`);
@@ -50,6 +54,7 @@ const GLOBE_MATERIAL = new MeshPhongMaterial({ bumpScale: 10, specular: new Colo
 new TextureLoader().load("/textures/earth-water.png", (tex) => { GLOBE_MATERIAL.specularMap = tex; GLOBE_MATERIAL.needsUpdate = true; });
 
 const RANDOM_GAP = () => Math.random();
+const KEEP_VISIBLE = () => {};
 const POINT_COLOR = (d) => (d.ok === null ? SUBTLE : d.ok ? EMERALD : CORAL);
 const SUBTLE = "rgba(160,220,255,0.85)";
 
@@ -114,42 +119,57 @@ const GlobeViewInner = ({ origin, cards, explore, rentEur, focus, onPick, select
   }, [focus]);
 
   const dests = useMemo(
-    () => cards.map((c) => ({ city: c.city, card: c, color: styleFor(c).hex, sub: c.reality ? "Reality check" : c.apartment, lat: c.city.coords.lat, lng: c.city.coords.lng })),
+    () => cards.map((c, i) => ({ priority: i + 1, city: c.city, card: c, color: styleFor(c).hex, sub: c.reality ? "Reality check" : c.apartment, lat: c.city.coords.lat, lng: c.city.coords.lng })),
     [cards]
   );
 
   useEffect(() => {
     let raf;
+    const OFFSETS = [0, -28, 28, -56, 56, -84, 84, -112, 112, -140, 140, -168, 168, -196, 196];
     const layout = () => {
-      const items = [...document.querySelectorAll(".globe-pill")]
-        .map((el) => {
-          const a = el.parentElement.getBoundingClientRect();
-          const w = el.offsetWidth;
-          const h = el.offsetHeight;
-          const dx = parseFloat(el.style.getPropertyValue("--dx")) || 0;
-          const dy = parseFloat(el.style.getPropertyValue("--dy")) || 0;
-          return { el, w: el.offsetParent ? w : 0, h, left: a.left - w / 2, top: a.top - 36 - h, dx, dy, origin: el.dataset.testid === "globe-origin-label" };
-        })
-        .filter((it) => it.w > 0)
-        .sort((a, b) => (b.origin - a.origin) || b.top - a.top);
-      const placed = [...document.querySelectorAll(".glass-panel, .globe-pin")].filter((el) => el.offsetParent).map((el) => {
-        const r = el.getBoundingClientRect();
-        return { left: r.left, top: r.top, w: r.width, h: r.height };
+      const g = ref.current;
+      if (!g) { raf = requestAnimationFrame(layout); return; }
+      const cam = g.camera().position.clone().normalize();
+      const W = window.innerWidth;
+      const H = window.innerHeight;
+      const items = [];
+      document.querySelectorAll(".globe-wrap").forEach((wrap) => {
+        const c = g.getCoords(+wrap.dataset.lat, +wrap.dataset.lng, 0);
+        const len = Math.hypot(c.x, c.y, c.z);
+        const dot = (c.x * cam.x + c.y * cam.y + c.z * cam.z) / len;
+        const hidden = wrap.classList.contains("globe-wrap-hidden");
+        const behind = hidden ? dot < -0.05 : dot < -0.1;
+        if (behind !== hidden) wrap.classList.toggle("globe-wrap-hidden", behind);
+        if (behind) return;
+        const el = wrap.querySelector(".globe-pill");
+        const a = wrap.getBoundingClientRect();
+        const w = el.offsetWidth;
+        const h = el.offsetHeight;
+        items.push({
+          el, w, h, left: a.left - w / 2, top: a.top - 36 - h,
+          dx: parseFloat(el.style.getPropertyValue("--dx")) || 0,
+          dy: parseFloat(el.style.getPropertyValue("--dy")) || 0,
+          priority: +wrap.dataset.priority,
+          pin: wrap.querySelector(".globe-pin").getBoundingClientRect(),
+        });
       });
+      items.sort((a, b) => a.priority - b.priority);
+      const placed = [...document.querySelectorAll(".glass-panel")].map((el) => el.getBoundingClientRect())
+        .concat(items.map((it) => it.pin))
+        .map((r) => ({ left: r.left, top: r.top, w: r.width, h: r.height }));
       items.forEach((it) => {
-        const left = it.left < 8 ? 8 : it.left + it.w > window.innerWidth - 8 ? window.innerWidth - 8 - it.w : it.left;
-        const hitAt = (t) => placed.find((p) => left < p.left + p.w + 4 && left + it.w + 4 > p.left && t < p.top + p.h + 4 && t + it.h + 4 > p.top);
-        const search = (up) => {
-          let t = it.top;
-          for (let i = 0; i < 24; i++) {
-            const hit = hitAt(t);
-            if (!hit) return t;
-            t = up ? hit.top - it.h - 4 : hit.top + hit.h + 4;
+        const left = Math.min(Math.max(it.left, 16), W - 16 - it.w);
+        const clampTop = (t) => Math.min(Math.max(t, 16), H - 16 - it.h);
+        const free = (t) => !placed.some((p) => left < p.left + p.w + 4 && left + it.w + 4 > p.left && t < p.top + p.h + 4 && t + it.h + 4 > p.top);
+        const prevTop = clampTop(it.top + it.dy);
+        let top = free(prevTop) && Math.abs(prevTop - clampTop(it.top)) <= 196 ? prevTop : null;
+        if (top === null) {
+          for (const off of OFFSETS) {
+            const t = clampTop(it.top + off);
+            if (free(t)) { top = t; break; }
           }
-          return null;
-        };
-        const upTop = search(true);
-        const top = upTop !== null && upTop >= 8 ? upTop : search(false) ?? it.top;
+        }
+        if (top === null) top = clampTop(it.top);
         placed.push({ left, top, w: it.w, h: it.h });
         const ndx = left - it.left;
         const ndy = top - it.top;
@@ -317,6 +337,7 @@ const GlobeViewInner = ({ origin, cards, explore, rentEur, focus, onPick, select
         ringRepeatPeriod="period"
         htmlElementsData={labels}
         htmlElement={htmlElement}
+        htmlElementVisibilityModifier={KEEP_VISIBLE}
         htmlAltitude={0.015}
         htmlTransitionDuration={600}
         pointsData={points}
