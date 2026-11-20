@@ -15,8 +15,8 @@ const MONO = "'JetBrains Mono', monospace";
 
 const compact = (eur, code) => {
   const local = fromEur(Math.abs(eur), code);
-  const txt = new Intl.NumberFormat(code === "INR" ? "en-IN" : "en-US", { style: "currency", currency: code, notation: "compact", maximumFractionDigits: local >= 1000 ? 0 : 0, currencyDisplay: "narrowSymbol" }).format(local);
-  return `${eur < 0 ? "-" : "+"}${txt}/mo`;
+  const txt = new Intl.NumberFormat(code === "INR" ? "en-IN" : "en-US", { style: "currency", currency: code, notation: "compact", maximumFractionDigits: 0, currencyDisplay: "narrowSymbol" }).format(local);
+  return eur < 0 ? `${txt}/mo short` : `${txt}/mo left over`;
 };
 
 const Pill = ({ color, children, size }) => (

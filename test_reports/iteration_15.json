@@ -1,0 +1,32 @@
+{
+  "summary": "Frontend-only test of the Guess Mode Streak & History Share Card at desktop 1920x1080. I played three sessions from Mumbai at ₹51,000. Session 1 went CCCCC W CC, Session 2 W W C W, Session 3 CCC. To force right or wrong answers, the script read the round's real affordability from React state. Every requested check passed: dialog title, stats, rank thresholds, rows (6 on Square plus '+2 more cities', 8 on Story), APPROVED/DENIED and ✓/✕ matching the reveal, both highlight types, stamp variants, high and low captions, Shuffle switching between the 2 variants, emoji grid length, PNG downloads named elsewhere-guess-streak.png for both formats, the X intent link, the exit toast's 'Share Streak Card' action, A/D/Enter ignored while the dialog is open, Escape closing the dialog before the game, and the regression on the drawer's city Share Card. No page errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "lib/guess.js streakTemplates", "issue": "A perfect session that ends before 4 correct (for example 3/3, 100%, Weekend Nomad, verified stamp) gets the low caption 'Humbled by global rent prices (3/3)'. It contradicts the card. The spec says best>=4 picks the high caption, so this follows the spec, but the wording is a UX mismatch. Suggest choosing the low caption by accuracy < 60, or adding a third neutral set of templates.", "selector": "[data-testid='share-caption-text']", "priority": "LOW"},
+      {"component": "ShareDialog format state", "issue": "The selected format (Square/Story) carries over between dialog openings because the dialog component never remounts. Reopening from the exit toast after picking Story opens on Story, not Square. Minor.", "selector": "[data-testid='share-format-square-radio']", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "GuessShareCard story format, short sessions", "issues": ["With 3-4 rounds the story card leaves a large empty area between the rows and the highlight strip. Consider centring the content vertically or making the rows larger."]},
+      {"screen": "GuessShareCard highlight", "issues": ["'Streak ended by' shows the city's money difference with a sign, e.g. '+₹23K/mo' when the user wrongly said DENIED on an affordable city. A plus sign next to 'ended by' reads oddly. Consider wording such as '(₹23K left over)' or '(₹10K short)'."]}
+    ]
+  },
+  "test_report_links": ["/app/tests/guess_share_iter15.py"],
+  "action_items": [
+    "Optional: rethink the caption choice when a session is all correct but shorter than 4 (it currently reads 'Humbled ... (3/3)')",
+    "Optional: reset the format to Square each time the share dialog opens",
+    "Optional: fill the empty space on the story card for short sessions"
+  ],
+  "critical_code_review_comments": [
+    "GuessShareCard compact(): `maximumFractionDigits: local >= 1000 ? 0 : 0` is a pointless ternary.",
+    "sessionStats returns `streak` (current streak), but the card never uses it; the big number labelled STREAK is the session best. Fine, but the label could say BEST STREAK.",
+    "Highlight 'breaker' wording with a signed amount is ambiguous (see design issues)."
+  ],
+  "updated_files": ["/app/tests/guess_share_iter15.py"],
+  "success_rate": {"backend": "N/A", "frontend": "100% (all 9 requested features verified; 2 low-priority UX notes)"},
+  "seed_data_creation": "None. Only localStorage best streak changed in the test browser.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "The script /app/tests/guess_share_iter15.py reads the current round's affordability from the guess-card React fiber (memoizedProps.guess.ch.affordable) to force right or wrong answers. The drawer share button testid has a city-id suffix: open-share-modal-button-<cityId>; the city canvas is city-export-canvas. Copy Image in headless shows 'Your browser can't copy images' because there is no clipboard permission; this comes from the test environment, not an app bug."
+}
