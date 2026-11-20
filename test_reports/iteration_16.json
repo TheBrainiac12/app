@@ -1,0 +1,34 @@
+{
+  "summary": "Frontend-only test of the scrollable mobile bottom dock fix (BottomDock.jsx, DockCitySearch.jsx, .dock-track). Ran Playwright at 390x844, 360x740 (mouse plus a hasTouch/isMobile context with CDP touch swipe) and 1920x1000 after hero-preset-mumbai-india. Every requested check passed.",
+  "verified": [
+    "390: dock left=12, right=378 (innerWidth-12). 360: dock left=12, right=348. Within the viewport at both sizes",
+    "dock-scroll-track: flex-wrap nowrap, overflow-x auto, overscroll-behavior-x contain, scrollbar-width none, scrollbar height 0. scrollWidth 528 > clientWidth 364 (390) / 334 (360)",
+    "Programmatic scroll worked: scrollLeft 0 -> 164 (390) / 194 (360). A CDP touch swipe in the hasTouch context also scrolled it to scrollLeft=164 and window.scrollX stayed 0",
+    "No squished buttons: each child's width >= its scrollWidth",
+    "dock-scroll-fade is shown at scroll start and removed at scroll end",
+    "All 5 controls scrolled into view, passed the elementFromPoint hit test and clicked fine: shuffle works; departure board opens escape-modal and Esc closes it; guess mode opens guess-card; explore-all-toggle aria-pressed goes false->true; search input takes focus. The touch tap on explore-all also worked",
+    "Dropdown: typing 'par' renders dock-city-search-list as a direct child of body. It sits fully above the dock (bottom 763 < dockTop 770 at 390), stays inside the viewport and is not covered. Clicking dock-city-option-paris-france opens city-drawer at both 390 and 360",
+    "Desktop 1920: dock centred (center=960), scrollWidth == clientWidth (1111), no fade, all controls plus the keyboard hint visible",
+    "Wrapper class includes pb-[env(safe-area-inset-bottom)]"
+  ],
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Mobile dock", "issues": ["Search placeholder is cut to 'Compare vs. any' at w-28 (mobile). Consider a shorter mobile placeholder such as 'Compare city…'"]}
+    ]
+  },
+  "critical_code_review_comments": [
+    "DockCitySearch: the portal list's position is computed from getBoundingClientRect only at render. If the track is scrolled or the window resized while the list is open, the list stays at its old left position. Minor; could recompute on the track's scroll/resize events or close the list on scroll.",
+    "BottomDock: check() runs only on mount, scroll and resize. If the dock content width changes later (e.g. fonts loading late), the fade state can be stale until the next scroll. A ResizeObserver on the track would be more robust. Minor."
+  ],
+  "test_report_links": [],
+  "action_items": ["Optional: shorter mobile placeholder", "Optional: reposition or close the dropdown when the track scrolls"],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Dock testids: globe-bottom-dock, dock-scroll-track, dock-scroll-fade, shuffle-cities-button, dock-city-search-input, dock-city-search-list, dock-city-option-<id>, dock-departure-board-button (opens escape-modal), dock-guess-mode-button (guess-card), explore-all-toggle. Entry point: hero-preset-mumbai-india. Touch swipe was done via CDP Input.dispatchTouchEvent in a new has_touch context."
+}
