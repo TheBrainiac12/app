@@ -1,0 +1,30 @@
+{
+  "summary": "Globe label stability test (frontend only). Drags: 5 directions x 3 presets at 1920x1000 (13 drags finished before the 480s cap) plus 3 directions x 3 presets at 390x844, sampling the hidden class of all 6 wraps every 40ms. The flicker fix works: no wrap changed state more than once in any drag, every change matched genuine back-of-globe occlusion, no pill ever had display:none, every visible pill kept pointer-events:auto, JS clicks on pills opened city-drawer (2/2), and there were no page errors. Regressions pass: the Explore toggle shows the hover tooltip (Tokyo), ArrowRight steps through cities (Guadalajara -> Montreal), and the share dialog opens. One open bug: when no 28px slot within +/-196px is free, a lower-priority pill is drawn right on top of a higher-priority one. On a fresh Mumbai preset at 1920x1000 the Podgorica pill sits almost fully under Sofia, which breaks the 'pill-pill overlaps 0 once settled' requirement.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "GlobeView layout effect (lines 166-172)", "issue": "When no OFFSETS candidate is free, the fallback `top = clampTop(it.top)` places the pill with zero offset, right on top of an already placed pill. Reproduced on a fresh Mumbai preset at 1920x1000: globe-label-podgorica-montenegro at (822,430,978,481) under globe-label-sofia-bulgaria at (831,431,1009,482), about 7000px2 of overlap, so Podgorica is unreadable. Every slot from -196 to +196 is blocked by the Tallinn and Stockholm pills, the two pins at y 375-407 and 485-517, and the Izmir pin and pill (Izmir itself was pushed +112px). The same thing happens for Copenhagen x Timisoara on the Mumbai preset (2178px2, still there across 4 consecutive drags) and on desktop London after the diagonal drag (origin x Novi Sad, 4976px2).", "selector": ".globe-pill", "priority": "HIGH"},
+      {"component": "GlobeView clamp", "issue": "Measured about 900ms after mouse up on mobile, some pills sat 13-15px from the viewport edge instead of 16px (Cairo left=13, Hanoi/Kolkata right=375 at W=390). Likely causes: the 0.2s transform transition on .globe-pill lags behind --dx/--dy while the globe is still damping, and offsetWidth is rounded. No violations after 2.5s, so this is only a cosmetic lag.", "selector": ".globe-pill", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Desktop with city drawer open", "issues": ["A pill whose anchor sits near the drawer is still partly drawn under the drawer panel (Podgorica pill cut off at the drawer edge in the London/Montreal share screenshot)."]}
+    ]
+  },
+  "test_report_links": ["/app/tests/globe_label_stability_iter12.py"],
+  "action_items": [
+    "Fix the no-free-slot fallback in GlobeView layout: (a) for the fallback, pick the candidate with the smallest total overlap area against placed pills (pins can be ignored), not offset 0; and/or (b) add horizontal candidates (for example +/- half the pill width) or widen the vertical search; and/or (c) run a second pass that treats only other pills as obstacles, not pins. Then re-check Mumbai at 1920x1000 (Sofia/Podgorica, Copenhagen/Timisoara).",
+    "Optional: when clamping, use getBoundingClientRect().width (not offsetWidth) and add 1px of slack, or drop the transform transition while --dx/--dy are changing, so pills stay at least 16px from the edges while the globe is moving."
+  ],
+  "critical_code_review_comments": [
+    "The fallback at line 172 guarantees a stacked overlap whenever the area is crowded. This is the main gap against the 'never overlap, nudge instead' requirement.",
+    "The hysteresis (-0.1 / -0.05) and keeping the previous offset work well: no oscillation was seen.",
+    "Each layout frame calls querySelectorAll plus getBoundingClientRect on the panels. That is fine for 6 labels but forces a layout every frame."
+  ],
+  "updated_files": ["/app/tests/globe_label_stability_iter12.py"],
+  "success_rate": {"backend": "N/A", "frontend": "85%"},
+  "seed_data_creation": "none",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "/app/tests/globe_label_stability_iter12.py defines the START/STOP (40ms sampler of wrap hidden class + display:none) and SETTLED (pill-pill overlap, 16px margin, pointer-events) JS snippets. In browser_automation, load them with exec(src.split('errors = []')[0], ns). The full 2-viewport x 3-preset x 5-direction loop goes over the 480s cap, so split it per viewport. Screenshot paths must be plain strings, not f-strings. Quickest repro of the open bug: fresh load, hero-preset-mumbai-india at 1920x1000, wait 5s, then compare the rects of globe-label-sofia-bulgaria and globe-label-podgorica-montenegro."
+}

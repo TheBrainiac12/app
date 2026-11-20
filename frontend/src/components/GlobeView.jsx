@@ -169,8 +169,17 @@ const GlobeViewInner = ({ origin, cards, explore, rentEur, focus, onPick, select
             if (free(t)) { top = t; break; }
           }
         }
-        if (top === null) top = clampTop(it.top);
-        placed.push({ left, top, w: it.w, h: it.h });
+        if (top === null) {
+          const pills = placed.filter((p) => p.pill);
+          const overlap = (t) => pills.reduce((sum, p) => sum + Math.max(0, Math.min(left + it.w, p.left + p.w) - Math.max(left, p.left)) * Math.max(0, Math.min(t + it.h, p.top + p.h) - Math.max(t, p.top)), 0);
+          let best = Infinity;
+          for (let off = -336; off <= 336; off += 28) {
+            const t = clampTop(it.top + off);
+            const score = overlap(t) * 1000 + Math.abs(off);
+            if (score < best) { best = score; top = t; }
+          }
+        }
+        placed.push({ left, top, w: it.w, h: it.h, pill: true });
         const ndx = left - it.left;
         const ndy = top - it.top;
         if (Math.abs(ndx - it.dx) > 0.5) it.el.style.setProperty("--dx", `${ndx}px`);
