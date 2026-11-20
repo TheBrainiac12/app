@@ -9,7 +9,7 @@ import { CityDrawer } from "@/components/CityDrawer";
 import { BottomDock } from "@/components/BottomDock";
 import { SummaryChip } from "@/components/SummaryChip";
 import { ShareDialog } from "@/components/ShareDialog";
-import { cardFor, generateBatch } from "@/lib/engine";
+import { cardFor, cardWithSize, generateBatch } from "@/lib/engine";
 import { GuessCard } from "@/components/GuessCard";
 import { SoundToggle } from "@/components/SoundToggle";
 import { BEST_KEY, loadBest, pickChallenge, streakCaption } from "@/lib/guess";
@@ -59,6 +59,7 @@ function App() {
   };
 
   const flyTo = (c, altitude) => setFocus({ lat: c.coords.lat, lng: c.coords.lng, altitude, t: Date.now() });
+  const flyGuess = (c) => setFocus({ lat: c.coords.lat - 14, lng: c.coords.lng, altitude: 1.6, t: Date.now() });
 
   const setCity = (c) => {
     setCityState(c);
@@ -122,7 +123,7 @@ function App() {
 
   const closeDrawer = () => {
     setSelected(null);
-    if (guess) flyTo(guess.ch.city, 1.5);
+    if (guess) flyGuess(guess.ch.city);
     else overview(origin, allCards);
   };
 
@@ -135,7 +136,7 @@ function App() {
     setSelected(null);
     setExplore(false);
     setGuess({ round: 1, streak: 0, used: [], ch, revealed: null });
-    flyTo(ch.city, 1.5);
+    flyGuess(ch.city);
     playPop();
   };
 
@@ -157,7 +158,7 @@ function App() {
     const ch = pickChallenge(origin.id, rentEur, used);
     setGuess({ ...guess, round: guess.round + 1, used, ch, revealed: null });
     setSelected(null);
-    flyTo(ch.city, 1.5);
+    flyGuess(ch.city);
     playPop();
   };
 
@@ -246,7 +247,7 @@ function App() {
           originName={origin.city}
           onAnswer={answer}
           onNext={nextRound}
-          onReport={() => setSelected(cardFor(guess.ch.city, rentEur))}
+          onReport={() => setSelected(cardWithSize(cardFor(guess.ch.city, rentEur), guess.ch.key[0]))}
           onExit={exitGuess}
           onShareStreak={shareStreak}
         />

@@ -119,7 +119,7 @@ const GlobeViewInner = ({ origin, cards, explore, rentEur, focus, onPick, select
   }, [focus]);
 
   const dests = useMemo(
-    () => cards.map((c, i) => ({ priority: i + 1, city: c.city, card: c, color: styleFor(c).hex, sub: c.reality ? "Reality check" : c.apartment, lat: c.city.coords.lat, lng: c.city.coords.lng })),
+    () => cards.map((c, i) => ({ priority: i + 1, city: c.city, card: c, color: styleFor(c).hex, sub: c.apartment || "Reality check", lat: c.city.coords.lat, lng: c.city.coords.lng })),
     [cards]
   );
 

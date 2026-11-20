@@ -1,0 +1,36 @@
+{
+  "summary": "Frontend-only test of Guess Mode and the sound toggle at 1920x1080 and 390x844. All core flows pass. Hero entry: type Mumbai in the city input (51,000 INR is auto-filled), then hero-guess-mode-button shows the guess-card and hides the panel and dock. Note that the Mumbai preset auto-compares, so the hero button can only be reached by typing a city. The question shows the rent and tier. A, D, ArrowLeft, ArrowRight and both buttons reveal correctly. Correctness equalled (local <= rent) in 52/52 checked reveals. Streak goes +1 on correct and resets to 0 on wrong. guess-diff and guess-countdown agree with the verdict. Best persists in localStorage and survives a reload. Enter and Space advance one round. Enter on a focused Next button advances exactly once (round 4 -> 5). No repeats in 12/12, 20/20 and 20/20 rounds. Pins cannot be clicked before the reveal. Full Report opens the drawer and ArrowRight does not cycle. Escape #1 closes the drawer and keeps the same round. Escape #2 exits: dock and panel return, 5 labels show, and a 'Best streak: 4 in a row' toast appears with a Share Streak action. With best=5 in localStorage plus a reload, the Share Streak button shows and copies the correct caption with a toast. The sound toggle flips aria-pressed, aria-label and localStorage elsewhere-muted (1/0), and the setting persists across a reload. No page errors or AudioContext console errors after clicks, keys, reveals, the size toggle or shuffle. Mobile: the card fits (12-378px, no horizontal overflow) and the sound toggle does not overlap the panel. Regression: compare (5 labels), drawer, 3-Bed toggle, ArrowRight cycling and shuffle all OK. Main defect: the 50/50 split breaks down for high rents. In the UI, London gave 15/20 affordable (Mumbai gave 10/20). A node simulation of pickChallenge confirms it: NYC at its own rent is 84% affordable, at 1.5x rent 95%, at 2x rent 100%; London at 1.5x is 83%.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "lib/guess.js pickChallenge", "issue": "The 50/50 split breaks for high rents. The tier key is chosen before 'want', and the fallback chain [ok&&near, ok, near, pool] quietly falls back to affordable cities when no unaffordable city exists for that key, or when they have all been used up. Simulated over 20-round sessions: NYC rent x1 gives 84% affordable, x2 gives 100%; London x1.5 gives 83%; Zurich x1.5 gives 75%. Pressing 'Approved' every time wins almost every round.", "selector": "[data-testid=guess-card]", "priority": "MEDIUM"},
+      {"component": "GuessCard Full Report", "issue": "Full Report opens cardFor(city, rentEur), the best tier that fits, not the tier the question asked about. Example: the question asked about a 1-Bed City Centre in Prague and the verdict was Entry denied, but the drawer showed '1-Bed · Outside Centre', a MID-RANGE badge and an approved stamp. That contradicts the game result.", "selector": "[data-testid=guess-full-report-button]", "priority": "LOW"},
+      {"component": "Globe mystery pin after reveal", "issue": "App.js sets apartment='Entry denied', but GlobeView uses sub = c.reality ? 'Reality check' : c.apartment. So a denied reveal shows 'Reality check' instead of 'Entry denied' (approved correctly shows 'Rent approved').", "selector": "[data-testid^=globe-label-]", "priority": "LOW"},
+      {"component": "Guess key handler", "issue": "Enter and Space are ignored whenever any BUTTON has focus. After clicking the sound toggle (or Exit, Share Streak), pressing Enter activates that button instead of going to the next round. In the test, Enter toggled the sound back on and the round did not change. The guard should only skip when the focused button is inside guess-card.", "selector": "[data-testid=sound-toggle-button]", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Mobile 390x844 reveal", "issues": ["The revealed card grows to top=349px and covers the mystery pin, which sits around y~400 after flyTo, so the emerald/coral recolour is mostly hidden. Consider shifting the camera lat on narrow screens, as overview() already does."]},
+      {"screen": "Exit toast (desktop)", "issues": ["The bottom-center sonner toast sits on top of the dock (it covers the search and Explore buttons) for its lifetime."]}
+    ]
+  },
+  "test_report_links": ["/app/tests/guess_mode_iter14.py", "/app/tests/guess_dist_sim_iter14.js"],
+  "action_items": [
+    "Fix the pickChallenge distribution: decide 'want' first, then pick a key that has candidates. For example, for an unaffordable round try the 3-Bed or centre keys, which have higher prices, or pick among (city, key) pairs that satisfy want. Only fall back when no pair exists.",
+    "Make Full Report open the card for the question's tier (ch.key), or label the drawer to match the verdict.",
+    "Show 'Entry denied' on the revealed pin: let GlobeView respect card.apartment for guess cards, or pass reality=false and use a dedicated slot colour.",
+    "Key handler: only skip Enter/Space when the focused button is inside guess-card.",
+    "Mobile: offset the guess flyTo lat so the pin stays visible above the revealed card."
+  ],
+  "critical_code_review_comments": [
+    "pickChallenge: the key is chosen independently of want, which causes the high-rent skew described above.",
+    "startGuess from hero when a batch already exists and editing=true creates a new batch. That is fine, but nextRound reads origin/rentEur from the render state. It works because the state updates are batched.",
+    "soundEffects: playVerdict uses setTimeout chains without checking mute again. Muting within 90ms of a verdict could still play the chime, but ctx.suspend makes it silent. Harmless."
+  ],
+  "updated_files": ["/app/tests/guess_mode_iter14.py", "/app/tests/guess_dist_sim_iter14.js"],
+  "success_rate": {"backend": "N/A", "frontend": "~92% (all brief checks pass except the 50/50 distribution for high-rent origins)"},
+  "seed_data_creation": "None. Only browser localStorage keys were set (elsewhere-best-streak, elsewhere-muted).",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "The hero guess button only appears if you type a city into city-autocomplete-input and pick city-autocomplete-option-<id>; presets auto-compare. Use the dock-guess-mode-button after a preset. Read 'Your rent' via the sibling of guess-local-rent. Run node /app/tests/guess_dist_sim_iter14.js [cityIds] to check the distribution."
+}
