@@ -30,6 +30,24 @@ const VibeGrid = ({ card, code, id }) => (
   </div>
 );
 
+const SLAM = { type: "spring", stiffness: 520, damping: 24, mass: 0.8, delay: 0.18 };
+
+const InkStamp = ({ denied, ink, id }) => (
+  <div className="relative" style={{ margin: "-10px -6px -24px 0" }} data-testid={`${id}-stamp-wrap`}>
+    <motion.div initial={{ scale: 2.1, opacity: 0, rotate: -22 }} animate={{ scale: 1, opacity: 0.85, rotate: -12 }} transition={SLAM}>
+      <PassportStamp variant={denied ? "denied" : "approved"} accentColor={ink} size={80} opacity={1} rotate={0} testId={`${id}-stamp`} />
+    </motion.div>
+    <motion.span
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 rounded-full"
+      style={{ border: `2px solid ${ink}` }}
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: [0.9, 1.35], opacity: [0, 0.45, 0] }}
+      transition={{ duration: 0.45, delay: 0.3, ease: "easeOut" }}
+    />
+  </div>
+);
+
 const TIERS = [
   { key: "1_bed_center", label: "1-Bed · Centre" },
   { key: "1_bed_outside", label: "1-Bed · Outside" },
@@ -152,7 +170,7 @@ export const CityCard = ({ card: baseCard, code, index, onShare, originName }) =
           <span className="rounded-full px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.18em]" style={{ background: s.ink, color: s.hex }}>
             {s.name}
           </span>
-          <PassportStamp variant={card.reality ? "denied" : "approved"} accentColor={s.ink} size={80} opacity={0.7} testId={`${id}-stamp`} style={{ margin: "-10px -6px -24px 0" }} />
+          <InkStamp key={`${card.city.id}-${size}`} denied={card.reality} ink={s.ink} id={id} />
         </div>
         <h3 className="relative mt-8 break-words font-display text-3xl font-extrabold leading-none tracking-tight">
           {card.city.city} <Flag country={card.city.country} height={22} className="ml-1 -mt-1" />

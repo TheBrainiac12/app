@@ -97,7 +97,7 @@ export const ExportCard = forwardRef(({ card, origin, code, rentLocal, format },
           {lines.map((l) => <Row key={l} color={s.hex} size={story ? 36 : 34}>{l}</Row>)}
         </div>
         <div style={{ alignSelf: "flex-end" }}>
-          <PassportStamp variant={card.reality ? "denied" : "approved"} accentColor={s.hex} size={story ? 240 : 190} testId="export-passport-stamp" />
+          <PassportStamp variant={card.reality ? "denied" : "approved"} accentColor={s.hex} size={story ? 240 : 190} opacity={0.85} testId="export-passport-stamp" />
         </div>
       </div>
       {story ? (
