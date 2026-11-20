@@ -12,7 +12,7 @@ import { ShareDialog } from "@/components/ShareDialog";
 import { cardFor, cardWithSize, generateBatch } from "@/lib/engine";
 import { GuessCard } from "@/components/GuessCard";
 import { SoundToggle } from "@/components/SoundToggle";
-import { BEST_KEY, loadBest, pickChallenge, streakCaption } from "@/lib/guess";
+import { BEST_KEY, historyEntry, loadBest, pickChallenge, sessionStats } from "@/lib/guess";
 import { playPop, playVerdict } from "@/lib/soundEffects";
 import { toast } from "sonner";
 import { currencyOf, formatMoney, fromEur, niceRound, toEur } from "@/lib/currency";
@@ -35,6 +35,7 @@ function App() {
   const [focusKey, setFocusKey] = useState(0);
   const [guess, setGuess] = useState(null);
   const [best, setBest] = useState(loadBest);
+  const [streakShare, setStreakShare] = useState(null);
 
   const origin = batch ? batch.origin : null;
   const code = origin ? currencyOf(origin.country) : "USD";
@@ -135,7 +136,7 @@ function App() {
     const ch = pickChallenge(c.id, toEur(r, currencyOf(c.country)), []);
     setSelected(null);
     setExplore(false);
-    setGuess({ round: 1, streak: 0, used: [], ch, revealed: null });
+    setGuess({ round: 1, streak: 0, used: [], ch, revealed: null, history: [] });
     flyGuess(ch.city);
     playPop();
   };
@@ -148,7 +149,7 @@ function App() {
       setBest(streak);
       window.localStorage.setItem(BEST_KEY, String(streak));
     }
-    setGuess({ ...guess, streak, revealed: { correct } });
+    setGuess({ ...guess, streak, revealed: { correct }, history: [...guess.history, historyEntry(guess.ch, correct, rentEur)] });
     setTimeout(() => playVerdict(correct, streak), 260);
   };
 
@@ -162,35 +163,39 @@ function App() {
     playPop();
   };
 
-  const shareStreak = () => {
-    navigator.clipboard.writeText(streakCaption(best, origin.city)).then(
-      () => toast.success("Streak caption copied! Paste it anywhere."),
-      () => toast.error("Couldn't copy the caption")
-    );
+  const sessionOf = (g) => ({ history: g.history, stats: sessionStats(g.history, g.streak), origin, code, rentLocal: formatMoney(batch.rent, code) });
+
+  const shareStreak = (g = guess) => {
+    playPop();
+    setStreakShare(sessionOf(g));
   };
 
   const exitGuess = () => {
+    const g = guess;
     setGuess(null);
     setSelected(null);
     overview(origin, allCards);
-    if (best > 0) toast(`Best streak: ${best} in a row`, { action: { label: "Share Streak", onClick: shareStreak } });
+    if (g.history.length) {
+      const st = sessionStats(g.history, g.streak);
+      toast(`Session: ${st.correct}/${st.total} correct · best streak ${st.best}`, { action: { label: "Share Streak Card", onClick: () => shareStreak(g) } });
+    }
   };
 
   const keys = useRef({});
-  keys.current = { batch, allCards, editing, selected, shareCard, loading, pick, closeDrawer, guess, answer, nextRound, exitGuess };
+  keys.current = { batch, allCards, editing, selected, shareCard, streakShare, loading, pick, closeDrawer, guess, answer, nextRound, exitGuess };
   useEffect(() => {
     const onKey = (e) => {
       const k = keys.current;
       const t = e.target;
       const typing = t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.getAttribute("role") === "slider" || t.isContentEditable);
       if (e.key === "Escape") {
-        if (e.defaultPrevented || k.shareCard || typing) return;
+        if (e.defaultPrevented || k.shareCard || k.streakShare || typing) return;
         if (k.selected) k.closeDrawer();
         else if (k.guess) k.exitGuess();
         return;
       }
       if (k.guess) {
-        if (typing || k.selected || k.shareCard) return;
+        if (typing || k.selected || k.shareCard || k.streakShare) return;
         const key = e.key.toLowerCase();
         if (!k.guess.revealed && (key === "a" || key === "arrowleft")) { e.preventDefault(); k.answer(true); }
         else if (!k.guess.revealed && (key === "d" || key === "arrowright")) { e.preventDefault(); k.answer(false); }
@@ -249,11 +254,11 @@ function App() {
           onNext={nextRound}
           onReport={() => setSelected(cardWithSize(cardFor(guess.ch.city, rentEur), guess.ch.key[0]))}
           onExit={exitGuess}
-          onShareStreak={shareStreak}
+          onShareStreak={() => shareStreak()}
         />
       )}
       <CityDrawer card={selected} code={code} originName={origin ? origin.city : ""} onClose={closeDrawer} onShare={setShareCard} onMakeOrigin={selectOrigin} cycle={!guess && !!(selected && allCards.some((x) => x.city.id === selected.city.id))} />
-      {origin && <ShareDialog card={shareCard} onClose={() => setShareCard(null)} origin={origin} code={code} rentLocal={formatMoney(batch.rent, code)} />}
+      {origin && <ShareDialog card={shareCard} session={streakShare} onClose={() => { setShareCard(null); setStreakShare(null); }} origin={origin} code={code} rentLocal={formatMoney(batch.rent, code)} />}
       <Toaster position="bottom-center" theme="dark" />
     </div>
   );

@@ -3,6 +3,8 @@ import { useId } from "react";
 const TEXT = {
   approved: { top: "RENT APPROVED", bottom: "GLOBAL EDITION" },
   denied: { top: "ENTRY DENIED", bottom: "REALITY CHECK" },
+  verified: { top: "GUESS VERIFIED", bottom: "GLOBAL INTUITION" },
+  humbled: { top: "HUMBLED", bottom: "TRY AGAIN" },
 };
 
 const MONO = "'JetBrains Mono', monospace";

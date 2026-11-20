@@ -4,6 +4,8 @@ import { FaFacebookF, FaInstagram, FaThreads, FaWhatsapp, FaXTwitter } from "rea
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ExportCard } from "@/components/ExportCard";
+import { GuessShareCard } from "@/components/GuessShareCard";
+import { buildStreakCaption, streakTemplates } from "@/lib/guess";
 import { buildCaption, captionTemplates, copyImage, downloadBlob, fileName, renderBlob } from "@/lib/share";
 import { RENT } from "@/constants/testIds/rent";
 
@@ -14,11 +16,12 @@ const FORMATS = [
 
 const PASTE_TOAST = "Image copied! Paste (Ctrl/Cmd+V) into your post";
 
-const useCaption = (card, props) => {
-  const templates = useMemo(() => (card ? captionTemplates(card) : []), [card]);
+const useCaption = (card, session, props) => {
+  const templates = useMemo(() => (session ? streakTemplates(session) : card ? captionTemplates(card) : []), [card, session]);
   const [i, setI] = useState(0);
-  useEffect(() => setI(Math.floor(Math.random() * 10)), [card]);
-  const caption = card && templates.length ? buildCaption(templates[i % templates.length], { card, ...props }) : "";
+  useEffect(() => setI(Math.floor(Math.random() * 10)), [card, session]);
+  const t = templates.length ? templates[i % templates.length] : null;
+  const caption = !t ? "" : session ? buildStreakCaption(t, session) : buildCaption(t, { card, ...props });
   return [caption, () => setI((x) => x + 1 + Math.floor(Math.random() * (templates.length - 1 || 1)))];
 };
 
@@ -34,26 +37,28 @@ const SocialButton = ({ testid, label, onClick, children }) => (
   </button>
 );
 
-export const ShareDialog = ({ card, onClose, ...props }) => {
+export const ShareDialog = ({ card, session, onClose, ...props }) => {
+  const item = session || card;
   const [format, setFormat] = useState("square");
   const [file, setFile] = useState(null);
   const ref = useRef(null);
   const height = format === "story" ? 1920 : 1080;
   const fit = Math.min(1, (window.innerWidth - 64) / 300);
   const scale = (format === "story" ? 0.16 : 0.28) * fit;
-  const [caption, shuffleCaption] = useCaption(card, props);
+  const [caption, shuffleCaption] = useCaption(card, session, props);
 
   useEffect(() => {
-    if (!card) return undefined;
+    if (!item) return undefined;
     let live = true;
     setFile(null);
     const t = setTimeout(async () => {
       if (!ref.current) return;
       const blob = await renderBlob(ref.current, { width: 1080, height, pixelRatio: 1, cacheBust: true });
-      if (live && blob) setFile(new File([blob], fileName(card.city.city), { type: "image/png" }));
+      const name = session ? "elsewhere-guess-streak.png" : fileName(card.city.city);
+      if (live && blob) setFile(new File([blob], name, { type: "image/png" }));
     }, 300);
     return () => { live = false; clearTimeout(t); };
-  }, [card, format, height]);
+  }, [item, format, height]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const canNativeShare = !!(file && navigator.canShare && navigator.canShare({ files: [file] }));
   const ready = !!file;
@@ -96,10 +101,10 @@ export const ShareDialog = ({ card, onClose, ...props }) => {
   };
 
   return (
-    <Dialog open={!!card} onOpenChange={(o) => !o && onClose()}>
+    <Dialog open={!!item} onOpenChange={(o) => !o && onClose()}>
       <DialogContent data-testid={RENT.shareDialog} className="max-h-[92vh] max-w-[calc(100vw-16px)] overflow-y-auto border-white/10 bg-[#121620] text-white sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-display text-2xl">Share this comparison</DialogTitle>
+          <DialogTitle className="font-display text-2xl">{session ? "Share your streak" : "Share this comparison"}</DialogTitle>
           <DialogDescription className="text-white/50">Made on your device. Nothing is uploaded.</DialogDescription>
         </DialogHeader>
         <div className="grid grid-cols-2 gap-2">
@@ -115,10 +120,10 @@ export const ShareDialog = ({ card, onClose, ...props }) => {
             </button>
           ))}
         </div>
-        {card && (
+        {item && (
           <div className="mx-auto overflow-hidden rounded-xl" style={{ width: 1080 * scale, height: height * scale }}>
             <div style={{ transform: `scale(${scale})`, transformOrigin: "top left" }}>
-              <ExportCard ref={ref} card={card} format={format} {...props} />
+              {session ? <GuessShareCard ref={ref} session={session} format={format} /> : <ExportCard ref={ref} card={card} format={format} {...props} />}
             </div>
           </div>
         )}

@@ -6,17 +6,13 @@ import { formatEur } from "@/lib/currency";
 import { headerRoast } from "@/lib/share";
 import { buildCard } from "@/lib/engine";
 
-const TopBar = ({ streak, best, round, onExit, onShareStreak }) => (
+const TopBar = ({ streak, best, round, onExit }) => (
   <div className="flex items-center gap-3 border-b border-white/10 pb-3 text-xs font-semibold">
     <span data-testid="guess-streak" className="flex items-center gap-1 text-[#FFB020]"><Flame className="h-4 w-4" /> {streak} in a row</span>
     <span data-testid="guess-best" className="flex items-center gap-1 text-white/60"><Trophy className="h-3.5 w-3.5" /> Best {best}</span>
     <span data-testid="guess-round" className="font-mono text-white/40">Round {round}</span>
     <span className="flex-1" />
-    {best >= 3 && (
-      <button data-testid="guess-share-streak-button" onClick={onShareStreak} className="flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-1 text-white hover:bg-white/15">
-        <Share2 className="h-3.5 w-3.5" /> Share Streak
-      </button>
-    )}
+
     <button data-testid="guess-exit-button" onClick={onExit} className="flex items-center gap-1 rounded-full border border-white/15 px-2.5 py-1 text-white/70 hover:text-white">
       <X className="h-3.5 w-3.5" /> Exit
     </button>
@@ -63,7 +59,7 @@ export const GuessCard = ({ guess, best, rentEur, code, rentLabel, originName, o
         className="glass-panel pointer-events-auto w-full max-w-[460px] space-y-4 rounded-[26px] p-5"
         style={revealed && revealed.correct ? { boxShadow: "0 0 40px -10px rgba(16,227,154,0.55)" } : undefined}
       >
-        <TopBar streak={streak} best={best} round={round} onExit={onExit} onShareStreak={onShareStreak} />
+        <TopBar streak={streak} best={best} round={round} onExit={onExit} />
         <div>
           <p className="flex items-center gap-2 font-display text-xl font-extrabold text-white">
             <Flag country={ch.city.country} height={18} /> <span data-testid="guess-city">{ch.city.city}</span>
@@ -95,6 +91,9 @@ export const GuessCard = ({ guess, best, rentEur, code, rentLabel, originName, o
                 Full Report
               </button>
             </div>
+            <button data-testid="guess-share-streak-card-button" onClick={onShareStreak} className="flex h-10 w-full items-center justify-center gap-2 rounded-full bg-[#FFB020]/15 text-sm font-bold text-[#FFB020] transition-colors hover:bg-[#FFB020]/25">
+              <Share2 className="h-4 w-4" /> Share Streak Card
+            </button>
           </>
         )}
       </motion.div>
